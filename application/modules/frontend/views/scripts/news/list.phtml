@@ -1,0 +1,7 @@
+<h3><strong><?=$this->title?></strong></h3>
+<?php
+echo $this->partialLoop('partials/_news-row.phtml', $this->paginator);
+
+echo $this->paginationControl($this->paginator,
+     'Sliding',
+     'partials/pagination-control.phtml'); ?>

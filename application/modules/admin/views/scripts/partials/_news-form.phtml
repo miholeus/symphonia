@@ -1,0 +1,95 @@
+<form action="<?=$this->form->getAction()?>"
+      method="<?=$this->form->getMethod()?>"
+      id="<?=$this->form->getAttrib('id')?>"
+      class="<?=$this->form->getAttrib('class')?>"
+      name="<?=$this->form->getName()?>"
+      >
+    <div class="width-60 fltlft">
+        <fieldset class="adminform">
+            <legend>Edit News</legend>
+            <ul class="adminformlist">
+                <li>
+                    <label id="title-lb" for="title" class="required">Title</label>
+                    <?=$this->form->title?>
+                </li>
+                <li>
+                    <label id="short_description-lbl" for="short_description">
+                        Short Description
+                    </label>
+                    <?=$this->form->short_description?>
+                </li>
+                <li>
+                    <label id="published-lbl" for="published">Published</label>
+                    <fieldset id="published" class="radio">
+                    <?php
+                    echo $this->partial('partials/radiobutton-control.phtml', array(
+                        'options' => $this->form->published->getMultiOptions(),
+                        'selected' => $this->form->published->getValue(),
+                        'name' => 'published'
+                    ));
+                    ?>
+                    </fieldset>
+                </li>
+            </ul>
+            <div class="clr"></div>
+            <label id="detail_description-lbl" for="detail_description">Detail Description</label>
+            <div class="clr"></div>
+            <?=$this->form->detail_description?>
+
+            <div class="toggle-editor">
+                <div class="button2-left">
+                    <div class="blank">
+                        <a title="Toggle editor" onclick="javascript:tinyMCE.execCommand('mceToggleEditor', false, 'detail_description');return false;" href="#">Toggle editor</a>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="width-40 fltrt">
+        <div id="content-sliders-88" class="pane-sliders">
+            <div class="panel">
+                <h3 id="publishing-details" class="title pane-toggler-down">
+                    <a href="#">
+                        <span>Publishing Options</span>
+                    </a>
+                </h3>
+                <div class="pane-slider content" style="border-top: medium none; border-bottom: medium none; overflow: hidden; padding-top: 0px; padding-bottom: 0px; height: 274px;">
+                    <fieldset class="panelform">
+                        <ul class="adminformlist">
+                            <li>
+                                <label id="published_at-lbl" for="published_at">Published At</label>
+                                <?=$this->form->published_at?>
+                                <img src="/skins/<?=$this->skin?>/images/system/calendar.png" alt="Calendar" />
+                            </li>
+                        </ul>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="panel">
+                <h3 id="meta-options" class="title pane-toggler">
+                    <a href="#">
+                        <span>Metadata Options</span>
+                    </a>
+                </h3>
+                <div class="pane-slider content" style="border-top: medium none; border-bottom: medium none; overflow: hidden; padding-top: 0px; padding-bottom: 0px; height: 0px;">
+                    <fieldset class="panelform">
+                        <ul class="adminformlist">
+                            <li>
+                                <label id="metakey-lbl" for="metakey">Meta Keywords</label>
+                                <?=$this->form->metakey?>
+                            </li>
+                            <li>
+                                <label id="metadesc-lbl" for="metadesc">Meta Description</label>
+                                <?=$this->form->metadesc?>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <?=$this->form->id?>
+</form>
+<div class="clr"></div>
+<div class="clr"></div>

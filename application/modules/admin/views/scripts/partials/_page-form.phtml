@@ -1,0 +1,155 @@
+<form action="<?=$this->form->getAction()?>"
+      method="<?=$this->form->getMethod()?>"
+      id="<?=$this->form->getAttrib('id')?>"
+      class="<?=$this->form->getAttrib('class')?>"
+      name="<?=$this->form->getName()?>"
+      >
+    <div class="width-60 fltlft">
+        <fieldset class="adminform">
+            <legend>Edit Page</legend>
+            <ul class="adminformlist">
+                <li>
+                    <label id="title-lb" for="title" class="required">Title</label>
+                    <?=$this->form->title?>
+                </li>
+                <li>
+                    <label id="uri-lbl" for="uri" class="required">
+                        page uri
+                    </label>
+                    <?=$this->form->uri?>
+                </li>
+                <li>
+                    <label id="published-lbl" for="published">Published</label>
+                    <fieldset id="published" class="radio">
+                    <?php
+                    echo $this->partial('partials/radiobutton-control.phtml', array(
+                        'options' => $this->form->published->getMultiOptions(),
+                        'selected' => $this->form->published->getValue(),
+                        'name' => 'published'
+                    ));
+                    ?>
+                    </fieldset>
+                </li>
+            </ul>
+            <div class="clr"></div>
+            <ul class="adminformlist select-nodes">
+                <li>
+                    <label id="content[type]-lbl" for="content[type]">Node Type</label>
+                    <fieldset id="content[type]" class="radio">
+                        <?php
+                        $optionSelected = $this->form->nodescontenttype->getValue();// 1
+                        $cnt = 0;
+                        foreach($this->form->nodescontenttype->getMultiOptions()
+                                as $optionValue => $optionKey) {
+                            printf('<input id="nodes[content][type][%s]" type="radio" %s value="%s" name="%s" />',
+                                    $cnt,
+                                    $optionSelected == $optionValue ? "checked='checked'"
+                                                                    : '',
+                                    $optionValue, "nodes[content][type]"
+                            );
+                            printf('<label for="nodes[content][type][%s]">%s</label>', $cnt,
+                                    $optionKey);
+                            $cnt++;
+                        }
+                        ?>
+                    </fieldset>
+                </li>
+            </ul>
+            <div class="node-tabs">
+
+                <div id="node-content-static" <?=$optionSelected == 1 ? 'style="display:none;"' : ''?>>
+
+                    <label id="content-lbl" for="content">Content</label>
+                    <div class="clr"></div>
+                    <?=$this->form->content?>
+
+                    <div class="toggle-editor">
+                        <div class="button2-left">
+                            <div class="blank">
+                                <a title="Toggle editor" onclick="javascript:tinyMCE.execCommand('mceToggleEditor', false, 'content');return false;" href="#">Toggle editor</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="node-content-dynamic" <?=$optionSelected == 0 ? 'style="display:none;"' : ''?>>
+                    <label id="nodes[content][module]-lbl" for="nodes[content][module]"
+                           class="required">Module</label>
+                    <input type="text" name="nodes[content][module]" id="nodes[content][module]"
+                           value="<?=$this->form->nodescontentmodule->getValue()?>" />
+                    <label id="nodes[content][controller]-lbl" for="nodes[content][controller]"
+                           class="required">Controller</label>
+                    <input type="text" name="nodes[content][controller]" id="nodes[content][controller]"
+                           value="<?=$this->form->nodescontentcontroller->getValue()?>" />
+                    <label id="nodes[content][action]-lbl" for="nodes[content][action]"
+                           class="required">Action</label>
+                    <input type="text" name="nodes[content][action]" id="nodes[content][action]"
+                           value="<?=$this->form->nodescontentaction->getValue()?>" />
+                </div>
+
+            </div>
+        </fieldset>
+    </div>
+    <div class="width-40 fltrt">
+        <div id="content-sliders-88" class="pane-sliders">
+            <div class="panel">
+                <h3 id="content-nodes" class="title pane-toggler-down">
+                    <a href="#">
+                        <span>Content Nodes</span>
+                    </a>
+                </h3>
+                <div class="pane-slider content" style="border-top: medium none; border-bottom: medium none; overflow: hidden; padding-top: 0px; padding-bottom: 0px; height: 274px;">
+                    <div class="nodes-tabs">
+                        <div class="nodes-tabs-list">
+
+                            <span class="content-nodes-add" onclick="addNode()">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <fieldset class="panelform">
+                                <ul class="adminformlist" id="custom-nodes">
+                                    <?php
+                                    if($this->nodes !== null && count($this->nodes) > 0) {
+                                        echo $this->partialLoop('partials/_page-form-nodeslist.phtml', $this->nodes);
+                                    }
+                                    ?>
+                                </ul>
+                            </fieldset>
+
+                        </div>
+
+                        <div class="nodes-tabs-content">
+
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="panel">
+                <h3 id="meta-options" class="title pane-toggler">
+                    <a href="#">
+                        <span>Metadata Options</span>
+                    </a>
+                </h3>
+                <div class="pane-slider content" style="border-top: medium none; border-bottom: medium none; overflow: hidden; padding-top: 0px; padding-bottom: 0px; height: 0px;">
+                    <fieldset class="panelform">
+                        <ul class="adminformlist">
+                            <li>
+                                <label id="meta_keywords-lbl" for="meta_keywords">Meta Keywords</label>
+                                <?=$this->form->meta_keywords?>
+                            </li>
+                            <li>
+                                <label id="meta_description-lbl" for="meta_description">Meta Description</label>
+                                <?=$this->form->meta_description?>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <?=$this->form->id?>
+</form>
+<div class="clr"></div>
+<div class="clr"></div>

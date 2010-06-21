@@ -1,0 +1,52 @@
+<?php $this->placeholder('pagetitle')->captureStart();?>
+<div class="pagetitle icon-48-systeminfo">
+    <h2> System Information </h2>
+</div>
+<?php $this->placeholder('pagetitle')->captureEnd();?>
+
+<?php $this->placeholder('submenu')->captureStart();?>
+<div class="submenu-pad">
+    <ul id="submenu" class="information">
+        <li>
+            <a id="site" class="active" onclick="return false;" href="#"> System Info</a>
+        </li>
+        <li>
+            <a id="phpsettings" class="" onclick="return false;" href="#"> PHP Settings</a>
+        </li>
+        <li>
+            <a id="config" class="" onclick="return false;" href="#"> Configuration File</a>
+        </li>
+        <li>
+            <a id="phpinfo" class="" onclick="return false;" href="#"> PHP Information</a>
+        </li>
+    </ul>
+<div class="clr"></div>
+</div>
+<?php $this->placeholder('submenu')->captureEnd();?>
+
+<?php $this->placeholder('element-box')->captureStart();?>
+<form name="adminform" method="post" action="/admin/">
+    <div id="config-document">
+        <div id="page-site" class="tab" style="display: block;">
+            <?php
+            echo $this->partial('partials/_sysinfo-pagesite.phtml', array('sysInfo' => $this->sysInfo) );
+            ?>
+        </div>
+        <div id="page-phpsettings" class="tab" style="display: none;">
+            <?php
+            echo $this->partial('partials/_sysinfo-phpsettings.phtml', array('sysInfo' => $this->sysInfo) );
+            ?>
+        </div>
+        <div id="page-config" class="tab" style="display: none;">
+            <?php
+            echo $this->partial('partials/_sysinfo-config.phtml', array('sysInfo' => $this->sysInfo) );
+            ?>
+        </div>
+        <div id="page-phpinfo" class="tab" style="display: none;">
+            <?php
+            echo $this->partial('partials/_sysinfo-phpinfo.phtml', array('sysInfo' => $this->sysInfo) );
+            ?>
+        </div>
+    </div>
+</form>
+<?php $this->placeholder('element-box')->captureEnd();?>

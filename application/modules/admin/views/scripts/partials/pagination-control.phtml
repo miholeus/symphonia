@@ -1,0 +1,131 @@
+<?
+$limit = Zend_Registry::get('pagination_limit');
+$display_options = array(
+    5 => '5',
+    15 => '15',
+    20 => '20',
+    25 => '25',
+    30 => '30',
+    50 => '50',
+    100 => '100',
+    0 => 'All'
+);
+?>
+<div class="container">
+    <div class="pagination">
+        <div class="limit">
+            Display #
+            <select id="limit" class="inputbox" onchange="submitform();" size="1" name="limit">
+                <?php
+                foreach($display_options as $key => $value) {
+                    ?>
+                    <option value="<?=$key?>" <?=$key == $limit ? 'selected' : ''?>><?=$value?></option>
+                    <?
+                }
+                ?>
+            </select>
+        </div>
+<?php if ($this->pageCount > 1) {
+    // you need to add each of the request parameters to url
+    $params = Zend_Controller_Front::getInstance()->getRequest()->getParams();
+    // remove the system parameters
+    unset($params['module']);
+    unset($params['controller']);
+    unset($params['action']);
+?>
+
+    <!-- First page link -->
+    <?php if (isset($this->previous)): ?>
+    <div class="button2-right">
+        <div class="start">
+          <a href="<?php echo $this->url(array('page' => $this->first)); ?>">
+            Start
+          </a>
+        </div>
+    </div>
+    <?php else: ?>
+    <div class="button2-right off">
+        <div class="start">
+            <span>Start</span>
+        </div>
+    </div>
+    <?php endif; ?>
+
+
+    <!-- Previous page link -->
+    <?php if (isset($this->previous)){ ?>
+    <div class="button2-right">
+        <div class="prev">
+          <a href="<?php echo $this->url(array_merge(
+              $params, array('page' => $this->previous))); ?>">
+            Prev
+          </a>
+        </div>
+    </div>
+    <?php } else { ?>
+    <div class="button2-right off">
+        <div class="prev">
+            <span>Prev</span>
+        </div>
+    </div>
+    <?php } ?>
+    <!-- Numbered page links -->
+    <div class="button2-left">
+        <div class="page">
+            <?php foreach ($this->pagesInRange as $page){ ?>
+              <?php if ($page != $this->current){ ?>
+                <a href="<?php echo $this->url(array_merge($params,
+                     array('page' => $page))); ?>">
+                     <?php echo $page; ?>
+                </a>
+              <?php } else { ?>
+                <span>
+                    <?php echo $page; ?>
+                </span>
+              <?php }}?>
+        </div>
+    </div>
+    <!-- Next page link -->
+    <?php if (isset($this->next)){ ?>
+    <div class="button2-left">
+        <div class="next">
+          <a href="<?php echo $this->url(
+               array_merge($params, array('page' => $this->next))); ?>">
+            Next
+          </a>
+        </div>
+    </div>
+    <?php } else { ?>
+    <div class="button2-left off">
+        <div class="next">
+            <span>Next</span>
+        </div>
+    </div>
+    <?php } ?>
+
+    <!-- Last page link -->
+    <?php if (isset($this->next)): ?>
+    <div class="button2-left">
+        <div class="end">
+          <a href="<?php echo $this->url(array('page' => $this->last)); ?>">
+            End
+          </a>
+        </div>
+    </div>
+    <?php else: ?>
+    <div class="button2-left off">
+        <div class="end">
+            <span>End</span>
+        </div>
+    </div>
+    <?php endif; ?>
+
+    <div class="limit">Page <?=$this->current?> of <?=$this->last?></div>
+
+
+<?php } ?>
+
+
+    </div>
+</div>
+

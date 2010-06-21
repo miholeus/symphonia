@@ -1,0 +1,35 @@
+<form action="<?=$this->form->getAction()?>"
+      method="<?=$this->form->getMethod()?>"
+      id="<?=$this->form->getAttrib('id')?>"
+      class="<?=$this->form->getAttrib('class')?>"
+      name="<?=$this->form->getName()?>"
+      >
+    <div class="width-40 fltlft">
+        <fieldset class="adminform">
+            <legend>Menu Details</legend>
+            <ul class="adminformlist">
+                <li>
+                    <label id="title-lb" for="title" class="required">Title</label>
+                    <?=$this->form->title?>
+                </li>
+                <li>
+                    <label id="menutype-lbl" for="menutype" class="required">
+                        Menu Type
+                    </label>
+                    <?=$this->form->menutype?>
+                </li>
+                <li>
+                    <label id="description-lbl" for="description">
+                        Description
+                    </label>
+                    <?=$this->form->description?>
+                </li>
+            </ul>
+        </fieldset>
+    </div>
+
+
+    <?=$this->form->id?>
+</form>
+<div class="clr"></div>
+<div class="clr"></div>

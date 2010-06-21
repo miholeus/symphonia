@@ -1,0 +1,14 @@
+<?php
+$optionSelected = isset($this->selected) ? $this->selected : null;
+$cnt = 0;
+foreach($this->options as $optionValue => $optionKey) {
+    printf('<input id="%s" type="radio" %s value="%s" name="%s" />',
+            $this->name . $cnt,
+            $optionSelected == $optionValue ? "checked='checked'"
+                                            : '',
+            $optionValue, $this->name
+    );
+    printf('<label for="%s">%s</label>', $this->name . $cnt,
+            $optionKey);
+    $cnt++;
+}

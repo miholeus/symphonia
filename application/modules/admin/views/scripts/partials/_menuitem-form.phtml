@@ -1,0 +1,57 @@
+<form action="<?=$this->form->getAction()?>"
+      method="<?=$this->form->getMethod()?>"
+      id="<?=$this->form->getAttrib('id')?>"
+      class="<?=$this->form->getAttrib('class')?>"
+      name="<?=$this->form->getName()?>"
+      >
+    <div class="width-60 fltlft">
+        <fieldset class="adminform">
+            <legend>Details</legend>
+            <ul class="adminformlist">
+                <li>
+                    <label id="label-lb" for="label" class="required">Label</label>
+                    <?=$this->form->label?>
+                </li>
+                <li>
+                    <label id="uri-lbl" for="uri" class="required">
+                        Uri
+                    </label>
+                    <?=$this->form->uri?>
+                </li>
+                <li>
+                    <label id="position-lbl" for="position">
+                        Position
+                    </label>
+                    <?=$this->form->position?>
+                </li>
+                <li>
+                    <label id="parentId-lbl" for="parentId">
+                        Parent Menu Item
+                    </label>
+                    <?=$this->form->parentId?>
+                </li>
+                <li>
+                    <label id="published-lbl" for="published">Published</label>
+                    <fieldset id="published" class="radio">
+                    <?php
+                    echo $this->partial('partials/radiobutton-control.phtml', array(
+                        'options' => $this->form->published->getMultiOptions(),
+                        'selected' => $this->form->published->getValue(),
+                        'name' => 'published'
+                    ));
+                    ?>
+                    </fieldset>
+                </li>
+                <li>
+                    <label id="menuId-lbl" for="menuId" class="required">Menu Location</label>
+                    <?=$this->form->menuId?>
+                </li>
+            </ul>
+        </fieldset>
+    </div>
+
+
+    <?=$this->form->id?>
+</form>
+<div class="clr"></div>
+<div class="clr"></div>

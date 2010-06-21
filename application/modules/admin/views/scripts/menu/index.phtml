@@ -1,0 +1,89 @@
+<?php $this->placeholder('toolbar-list')->captureStart();?>
+<ul>
+    <li id="toolbar-new" class="button">
+        <a class="toolbar" href="/admin/menu/create">
+        <span class="icon-32-new"> </span>
+        New
+        </a>
+    </li>
+</ul>
+<?php $this->placeholder('toolbar-list')->captureEnd();?>
+
+<?php $this->placeholder('pagetitle')->captureStart();?>
+<div class="pagetitle icon-48-menumgr">
+    <h2> Menu Manager: Menus </h2>
+</div>
+<?php $this->placeholder('pagetitle')->captureEnd();?>
+
+<?php $this->placeholder('submenu')->captureStart();?>
+<ul id="submenu">
+    <li>
+        <a class="active" href="/admin/menu">Menus</a>
+    </li>
+    <li>
+        <a href="/admin/menuitem">Menu Items</a>
+    </li>
+</ul>
+<?php $this->placeholder('submenu')->captureEnd();?>
+
+<?php $this->placeholder('element-box')->captureStart();?>
+
+<form name="adminForm" method="post" action="/admin/menu">
+    <table class="adminlist">
+        <thead>
+            <tr>
+                <th width="1%" rowspan="2">
+                    <input type="checkbox" onclick="checkAll(this)" value="" name="toggle"/>
+                </th>
+                <th rowspan="2">
+                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.title','desc','');">Title</a>
+                </th>
+                <th width="50%" colspan="3"> Number of Menu Items </th>
+                <th class="nowrap" width="1%" rowspan="2">
+                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.id','desc','');">
+                        ID
+                        <img alt="" src="/_data/<?=$this->skin?>/system/images/sort_asc.png"/>
+                    </a>
+                </th>
+            </tr>
+            <tr>
+                <th width="10%"> # Published </th>
+                <th width="10%"> # Unpublished </th>
+                <th width="10%"> # Trashed </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="15">
+                    <div class="container">
+                        <div class="pagination">
+                            <div class="limit">
+                                Display #
+                                <select id="limit" class="inputbox" onchange="submitform();" size="1" name="limit">
+                                    <option value="5">5</option>
+                                    <option selected="selected" value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                    <option value="30">30</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="0">All</option>
+                                </select>
+                            </div>
+                            <div class="limit"/>
+                            <input type="hidden" value="0" name="limitstart"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <?php
+            $this->partialLoop()->setObjectKey('menuItem');
+            echo $this->partialLoop('partials/_menu-row.phtml', $this->menus );
+            ?>
+        </tbody>
+    </table>
+</form>
+<?php $this->placeholder('element-box')->captureEnd();?>

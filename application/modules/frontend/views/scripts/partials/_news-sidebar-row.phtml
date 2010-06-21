@@ -1,0 +1,9 @@
+<p>
+    <?php
+    $date = strtotime($this->newsItem->getPublishedAt());
+    echo date("d.m.Y", $date);
+    ?>
+    <br />
+    <a href="/news/<?=$this->newsItem->getId()?>.html"><?=$this->escape($this->newsItem->getTitle())?></a>
+    <br />
+</p>

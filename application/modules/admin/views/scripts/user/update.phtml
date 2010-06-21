@@ -1,0 +1,20 @@
+<?php $this->placeholder('toolbar-list')->captureStart();?>
+<!-- toolbar list content -->
+<?php $this->placeholder('toolbar-list')->captureEnd();?>
+
+<?php $this->placeholder('pagetitle')->captureStart();?>
+<div class="pagetitle icon-48-user">
+    <h2> User Manager: Update User </h2>
+</div>
+<?php $this->placeholder('pagetitle')->captureEnd();?>
+
+<?php $this->placeholder('element-box')->captureStart();?>
+
+<?php echo $this->form; ?>
+<p>
+     <a href='/admin/user/password/id/<?php echo $this->form->getElement('id')->getValue(); ?>'>
+          Update Password
+     </a>
+</p>
+
+<?php $this->placeholder('element-box')->captureEnd();?>

@@ -1,0 +1,8 @@
+*~
+.tmp_*
+/library/ZendX
+/library/Zend
+/logs/*
+/application/configs/application.ini
+/application/configs/routes.*
+/application/layouts/scripts/frontend.phtml

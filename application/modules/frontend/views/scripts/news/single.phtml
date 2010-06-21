@@ -1,0 +1,18 @@
+<?php
+if($this->news instanceof Soulex_Components_News_NewsModel) {
+    ?>
+    <h3><?=$this->news->getTitle()?></h3>
+    <?php
+    echo $this->news->getDetailDescription();
+    ?>
+    <br />
+    <p align="right">
+        <a href="/news.html">Все новости</a>
+    </p>
+    <?php
+} else {
+    ?>
+    <h3>Ничего не найдено</h3>
+    <?php
+}
+?>

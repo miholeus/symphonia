@@ -1,0 +1,130 @@
+<?php $this->placeholder('toolbar-list')->captureStart();?>
+<ul>
+    <li id="toolbar-new" class="button">
+        <a class="toolbar" href="/admin/news/create">
+        <span class="icon-32-new"> </span>
+        New
+        </a>
+    </li>
+    <li id="toolbar-delete" class="button">
+        <a class="toolbar" onclick="javascript:if (document.adminForm.boxchecked.value==0){alert('Please first make a selection from the list');}else{ submitbutton({'action':'delete'})}" href="#">
+        <span class="icon-32-delete"> </span>
+        Delete
+        </a>
+    </li>
+</ul>
+<?php $this->placeholder('toolbar-list')->captureEnd();?>
+
+<?php $this->placeholder('pagetitle')->captureStart();?>
+<div class="pagetitle icon-48-news">
+    <h2> News Manager: News </h2>
+</div>
+<?php $this->placeholder('pagetitle')->captureEnd();?>
+
+<?php $this->placeholder('submenu')->captureStart();?>
+<ul id="submenu">
+    <li>
+    <a class="active" href="/admin/news">News</a>
+    </li>
+    <li>
+    </li>
+    <li>
+    </li>
+</ul>
+<?php $this->placeholder('submenu')->captureEnd();?>
+
+<?php $this->placeholder('element-box')->captureStart();?>
+<form name="adminForm" method="post" action="/admin/news">
+    <fieldset id="filter-bar">
+        <div class="filter-search fltlft">
+            <label class="filter-search-lbl" for="filter_search">Filter:</label>
+            <input id="filter_search" type="text" title="Search title or alias. Prefix with id: to search for an article id." value="" name="filter_search"/>
+            <button class="btn" type="submit">Search</button>
+            <button onclick="document.id('filter_search').value='';this.form.submit();" type="button">Clear</button>
+        </div>
+        <div class="filter-select fltrt">
+            <select class="inputbox" onchange="this.form.submit()" name="filter_published">
+                <option value="">- Select State -</option>
+                <option value="1">Published</option>
+                <option value="0">Unpublished</option>
+                <option value="2">Archived</option>
+                <option value="-2">Trash</option>
+                <option value="*">All</option>
+            </select>
+        </div>
+    </fieldset>
+    <div class="clr"> </div>
+        <table class="adminlist">
+            <thead>
+                <tr>
+                    <th width="1%">
+                        <input type="checkbox" onclick="checkAll(this)" value="" name="toggle"/>
+                    </th>
+                    <th>
+                        <a title="Click to sort by this column" href="javascript:tableOrdering('a.title','desc','');">
+                        Title
+                        <img alt="" src="/_data/admin/system/images/sort_asc.png"/>
+                        </a>
+                    </th>
+                    <th width="5%">
+                        <a title="Click to sort by this column" href="javascript:tableOrdering('a.state','desc','');">Published</a>
+                    </th>
+                    <th width="10%">
+                        <a title="Click to sort by this column" href="javascript:tableOrdering('a.catid','desc','');">Category</a>
+                    </th>
+                    <th class="nowrap" width="10%">
+                        <a title="Click to sort by this column" href="javascript:tableOrdering('a.ordering','desc','');">Ordering</a>
+                        <a title="Save Order" href="javascript:saveorder(1, 'articles.saveorder')">
+                        <img alt="Save Order" src="/skins/<?=$this->skin?>/images/admin/filesave.png"/>
+                        </a>
+                    </th>
+                    <th width="10%">
+                        <a title="Click to sort by this column" href="javascript:tableOrdering('a.created_by','desc','');">Created by</a>
+                    </th>
+                    <th width="5%">
+                        <a title="Click to sort by this column" href="javascript:tableOrdering('a.created','desc','');">Date</a>
+                    </th>
+                    <th width="5%">
+                        <a title="Click to sort by this column" href="javascript:tableOrdering('a.hits','desc','');">Hits</a>
+                    </th>
+                    <th class="nowrap" width="1%">
+                        <a title="Click to sort by this column" href="javascript:tableOrdering('a.id','desc','');">ID</a>
+                    </th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="15">
+                        <div class="container">
+                            <div class="pagination">
+                                <div class="limit">
+                                    Display #
+                                    <select id="limit" class="inputbox" onchange="submitform();" size="1" name="limit">
+                                        <option value="5">5</option>
+                                        <option selected="selected" value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="25">25</option>
+                                        <option value="30">30</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                        <option value="0">All</option>
+                                    </select>
+                                </div>
+                                <div class="limit"/>
+                                <input type="hidden" value="0" name="limitstart"/>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+            <tbody>
+                <?php
+                $this->partialLoop()->setObjectKey('newsItem');
+                echo $this->partialLoop('partials/_news-row.phtml', $this->news );
+                ?>
+            </tbody>
+        </table>
+    <input type="hidden" name="boxchecked" id="boxchecked" value="0" />
+</form>
+<?php $this->placeholder('element-box')->captureEnd();?>

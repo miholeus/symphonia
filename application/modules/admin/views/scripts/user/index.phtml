@@ -1,0 +1,21 @@
+<?php $this->placeholder('toolbar-list')->captureStart();?>
+<!-- toolbar list content -->
+<?php $this->placeholder('toolbar-list')->captureEnd();?>
+
+<?php $this->placeholder('pagetitle')->captureStart();?>
+<div class="pagetitle icon-48-user">
+    <h2> User Manager: My Account </h2>
+</div>
+<?php $this->placeholder('pagetitle')->captureEnd();?>
+
+<?php $this->placeholder('element-box')->captureStart();?>
+
+<?php if($this->identity == null) { ?>
+    <p>To log in <a href='/admin/user/login'>click here</a></p>
+<?php }else{ ?>
+    <p>Welcome back <?php echo $this->identity->first_name;?></p>
+    <p>To log out <a href='/admin/user/logout'>click here</a></p>
+<?php } ?>
+
+<?php $this->placeholder('element-box')->captureEnd();?>
+

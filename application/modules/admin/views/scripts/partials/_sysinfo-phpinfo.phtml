@@ -1,0 +1,26 @@
+<div class="noshow">
+    <div class="width-100">
+        <fieldset class="adminform">
+            <legend>PHP Information</legend>
+            <table class="adminlist">
+                <thead>
+                    <tr>
+                        <th colspan="2"></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th colspan="2">  </th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>
+                            <?=$this->sysInfo->getPhpInfo()?>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </div>
+</div>

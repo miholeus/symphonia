@@ -1,0 +1,121 @@
+<?php $this->placeholder('toolbar-list')->captureStart();?>
+<ul>
+    <li id="toolbar-new" class="button">
+        <a class="toolbar" href="/admin/menuitem/create">
+        <span class="icon-32-new"> </span>
+        New
+        </a>
+    </li>
+    <li id="toolbar-delete" class="button">
+        <a class="toolbar" onclick="javascript:if (document.adminForm.boxchecked.value==0){alert('Please first make a selection from the list');}else{ submitbutton({'action':'delete'})}" href="#">
+        <span class="icon-32-delete"> </span>
+        Delete
+        </a>
+    </li>
+</ul>
+<?php $this->placeholder('toolbar-list')->captureEnd();?>
+
+<?php $this->placeholder('pagetitle')->captureStart();?>
+<div class="pagetitle icon-48-menumgr">
+    <h2> Menu Manager: Menu Items </h2>
+</div>
+<?php $this->placeholder('pagetitle')->captureEnd();?>
+
+<?php $this->placeholder('submenu')->captureStart();?>
+<ul id="submenu">
+    <li>
+        <a href="/admin/menu">Menus</a>
+    </li>
+    <li>
+        <a class="active" href="/admin/menuitem">Menu Items</a>
+    </li>
+</ul>
+<?php $this->placeholder('submenu')->captureEnd();?>
+
+<?php $this->placeholder('element-box')->captureStart();?>
+
+<form name="adminForm" method="post" action="/admin/menuitem">
+
+    <fieldset id="filter-bar">
+        <div class="filter-search fltlft">
+            <label class="filter-search-lbl" for="filter_search">Filter:</label>
+            <input id="filter_search" type="text" title="Search title or alias. Prefix with id: to search for a menu id." value="" name="filter_search"/>
+            <button type="submit">Search</button>
+            <button onclick="document.id('filter_search').value='';this.form.submit();" type="button">Clear</button>
+        </div>
+        <div class="filter-select fltrt">
+            <select class="inputbox" onchange="this.form.submit()" name="filter_published">
+                <option value="">- Select State -</option>
+                <option value="1">Published</option>
+                <option value="0">Unpublished</option>
+                <option value="-2">Trash</option>
+                <option value="*">All</option>
+            </select>
+            <select class="inputbox" onchange="this.form.submit()" name="menutype">
+                <?php
+                if(is_array($this->menus) && count($this->menus)) {
+                    $this->partialLoop()->setObjectKey('menu');
+                    echo $this->partialLoop('partials/menu-options.phtml', $this->menus);
+                } else {
+                    ?>
+                    <option value="0">None</option>
+                    <?php
+                }
+                ?>
+            </select>
+            <select class="inputbox" onchange="this.form.submit()" name="filter_level">
+                <option value="">- Select Menu Level -</option>
+                <?php
+                echo $this->partialLoop('partials/menulevel-options.phtml', $this->menuLevels);
+                ?>
+            </select>
+        </div>
+    </fieldset>
+    <div class="clr"> </div>
+    <table class="adminlist">
+        <thead>
+            <tr>
+                <th width="1%">
+                    <input type="checkbox" onclick="checkAll(this)" value="" name="toggle"/>
+                </th>
+                <th class="title">
+                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.title','desc','');">Title</a>
+                </th>
+                <th width="5%">
+                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.published','desc','');">Published</a>
+                </th>
+                <th class="nowrap" width="13%">
+                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.lft','desc','');">
+                        Ordering
+                        <img alt="" src="/_data/admin/system/images/sort_asc.png"/>
+                    </a>
+                    <a title="Save Order" href="javascript:saveorder(9, 'saveorder')">
+                        <img alt="Save Order" src="/skins/<?=$this->skin?>/images/admin/filesave.png"/>
+                    </a>
+                </th>
+                <th width="10%"> Menu Item Location </th>
+                <th class="nowrap" width="1%">
+                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.id','desc','');">ID</a>
+                </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="15">
+                    <?php
+                    echo $this->paginationControl($this->paginator,
+                     'Sliding',
+                     'partials/pagination-control.phtml');
+                    ?>
+                </td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <?php
+            echo $this->partialLoop('partials/_menuitem-row.phtml', $this->paginator );
+            ?>
+        </tbody>
+    </table>
+    <input type="hidden" name="boxchecked" id="boxchecked" value="0" />
+</form>
+<?php $this->placeholder('element-box')->captureEnd();?>

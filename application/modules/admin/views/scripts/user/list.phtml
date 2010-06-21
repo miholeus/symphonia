@@ -1,0 +1,149 @@
+<?php $this->placeholder('toolbar-list')->captureStart();?>
+<ul>
+    <li id="toolbar-new" class="button">
+        <a class="toolbar" href="/admin/user/create">
+        <span class="icon-32-new"> </span>
+        New
+        </a>
+    </li>
+</ul>
+<?php $this->placeholder('toolbar-list')->captureEnd();?>
+
+<?php $this->placeholder('pagetitle')->captureStart();?>
+<div class="pagetitle icon-48-user">
+    <h2> User Manager: Users </h2>
+</div>
+<?php $this->placeholder('pagetitle')->captureEnd();?>
+
+<?php $this->placeholder('submenu')->captureStart();?>
+<ul id="submenu">
+    <li>
+    <a class="active" href="/admin/user/list">Users</a>
+    </li>
+    <li>
+    </li>
+    <li>
+    </li>
+</ul>
+<?php $this->placeholder('submenu')->captureEnd();?>
+
+<?php $this->placeholder('element-box')->captureStart();?>
+
+<form name="adminForm" method="post" action="/admin/user/list">
+
+    <fieldset id="filter-bar">
+        <div class="filter-search fltlft">
+        <label class="filter-search-lbl" for="filter_search">Search Users:</label>
+        <input id="filter_search" type="text" title="Search Users" value="" name="filter_search"/>
+        <button type="submit">Search</button>
+        <button onclick="document.id('filter_search').value='';this.form.submit();" type="button">Reset</button>
+        </div>
+        <div class="filter-select fltrt">
+        <label for="filter_state"> Filter Users by:  </label>
+        <select class="inputbox" onchange="this.form.submit()" name="filter_state">
+        <option value="*">- State -</option>
+        <option value="0">Enabled</option>
+        <option value="1">Disabled</option>
+        </select>
+        <select class="inputbox" onchange="this.form.submit()" name="filter_active">
+        <option value="*">- Active -</option>
+        <option value="0">Activated</option>
+        <option value="1">Unactivated</option>
+        </select>
+        <select class="inputbox" onchange="this.form.submit()" name="filter_group_id">
+        <option value="">- Group -</option>
+        <option value="1">Public</option>
+        <option value="6">- Manager</option>
+        <option value="7">- - Administrator</option>
+        <option value="8">- - - Super Users</option>
+        <option value="2">- Registered</option>
+        <option value="3">- - Author</option>
+        <option value="4">- - - Editor</option>
+        <option value="5">- - - - Publisher</option>
+        <option value="10">- - - Shop Suppliers</option>
+        <option value="12">- - Customer Group</option>
+        </select>
+        </div>
+    </fieldset>
+
+    <div class="clr"> </div>
+
+    <?php if($this->users != null) {?>
+
+    <table class="adminlist">
+        <thead>
+            <tr>
+                <th width="1%">
+                    <input type="checkbox" onclick="checkAll(<?=count($this->users)?>)" value="" name="toggle"/>
+                </th>
+                <th class="left">
+                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.name','desc','');">
+                    Name
+                    <img alt="" src="/_data/admin/system/images/sort_asc.png"/>
+                    </a>
+                </th>
+                <th class="nowrap" width="10%">
+                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.username','desc','');">User Name</a>
+                </th>
+                <th class="nowrap" width="5%">
+                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.block','desc','');">Enabled</a>
+                </th>
+                <th class="nowrap" width="5%">
+                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.activation','desc','');">Activated</a>
+                </th>
+                <th class="nowrap" width="10%"> Groups </th>
+                <th class="nowrap" width="15%">
+                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.email','desc','');">E-mail</a>
+                </th>
+                <th class="nowrap" width="15%">
+                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.lastvisitDate','desc','');">Last Visit Date</a>
+                </th>
+                <th class="nowrap" width="15%">
+                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.registerDate','desc','');">Registration Date</a>
+                </th>
+                <th class="nowrap" width="3%">
+                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.id','desc','');">ID</a>
+                </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="15">
+                    <div class="container">
+                    <div class="pagination">
+                    <div class="limit">
+                    Display #
+                    <select id="limit" class="inputbox" onchange="submitform();" size="1" name="limit">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option selected="selected" value="20">20</option>
+                    <option value="25">25</option>
+                    <option value="30">30</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="0">All</option>
+                    </select>
+                    </div>
+                    <div class="limit"/>
+                    <input type="hidden" value="0" name="limitstart"/>
+                    </div>
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <?php
+            echo $this->partialLoop('partials/_user-row.phtml', $this->users);
+            ?>
+        </tbody>
+    </table>
+    
+    <input type="hidden" name="boxchecked" id="boxchecked" value="0" />
+    <?php }else{?>
+    <p>You do not have any users yet.</p>
+    <?php }?>
+    
+</form>
+
+<?php $this->placeholder('element-box')->captureEnd();?>

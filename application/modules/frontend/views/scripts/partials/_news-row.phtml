@@ -1,0 +1,9 @@
+<p>
+    <?php
+    $date = strtotime($this->published_at);
+    echo date("m.d.Y", $date);
+    ?>
+    <br />
+    <a href="/news/<?=$this->id?>.html"><?=$this->escape($this->title)?></a>
+    <br />
+</p>

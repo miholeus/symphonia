@@ -1,0 +1,82 @@
+<div class="noshow">
+    <div class="width-100">
+        <fieldset class="adminform">
+            <legend>System Information</legend>
+            <table class="adminlist">
+                <thead>
+                    <tr>
+                        <th width="250"> Setting </th>
+                        <th> Value </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">  </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>PHP Built On:</strong>
+                        </td>
+                        <td> <?=$this->sysInfo->phpRunningOnInfo()?> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Database Version:</strong>
+                        </td>
+                        <td> <?=$this->sysInfo->dbVersion()?> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Database Collation:</strong>
+                        </td>
+                        <td> <?=$this->sysInfo->databaseCollation()?> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Connection Collation:</strong>
+                        </td>
+                        <td> <?=$this->sysInfo->connectionCollation()?> </td>
+                    </tr>
+                   <tr>
+                        <td>
+                            <strong>Server Collation:</strong>
+                        </td>
+                        <td> <?=$this->sysInfo->serverCollation()?> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>PHP Version:</strong>
+                        </td>
+                        <td> <?=$this->sysInfo->phpVersion()?> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Web Server:</strong>
+                        </td>
+                        <td> <?=$this->sysInfo->webServer()?> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>WebServer to PHP Interface:</strong>
+                        </td>
+                        <td> <?=$this->sysInfo->phpSapiName()?> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Soulex! Version:</strong>
+                        </td>
+                        <td> <?=$this->sysInfo->systemVersion()?> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>User Agent:</strong>
+                        </td>
+                        <td> <?=$this->sysInfo->userAgent()?> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </div>
+</div>

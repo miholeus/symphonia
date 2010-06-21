@@ -1,0 +1,16 @@
+<?php
+if(is_array($this->menus) && count($this->menus) > 0) {
+    ?>
+    <ul id="top_menu">
+    <?php
+    foreach($this->menus as $menu) {
+        ?>
+        <li><a href="<?=$menu->getUri()?>"><?=$menu->getLabel()?></a></li>
+        <?
+    }
+    ?>
+    </ul>
+    <?php
+}
+?>
+

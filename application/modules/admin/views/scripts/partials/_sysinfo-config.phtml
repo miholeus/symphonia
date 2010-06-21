@@ -1,0 +1,74 @@
+<div class="noshow">
+    <div class="width-60">
+        <fieldset class="adminform">
+            <legend>Configuration File</legend>
+            <table class="adminlist">
+                <thead>
+                    <tr>
+                        <th width="250"> Setting </th>
+                        <th> Value </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">  </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td> db adapter </td>
+                        <td> <?=$this->sysInfo->configSetting('resources.db.adapter')?> </td>
+                    </tr>
+                    <tr>
+                        <td> host </td>
+                        <td> xxxxxx </td>
+                    </tr>
+                    <tr>
+                        <td> user </td>
+                        <td> xxxxxx </td>
+                    </tr>
+                    <tr>
+                        <td> password </td>
+                        <td> xxxxxx </td>
+                    </tr>
+                    <tr>
+                        <td> db </td>
+                        <td> <?=$this->sysInfo->configSetting('resources.db.params.dbname')?> </td>
+                    </tr>
+                    <tr>
+                        <td> Include paths library </td>
+                        <td> <?=$this->sysInfo->configSetting('includePaths.library')?> </td>
+                    </tr>
+                    <tr>
+                        <td> Bootstrap path </td>
+                        <td> <?=$this->sysInfo->configSetting('bootstrap.path')?> </td>
+                    </tr>
+                    <tr>
+                        <td> Bootstrap class </td>
+                        <td> <?=$this->sysInfo->configSetting('bootstrap.class')?> </td>
+                    </tr>
+                    <tr>
+                        <td> Controller Directory </td>
+                        <td> <?=$this->sysInfo->configSetting('resources.frontController.controllerDirectory')?> </td>
+                    </tr>
+                    <tr>
+                        <td> Layout path </td>
+                        <td> <?=$this->sysInfo->configSetting('resources.layout.layoutPath')?> </td>
+                    </tr>
+                    <tr>
+                        <td> Layout </td>
+                        <td> <?=$this->sysInfo->configSetting('resources.layout.layout')?> </td>
+                    </tr>
+                    <tr>
+                        <td> Modules directory </td>
+                        <td> <?=$this->sysInfo->configSetting('resources.frontController.moduleDirectory')?> </td>
+                    </tr>
+                    <tr>
+                        <td> Front controller plugins </td>
+                        <td> <?=$this->sysInfo->configSetting('resources.frontController.plugins')?> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </div>
+</div>

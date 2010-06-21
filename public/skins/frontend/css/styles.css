@@ -1,0 +1,120 @@
+h1 {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	color: #4C4C4C;
+	
+}
+h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #4C4C4C;
+	
+		
+}
+h3, h4, h5, h6 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #4C4C4C;
+}
+
+p.menu {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom:5px;
+}
+
+a:link {
+	color: #4C4C4C;
+	text-decoration: none;
+	font-size: 11px;
+}
+a:visited {
+	text-decoration: none;
+	color: #4C4C4C;
+	font-size: 11px;
+}
+a:hover {
+	text-decoration: underline;
+	font-size: 11px;
+}
+a:active {
+	text-decoration: none;
+	font-size: 11px;
+}
+.text {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+.ptext {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #4C4C4C;
+	text-align: justify;
+}
+.pnoalign {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #4C4C4C;
+}
+.copyright {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFFFFF;
+}
+.copyright a:link {
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 11px;
+}
+.copyright a:visited {
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 11px;
+}
+.copyright a:hover {
+color: #ffffff;
+	text-decoration: underline;
+	font-size: 11px;
+}
+.copyright a:active {
+color: #ffffff;
+	text-decoration: none;
+	font-size: 11px;
+}
+
+.menu {
+	font-family: Arial, Helvetica, sans-serif;
+	margin-left: 15;
+	font-size: 11px;
+	font-weight: bold;
+	color: #4C4C4C;
+
+}
+.menuf {
+	font-family: Arial, Helvetica, sans-serif;
+	margin-left: 15px;
+	font-size: 11px;
+	color: #ffffff;
+	text-align: center;
+}
+.menuf a:link {
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 11px;
+}
+.menuf a:visited {
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 11px;
+}
+.menuf a:hover {
+color: #ffffff;
+	text-decoration: underline;
+	font-size: 11px;
+}
+.menuf a:active {
+color: #ffffff;
+	text-decoration: none;
+	font-size: 11px;
+}

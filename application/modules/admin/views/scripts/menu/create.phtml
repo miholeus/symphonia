@@ -1,0 +1,30 @@
+<?php $this->placeholder('toolbar-list')->captureStart();?>
+<ul>
+    <li id="toolbar-apply" class="button">
+        <a class="toolbar" onclick="javascript:submitbutton({'action' : 'save'})" href="#">
+            <span class="icon-32-apply"> </span>
+            Save
+        </a>
+    </li>
+    <li id="toolbar-cancel" class="button">
+        <a class="toolbar" onclick="javascript:submitbutton({'action' : 'cancel', 'uri' : '/admin/menu'})" href="#">
+            <span class="icon-32-cancel"> </span>
+            Close
+        </a>
+    </li>
+</ul>
+<?php $this->placeholder('toolbar-list')->captureEnd();?>
+
+<?php $this->placeholder('pagetitle')->captureStart();?>
+<div class="pagetitle icon-48-menu">
+    <h2> Menu Manager: Add New Menu </h2>
+</div>
+<?php $this->placeholder('pagetitle')->captureEnd();?>
+
+<?php $this->placeholder('element-box')->captureStart();?>
+
+<?php
+echo $this->partial('partials/_menu-form.phtml', array('form' => $this->form));
+?>
+
+<?php $this->placeholder('element-box')->captureEnd();?>

@@ -1,0 +1,48 @@
+<fieldset class="adminform">
+
+    <ul class='adminformlist select-nodes'>
+        <li>
+            <label id='<?=$this->node->getName()?>[type]-lbl' for='<?=$this->node->getName()?>[type]'>
+            Node type</label>
+            <fieldset id='<?=$this->node->getName()?>[type]' class="radio">
+                <input id='nodes[<?=$this->node->getName()?>][type][0]' type='radio' onclick='toggleNodeType(this)'
+                name='nodes[<?=$this->node->getName()?>][type]' value='0' <?=$this->node->getIsInvokable() ? '' : "checked='checked'"?> />
+                <label for='nodes[<?=$this->node->getName()?>][type][0]'>Static</label>
+                <input id='nodes[<?=$this->node->getName()?>][type][1]' type='radio' onclick='toggleNodeType(this)'
+                name='nodes[<?=$this->node->getName()?>][type]' value='1' <?=$this->node->getIsInvokable() ? "checked='checked'" : ''?> />
+                <label for='nodes[<?=$this->node->getName()?>][type][1]'>Dynamic</label>
+            </fieldset>
+        </li>
+    </ul>
+    <div class='node-tabs'>
+        <div id='node-<?=$this->node->getName()?>-static' <?=$this->node->getIsInvokable() ? 'style="display:none;"' : ''?>>
+              <label id='<?=$this->node->getName()?>-lbl' for='<?=$this->node->getName()?>'>
+              <?=$this->node->getName()?></label>
+              <div class='clr'></div>
+            <textarea name='<?=$this->node->getName()?>' id='<?=$this->node->getName()?>' cols='80' rows='10'><?=$this->node->getContentValue()?></textarea>
+        </div>
+        <div id='node-<?=$this->node->getName()?>-dynamic' <?=$this->node->getIsInvokable() ? '' : 'style="display:none;"'?>>
+            <label id='nodes[<?=$this->node->getName()?>][module]-lbl' for='nodes[<?=$this->node->getName()?>][module]' class='required'>
+            Module</label>
+            <input type='text' name='nodes[<?=$this->node->getName()?>][module]'
+                id='nodes[<?=$this->node->getName()?>][module]' value='<?=$this->node->getContentValue('module')?>' />
+            <label id='nodes[<?=$this->node->getName()?>][controller]-lbl' for='nodes[<?=$this->node->getName()?>][controller]' class='required'>
+            Controller</label>
+            <input type='text' name='nodes[<?=$this->node->getName()?>][controller]'
+                id='nodes[<?=$this->node->getName()?>][controller]' value='<?=$this->node->getContentValue('controller')?>' />
+            <label id='nodes[<?=$this->node->getName()?>][action]-lbl' for='nodes[<?=$this->node->getName()?>][action]' class='required'>
+            Action</label>
+            <input type='text' name='nodes[<?=$this->node->getName()?>][action]'
+                id='nodes[<?=$this->node->getName()?>][action]' value='<?=$this->node->getContentValue('action')?>' />
+
+            
+        </div>
+
+        <div id="node-buttons-control">
+            <button onclick="saveNode('<?=$this->node->getName()?>'); return false;">Save</button>
+        </div
+
+    </div>
+
+
+</fieldset>

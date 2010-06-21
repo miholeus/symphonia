@@ -1,0 +1,42 @@
+<tr class="row<?php echo $this->partialCounter % 2 == 0 ? 1 : 0?>">
+    <td class="center">
+        <input id="cb0" type="checkbox" title="Checkbox for row <?=$this->partialCounter?>" onclick="isChecked(this.checked);" value="<?=$this->newsItem->Id?>" name="cid[]"/>
+    </td>
+    <td>
+        <a href="/admin/news/edit/id/<?=$this->newsItem->Id?>"> <?=$this->escape($this->newsItem->Title)?> </a>
+    </td>
+    <td class="center">
+        <?php
+        if($this->newsItem->Published) {
+            $action = 'Unpublish Item';
+            $text = 'Published';
+            $state = 'publish';
+        } else {
+            $action = 'Publish Item';
+            $text = 'Unpublished';
+            $state = 'unpublish';
+        }
+        ?>
+        <a class="jgrid" title="<?=$action?>" onclick="return listItemTask('cb0','articles.unpublish')" href="javascript:void(0);">
+        <span class="state <?=$state?>">
+            <span class="text"><?=$text?></span>
+        </span>
+        </a>
+    </td>
+    <td class="center"> None </td>
+    <td class="order">
+        <span> </span>
+        <span>
+        <span class="jgrid" title="Move Down">
+        <span class="state downarrow_disabled">
+        <span class="text">Move Down</span>
+        </span>
+        </span>
+        </span>
+        <input class="text-area-order" type="text" disabled="disabled" value="2" size="5" name="order[]"/>
+    </td>
+    <td class="center"> Unknown </td>
+    <td class="center"> <?php $date = strtotime($this->newsItem->CreatedAt); echo date("Y.m.d");?> </td>
+    <td class="center"> 0 </td>
+    <td class="center"> <?=$this->newsItem->Id?> </td>
+</tr>

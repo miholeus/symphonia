@@ -1,0 +1,56 @@
+<?php
+echo $this->doctype();
+?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <?php
+    echo $this->headTitle();
+    // add a link to the site style sheet
+    $this->headScript()->appendFile('/_data/admin/js/jquery/jquery.js');
+    $this->headScript()->appendFile('/_data/admin/js/default.js');
+    $this->loadSkin($this->skin);
+    echo $this->headLink();
+    echo $this->headScript();
+	echo $this->headMeta();
+    ?>
+</head>
+
+<body>
+	<div id="border-top" class="h_blue">
+		<div>
+			<div>
+				<span class="title"><a href="/admin">Administration</a></span>
+
+			</div>
+		</div>
+	</div>
+    <?=$this->loadHeaderBox()?>
+	<div id="content-box">
+        <div class="border">
+            <div class="padding">
+                <?=$this->layout()->content?>
+                <div class="clr"></div>
+            </div>
+        </div>
+	</div>
+	<div id="border-bottom"><div><div></div></div>
+</div>
+<div id="footer">
+    <p class="copyright">
+        Powered by Zend Framework | 
+	 memory allocated:
+			<?php
+				$memory_used =  memory_get_peak_usage();
+				printf("%0.02f Mb", $memory_used/1024/1024);
+                ?> |
+                <a href="http://joomla.org" target="_blank">Joomla</a>
+                theme
+    </p>
+</div>
+</body>
+<?php
+$this->addScriptPath(APPLICATION_PATH . '/views/scripts');
+echo $this->render('util/profiler.phtml');
+?>
+</html>
