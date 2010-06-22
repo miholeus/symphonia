@@ -6,3 +6,6 @@
 /application/configs/application.ini
 /application/configs/routes.*
 /application/layouts/scripts/frontend.phtml
+/public/skins/frontend/
+/public/upload/*
+/public/_data/frontend/
