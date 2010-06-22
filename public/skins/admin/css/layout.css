@@ -2746,3 +2746,7 @@ label#jform_rules-lbl {
 #nodes-saved {
     display: none;
 }
+
+#ajax-info{
+    display:none;
+}

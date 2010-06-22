@@ -40,4 +40,15 @@ class Admin_Model_ContentNodeMapper extends Admin_Model_DataMapper_Abstract
              ->setParams($row->params)
              ->setPageId($row->page_id);
     }
+
+    public function copyNodeToAllPages(Admin_Model_ContentNode $node)
+    {
+         $result = $this->getDbTable()->select()
+                ->where("name = ?", $node->getName())
+                ->where("page_id = ?", $node->getPageId());
+
+        $row = $this->getDbTable()->fetchRow($result);
+        var_dump($row);
+        return false;
+    }
 }

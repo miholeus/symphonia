@@ -132,6 +132,15 @@ function saveNode(node)
     $(".nodes-tabs-list").css("display", "block");
 }
 
+function copyNodeToAllPages(node, curPageId)
+{
+    $.post("/admin/contentnode/copynode", {'node':encodeURI(node), 'page' : curPageId},
+            function(response) {
+                alert(response);
+            }
+    );
+}
+
 /**
  * Submit form handler
  */

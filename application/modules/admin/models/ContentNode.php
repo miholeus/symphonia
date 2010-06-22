@@ -108,7 +108,6 @@ class Admin_Model_ContentNode extends Admin_Model_Abstract
         $this->_page_id = serialize($params);
         return $this;
     }
-
     /**
      *
      * @return Admin_Model_ContentNode
@@ -121,5 +120,14 @@ class Admin_Model_ContentNode extends Admin_Model_Abstract
             
         }
         return $this;
+    }
+    /**
+     * Copy node to all pages
+     *
+     * @return bool succeeded/not succeeded
+     */
+    public function copyToAllPages()
+    {
+        return $this->getMapper()->copyNodeToAllPages($this);
     }
 }

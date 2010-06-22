@@ -14,6 +14,9 @@
  */
 class Admin_ContentnodeController extends Zend_Controller_Action
 {
+    /**
+     * Loads Info of Current Node on Page
+     */
     public function loadnodeAction()
     {
         $this->_helper->layout()->disableLayout();
@@ -22,11 +25,26 @@ class Admin_ContentnodeController extends Zend_Controller_Action
         $node = $this->_getParam('node');
 
         $mdlContentNode = new Admin_Model_ContentNode(array(
-            'pageId' => $pageId,
-            'name' => $node
+            'pageId'    => $pageId,
+            'name'      => $node
         ));
         $mdlContentNode->loadNode();
         
         $this->view->node = $mdlContentNode;
+    }
+
+    public function copynodeAction()
+    {
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender();
+        $pageId = $this->_getParam('page');
+        $node = $this->_getParam('node');
+
+        $mdlContentNode = new Admin_Model_ContentNode(array(
+            'pageId'    => $pageId,
+            'name'      => $node
+        ));
+        $isSucceeded = $mdlContentNode->copyToAllPages();
+        return Zend_Json_Encoder::encode(array('success' => $isSucceeded));
     }
 }

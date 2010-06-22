@@ -99,19 +99,24 @@
                         <span>Content Nodes</span>
                     </a>
                 </h3>
-                <div class="pane-slider content" style="border-top: medium none; border-bottom: medium none; overflow: hidden; padding-top: 0px; padding-bottom: 0px; height: 274px;">
+                <div class="pane-slider content" style="border-top: medium none; border-bottom: medium none; overflow: auto; padding-top: 0px; padding-bottom: 0px; height: 274px;">
                     <div class="nodes-tabs">
                         <div class="nodes-tabs-list">
 
+                            <span id="ajax-info">
+                                <span id="ajax-info-img"><img src="/_data/admin/system/images/loader.gif" alt="Loading..." /></span>&nbsp;
+                                <span id="ajax-info-msg"></span>
+                            </span>
+                            
                             <span class="content-nodes-add" onclick="addNode()">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             <fieldset class="panelform">
-                                <ul class="adminformlist" id="custom-nodes">
+                                <table class="adminformlist" id="custom-nodes">
                                     <?php
                                     if($this->nodes !== null && count($this->nodes) > 0) {
                                         echo $this->partialLoop('partials/_page-form-nodeslist.phtml', $this->nodes);
                                     }
                                     ?>
-                                </ul>
+                                </table>
                             </fieldset>
 
                         </div>

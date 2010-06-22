@@ -1,1 +1,12 @@
-<li id="node-<?=$this->escape($this->name)?>"><a href="javascript:void(0)" onclick="showNode('<?=$this->escape($this->name)?>', <?=$this->pageId?>)"><?=$this->escape($this->name)?></a></li>
+<tr id="node-<?=$this->escape($this->name)?>">
+    <td>
+        <a href="javascript:void(0)" onclick="showNode('<?=$this->escape($this->name)?>', <?=$this->pageId?>)">
+            <?=$this->escape($this->name)?>
+        </a>
+    </td>
+    <td>
+        <a href="javascript:void(0)" title="Copy Node To All Pages" onclick="copyNodeToAllPages('<?=$this->escape($this->id)?>', <?=$this->pageId?>); return false;">
+            <img src="/_data/admin/system/images/copy.png" alt="Copy Node To All Pages" />
+        </a>
+    </td>
+</tr>
