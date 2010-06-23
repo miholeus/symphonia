@@ -41,14 +41,81 @@ class Admin_Model_ContentNodeMapper extends Admin_Model_DataMapper_Abstract
              ->setPageId($row->page_id);
     }
 
-    public function copyNodeToAllPages(Admin_Model_ContentNode $node)
+    public function copyNodeToPages(Admin_Model_ContentNode $node,
+            array $pagesToInsert, array $pagesToUpdate)
     {
          $result = $this->getDbTable()->select()
                 ->where("name = ?", $node->getName())
                 ->where("page_id = ?", $node->getPageId());
 
         $row = $this->getDbTable()->fetchRow($result);
-        var_dump($row);
+
+        $nodeValues = array(
+            'name'          => $row->name,
+            'value'         => $row->value,
+            'params'        => $row->params,
+            'isInvokable'   => $row->isInvokable
+        );
+
+        try {
+
+            $this->getDbTable()->getAdapter()->beginTransaction();
+
+            if (count($pagesToInsert) > 0) {
+                foreach ($pagesToInsert as $pageId) {
+                    $_data = array_merge($nodeValues, array('page_id' => $pageId));
+                    $this->getDbTable()->insert($_data);
+                }
+            }
+
+            // update existing pages
+            if (count($pagesToUpdate) > 0) {
+                $this->getDbTable()->update(
+                        array_diff($nodeValues, array('name' => $row->name)),
+                        $this->getDbTable()->getAdapter()->quoteInto('name = ?', $row->name)
+                        . ' AND page_id IN (' . join(',', $pagesToUpdate) . ')'
+                );
+            }
+
+            $this->getDbTable()->getAdapter()->commit();
+
+            return true;
+
+        } catch (Zend_Exception $exc) {
+            // echo $exc->getTraceAsString();
+            $this->getDbTable()->getAdapter()->rollBack();
+        }
+
         return false;
+    }
+    /**
+     * Find pages where node $nodeName exists and return their ids
+     *
+     * @param string $nodeName
+     * @return array $pageIds
+     */
+    public function findPagesWhereNodeExists($nodeName)
+    {
+        $pageIds = array();
+        $select = $this->getDbTable()->select()->where('name = ?', $nodeName);
+        $result = $this->getDbTable()->fetchAll($select)->toArray();
+
+        if(is_array($result) && count($result) > 0) {
+            foreach($result as $current) {
+                $pageIds[] = $current['page_id'];
+            }
+        }
+        return $pageIds;
+    }
+    /**
+     * Delete node by its id
+     *
+     * @param int $id
+     * @return int 1/0 number of deleted rows
+     */
+    public function delete($id)
+    {
+        $where = $this->getDbTable()->getAdapter()->quoteInto('id = ?', $id);
+        return $this->getDbTable()->delete($where);
     }
 }

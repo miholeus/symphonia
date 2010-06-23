@@ -180,9 +180,10 @@ class Model_PageMapper extends Zend_Db_Table_Abstract
 			if(count($contentNodes) > 0) {
 				foreach($contentNodes as $node) { //looking for content fields
 					$pageContent[$node['name']] = array(
-                        'value' => $node['value'],
-                        'isInvokable' => $node['isInvokable'],
-                        'params' => $node['params']
+                        'id'            => $node['id'],
+                        'value'         => $node['value'],
+                        'isInvokable'   => $node['isInvokable'],
+                        'params'        => $node['params']
                     );
 				}
 			}
@@ -195,5 +196,24 @@ class Model_PageMapper extends Zend_Db_Table_Abstract
     private function getWhere($id)
     {
         return $this->getAdapter()->quoteInto("id = ?", $id);
+    }
+    /**
+     * Fetch all pages
+     * 
+     * @param string|array|Zend_Db_Table_Select $where  OPTIONAL An SQL WHERE clause or Zend_Db_Table_Select object.
+     * @param string|array                      $order  OPTIONAL An SQL ORDER clause.
+     * @return Zend_Db_Table_Rowset_Abstract
+     */
+    public function fetchAllPages($where, $order)
+    {
+        $select = $this->select();
+        if(null !== $where) {
+            $select->where($where);
+        }
+        if(null !== $order) {
+            $select->order($order);
+        }
+
+        return $this->fetchAll($select);
     }
 }

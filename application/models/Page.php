@@ -21,13 +21,13 @@ class Model_Page
 		$this->_pageRouter = Admin_Model_PageRouter::getInstance();
 	}
 	/**
-	 * Fetches pages
+	 * Fetches paginator
 	 * 
      * @param string|array|Zend_Db_Table_Select $where  OPTIONAL An SQL WHERE clause or Zend_Db_Table_Select object.
      * @param string|array                      $order  OPTIONAL An SQL ORDER clause.
      * @return Zend_Paginator_Adapter_DbSelect
 	 */
-	public function fetchAll($where = null, $order = null)
+	public function fetchPaginator($where = null, $order = null)
 	{
         $select = $this->_mapper->select();
         if(null !== $where) {
@@ -40,6 +40,19 @@ class Model_Page
         $adapter = new Zend_Paginator_Adapter_DbSelect($select);
         return $adapter;
 	}
+    /**
+     * Fetch all page objects
+     *
+     * @param string|array|Zend_Db_Table_Select $where  OPTIONAL An SQL WHERE clause or Zend_Db_Table_Select object.
+     * @param string|array                      $order  OPTIONAL An SQL ORDER clause.
+     * @return array $pages
+     */
+    public function fetchAll($where = null, $order = null)
+    {
+        $pages = $this->_mapper->fetchAllPages($where, $order)->toArray();
+
+        return $pages;
+    }
 	
 	public function find($id, $where = null)
 	{
@@ -52,11 +65,12 @@ class Model_Page
 
 		//@todo double find action
 		$page = $this->_mapper->find($id)->current();
+
 		if($page) {
 			$uri = $page->uri;
 		} else {
 			throw new Zend_Exception('Delete page: no page found!');
-		}		
+		}
 		
 		$this->_mapper->updatePage($id, $data);
 		
@@ -99,5 +113,13 @@ class Model_Page
 		
 		return $this->_mapper->deletePage($id);
 	}
+
+    public function findPagesToInstallNode($nodeName)
+    {
+        $select = $this->_mapper->select()->where('name = ?', $nodeName);
+
+        $result = $this->_mapper->fetchAll($select);
+        var_dump($result);
+    }
 
 }

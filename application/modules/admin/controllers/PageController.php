@@ -31,7 +31,7 @@ class Admin_PageController extends Soulex_Controller_Abstract
 
         $limit = $this->_getParam('limit', 20);
 
-        $adapter = $mdlPage->fetchAll(null, array('title'));
+        $adapter = $mdlPage->fetchPaginator(null, array('title'));
 
         $paginator = new Zend_Paginator($adapter);
         // show items per page
@@ -93,9 +93,10 @@ class Admin_PageController extends Soulex_Controller_Abstract
             } else { // add new elements to form
 //                $frmPage->addTextAreaControl($nodeName, $nodeValue['value']);
                 $this->view->nodes[] = array(
-                    'name' => $nodeName,
-                    'value' => $nodeValue['value'],
-                    'pageId' => $id
+                    'id'        => $nodeValue['id'],
+                    'name'      => $nodeName,
+                    'value'     => $nodeValue['value'],
+                    'pageId'    => $id
                 );
             }
         }

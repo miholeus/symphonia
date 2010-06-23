@@ -122,12 +122,45 @@ class Admin_Model_ContentNode extends Admin_Model_Abstract
         return $this;
     }
     /**
-     * Copy node to all pages
+     * Copy node to pages $pagesToInsert and update node info
+     * on pages $pagesToUpdate
      *
+     * @param array $allPages
      * @return bool succeeded/not succeeded
      */
-    public function copyToAllPages()
+    public function copyToPages(array $allPages)
     {
-        return $this->getMapper()->copyNodeToAllPages($this);
+        if(null === $this->getName()) {
+            throw new Zend_Exception('Node name can not be null');
+        }
+
+        $pageIds = array();
+        $currentPage = $this->getPageId();
+
+        foreach($allPages as $page) {
+            $pageIds[] = $page['id'];
+        }
+        // exclude current page id
+        $pageIds = array_diff($pageIds, array($currentPage));
+
+        $pagesToUpdate = $this->getMapper()->findPagesWhereNodeExists(
+                $this->getName());
+        // exclude current page id
+        $pagesToUpdate = array_diff($pagesToUpdate, array($currentPage));
+
+        $pagesToInsert = array_diff($pageIds, $pagesToUpdate);
+        
+        return $this->getMapper()->copyNodeToPages($this,
+                $pagesToInsert, $pagesToUpdate);
+    }
+    /**
+     * Delete node by its id
+     *
+     * @param int $id
+     * @return bool true if node was deleted, false otherwise
+     */
+    public function delete($id)
+    {
+        return (bool)$this->getMapper()->delete($id);
     }
 }

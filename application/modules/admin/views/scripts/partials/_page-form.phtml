@@ -111,11 +111,20 @@
                             <span class="content-nodes-add" onclick="addNode()">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             <fieldset class="panelform">
                                 <table class="adminformlist" id="custom-nodes">
+                                    <thead>
+                                        <tr>
+                                            <th width="80%">Node Name</th>
+                                            <th width="10%">Copy</th>
+                                            <th width="10%">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                                     <?php
                                     if($this->nodes !== null && count($this->nodes) > 0) {
                                         echo $this->partialLoop('partials/_page-form-nodeslist.phtml', $this->nodes);
                                     }
                                     ?>
+                                    </tbody>
                                 </table>
                             </fieldset>
 

@@ -5,8 +5,13 @@
         </a>
     </td>
     <td>
-        <a href="javascript:void(0)" title="Copy Node To All Pages" onclick="copyNodeToAllPages('<?=$this->escape($this->id)?>', <?=$this->pageId?>); return false;">
+        <a href="javascript:void(0)" title="Copy Node To All Pages" onclick="copyNodeToAllPages('<?=$this->escape($this->name)?>', <?=$this->pageId?>); return false;">
             <img src="/_data/admin/system/images/copy.png" alt="Copy Node To All Pages" />
+        </a>
+    </td>
+    <td>
+        <a href="javascript:void(0)" title="Delete Node" onclick="deleteNode('<?=$this->escape($this->name)?>', <?=$this->id?>); return false;">
+            <img src="/_data/admin/system/images/delete.png" alt="Delete Node" />
         </a>
     </td>
 </tr>

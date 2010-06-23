@@ -82,15 +82,8 @@ function addNode()
         return false;
     }
     if(name != null) {
-       var html = "<li id='node-" + name + "'><a href='javascript:void(0)' onclick='showNode(\"" +
-           name + "\")'>" +name + "</a></li>";
-//       html += "<dt id='" + name + "button-label'></dt>"+
-//                    "<dd id='" + name + "button-element'>"+
-//                        "<button name='" + name + "-button' "+
-//                        "id='" + name + "-button' onclick='deleteNode(\""+
-//                        name+"\", this)'>delete " + name +
-//                        "</button>"+
-//                    "</dd>";
+       var html = "<tr id='node-" + name + "'><td><a href='javascript:void(0)' onclick='showNode(\"" +
+           name + "\")'>" +name + "</a></td><td></td><td></td></tr>";
        $("#custom-nodes").append($(html));
     }
 }
@@ -134,11 +127,42 @@ function saveNode(node)
 
 function copyNodeToAllPages(node, curPageId)
 {
+    if(!confirm("Are your sure you want to copy node on ALL pages")) {
+        return false;
+    }
+    $("#ajax-info").css("display", "block");
+    $("#ajax-info-img").css("display", "block");
+
     $.post("/admin/contentnode/copynode", {'node':encodeURI(node), 'page' : curPageId},
             function(response) {
-                alert(response);
-            }
+                $("#ajax-info-img").css("display", "none");
+                if(response.success == true) {
+                    $("#ajax-info-msg").css("color", "#0f0").html('Successfull!');
+                } else {
+                    $("#ajax-info-msg").css("color", "#f00").html('Error!');
+                }
+                $("#ajax-info-msg").css("display", "block");
+                $("#ajax-info-msg").fadeOut(3000);
+            }, 'json'
     );
+    return false;
+}
+
+function deleteNode(node, nodeId)
+{
+    if(!confirm("Are you sure you want to delete node")) {
+        return false;
+    }
+    $.post("/admin/contentnode/deletenode", {'nodeId':nodeId}, function(response) {
+        if(response.success == true) {
+            $("#node-" + node).empty();
+            alert('Node deleted!');
+        } else {
+            alert('Sorry, error occured!')
+        }
+    }, 'json')
+    $(".nodes-tabs-content").find("#" + node).empty();
+    return false;
 }
 
 /**
