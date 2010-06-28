@@ -1,69 +1,34 @@
 <?php
-//$container = new Zend_Navigation(array(
-//    array(
-//        'label' => 'Page 1',
-//        'id' => 'home-link',
-//        'uri' => '/'
-//    ),
-//    array(
-//        'label' => 'Zend',
-//        'uri' => 'http://www.zend-project.com/',
-//        'order' => 100,
-//        'pages' => array(
-//            array(
-//                'id' => 'page-100',
-//                'label' => 'My page',
-//                'uri' => '/yandex'
-//            )
-//        )
-//    )));
+$menus = array();
 
-//$menus = array();
-//foreach($this->menus as $menu) {
-//    $curMenu = array(
-//        'id'    => 'page_' . $menu->getId(),
-//        'label' => $menu->getLabel(),
-//        'uri'   => $menu->getUri(),
-//        'order' => $menu->getPosition(),
-//        'pages' => array()
-//    );
-//    if($menu->getParentId() != 0) { // somebody's child
-//        $menus[$menu->getParentId()]['pages'][] = $curMenu;
-//    } else {
-//        $menus[$menu->getId()] = $curMenu;
-//    }
-//}
-//$container = new Zend_Navigation($menus);
-//$this->navigation($container);
-//$this->navigation()->menu()->setPartial('partials/_menu-left-row.phtml');
-//echo $this->navigation()->menu()->setRenderParents(true);
+foreach($this->menus as $menu) {
+    $curMenu = array(
+        'id'    => $menu->getId(),
+        'label' => $menu->getLabel(),
+        'uri'   => $menu->getUri(),
+        'order' => $menu->getPosition(),
+    );
 
-function buildMenuTree($items, $parentId, $lvl) {
-	if(!isset($items[$parentId])) return;
-
-    if($lvl > 1) {
-        ?>
-        <ul>
-        <?php
-    }
-    foreach($items[$parentId] as $item) {
-        if( $lvl == 1) {
-            ?>
-            <a href="<?=$item->getUri()?>"><?=$item->getLabel()?></a>
-            <?
+    if($menu->getParentId() != 0) { // somebody's child
+        $menus[$menu->getParentId()]['pages'][] = $curMenu;
+    } else {
+        if(isset($menus[$menu->getId()]['pages'])) {
+            $pageData = $menus[$menu->getId()]['pages'];
         } else {
-            ?>
-            <li><a href="<?=$item->getUri()?>"><?=$item->getLabel()?></a></li>
-            <?php
+            $pageData = array();
         }
-        buildMenuTree($items, $item->getId(), $lvl + 1);
-    }
-    if($lvl > 1) {
-        ?>
-        </ul>
-        <?php
+        $menus[$menu->getId()] = array_merge($curMenu, array('pages' => $pageData));
     }
 }
 
-buildMenuTree($this->menus, 0, 1);
-?>
+$container = new Zend_Navigation($menus);
+$this->navigation($container);
+//$this->navigation()->menu()->setPartial('partials/_menu-left-row.phtml');
+
+$activeNav = $this->navigation()->findByUri($this->selectedUri);
+$activeNav->active = true;
+if(is_callable(array($activeNav, 'setClass'))) {
+    $activeNav->setClass("active");
+}
+
+echo $this->navigation()->menu();

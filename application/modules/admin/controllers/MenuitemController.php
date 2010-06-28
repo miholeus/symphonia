@@ -27,12 +27,11 @@ class Admin_MenuitemController extends Soulex_Controller_Abstract
                 } else {
                     throw new Exception('FCS  is not correct! Wrong request!');
                 }
+                return $this->_redirect('/admin/menuitem');
             }
-            return $this->_redirect('/admin/menuitem');
         }
 
         $limit = $this->_getParam('limit', 20);
-
         $adapter = $mdlMenuItem->fetchPaginator(null, array('lft', 'label'));
 
         $paginator = new Zend_Paginator($adapter);

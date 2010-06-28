@@ -24,6 +24,7 @@ class Admin_Model_MenuItem extends Admin_Model_Abstract
     protected $_rgt;
     protected $_parent_id;
     protected $_level;
+
     /**
      *
      * @var Admin_Model_MenuItemMapper
@@ -139,6 +140,7 @@ class Admin_Model_MenuItem extends Admin_Model_Abstract
         $this->_level = $level;
         return $this;
     }
+
     /**
      * Fetch Menu Items
      * 

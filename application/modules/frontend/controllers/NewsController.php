@@ -23,6 +23,14 @@ class Frontend_NewsController extends Zend_Controller_Action
 
         $this->view->title = $this->view->news->getTitle();
         $this->view->headTitle($this->view->news->getTitle(), 'SET');
+
+        $this->_helper->actionStack('menuleft', 'menu', 'frontend', array(
+            '_responseSegment' => 'menuleft'
+        ));
+        $this->_helper->actionStack('menutop', 'menu', 'frontend', array(
+            '_responseSegment' => 'menutop'
+        ));
+
     }
     public function listAction()
     {

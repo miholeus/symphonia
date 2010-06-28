@@ -17,8 +17,11 @@ class Frontend_MenuController extends Zend_Controller_Action
     public function menuleftAction()
     {
         $mdlMenuItem = new Admin_Model_MenuItem();
-        $menuItems = $mdlMenuItem->fetchAllGrouppedByParentId('menu_id = 6 AND published = 1', 'position');
+        $menuItems = $mdlMenuItem->fetchAll('menu_id = 6 AND published = 1', 'position');
         $this->view->menus = $menuItems;
+
+        $this->view->selectedUri = $this->_request->getPathInfo();
+        
         $responseSegment = $this->_getParam('_responseSegment');
         $this->_helper->viewRenderer->setResponseSegment($responseSegment);
     }
