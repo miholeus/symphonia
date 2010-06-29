@@ -45,11 +45,6 @@ class Soulex_Components_News_NewsService
     {
         return $this->_news->fetchPaginator($where, $order);
     }
-
-    public function fetch($limit, $order = null)
-    {
-        return $this->_news->fetchAll('published = 1', $order, $limit);
-    }
     /**
      * Finds object in data source by its id
      *

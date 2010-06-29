@@ -56,7 +56,7 @@ class Frontend_NewsController extends Zend_Controller_Action
     public function sidebarAction()
     {
         $mdlNews = new Soulex_Components_News_NewsService();
-        $this->view->news = $mdlNews->fetch(3, 'published_at DESC');
+        $this->view->news = $mdlNews->fetchAll('published = 1', 3, 'published_at DESC');
 
         $responseSegment = $this->_getParam('_responseSegment');
         $this->_helper->viewRenderer->setResponseSegment($responseSegment);
