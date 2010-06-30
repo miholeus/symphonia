@@ -1,6 +1,9 @@
 <?php
 /**
- * Description of Model_Page
+ * Model_PageMapper is designed to incapsulate database operations
+ * within class.
+ * Create/update/delete page operations use transactions to
+ * set up correct values of left/right keys in nested set.
  *
  * @author miholeus
  */

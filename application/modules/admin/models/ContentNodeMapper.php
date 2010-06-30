@@ -3,12 +3,13 @@
  * @package   Soulex
  * @copyright Copyright (C) 2010 - Present, miholeus
  * @author    miholeus <me@miholeus.com> {@link http://miholeus.com}
- * @license   New BSD {@link http://www.opensource.org/licenses/bsd-license.php}
+ * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @version    $Id: $
  */
 
 /**
- * Description of ContentNodeMapper
+ * Admin_Model_ContentNodeMapper is used to retrieve data in database
+ * and send it to model or transfer model's data back to database
  *
  * @author miholeus
  */

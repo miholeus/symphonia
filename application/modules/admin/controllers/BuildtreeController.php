@@ -3,12 +3,13 @@
  * @package   Soulex
  * @copyright Copyright (C) 2010 - Present, miholeus
  * @author    miholeus <me@miholeus.com> {@link http://miholeus.com}
- * @license   New BSD {@link http://www.opensource.org/licenses/bsd-license.php}
+ * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @version    $Id: $
  */
 
 /**
- * Description of BuildtreeController
+ * BuildtreeController generates pages tree in xml format
+ * Obsolete class (will be removed)
  *
  * @author miholeus
  */

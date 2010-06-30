@@ -1,6 +1,10 @@
 <?php
 /**
- * 
+ * Page objects manipulation
+ * Model_Page has its own mapper for retrieving data in database
+ * and router for route managemant operations.
+ * CRUD operations are delegated to mapper class.
+ *
  * @author miholeus
  *
  */

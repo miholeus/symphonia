@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * System Bootstraper
+ * Bootstraps Soulex Core classes and enables autoloading.
+ * System Logger is attached as plugin resource.
+ */
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
     protected function _initNamespace()

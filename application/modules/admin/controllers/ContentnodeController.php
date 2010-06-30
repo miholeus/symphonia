@@ -3,12 +3,13 @@
  * @package   Soulex
  * @copyright Copyright (C) 2010 - Present, miholeus
  * @author    miholeus <me@miholeus.com> {@link http://miholeus.com}
- * @license   New BSD {@link http://www.opensource.org/licenses/bsd-license.php}
+ * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @version    $Id: $
  */
 
 /**
- * Description of ContentnodeController
+ * ContentnodeController processes requests to content nodes
+ * load/copy/delete nodes actions.
  *
  * @author miholeus
  */
@@ -35,7 +36,7 @@ class Admin_ContentnodeController extends Zend_Controller_Action
     /**
      * Copy node info to all pages
      * 
-     * @return string json message whether copying succeeded or not
+     * echo string json message whether copying succeeded or not
      */
     public function copynodeAction()
     {
@@ -59,7 +60,10 @@ class Admin_ContentnodeController extends Zend_Controller_Action
         }
         echo Zend_Json_Encoder::encode(array('success' => $isSucceeded));
     }
-
+    /**
+     * Delete node by its id
+     * echo json message whether operation succeeded or not
+     */
     public function deletenodeAction()
     {
         $this->_helper->layout()->disableLayout();

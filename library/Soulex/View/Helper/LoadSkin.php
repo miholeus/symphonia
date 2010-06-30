@@ -3,12 +3,13 @@
  * @package   Soulex
  * @copyright Copyright (C) 2010 - Present, miholeus
  * @author    miholeus <me@miholeus.com> {@link http://miholeus.com}
- * @license   New BSD {@link http://www.opensource.org/licenses/bsd-license.php}
+ * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @version    $Id: $
  */
 
 /**
-  * this class loads skins
+  * Soulex_View_Helper_LoadSkin loads skins which are placed in /skins/
+  * folder.
   *
   */
 class Soulex_View_Helper_LoadSkin extends Zend_View_Helper_Abstract

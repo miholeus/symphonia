@@ -3,7 +3,7 @@
  * @package   Soulex
  * @copyright Copyright (C) 2010 - Present, miholeus
  * @author    miholeus <me@miholeus.com> {@link http://miholeus.com}
- * @license   New BSD {@link http://www.opensource.org/licenses/bsd-license.php}
+ * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @version    $Id: $
  */
 
@@ -12,7 +12,7 @@
  * The rendering of the view element. Using the TinyMce view helper javascript
  *  initiazion.
  *
- * @author jurian (http://juriansluiman.nl)
+ * @author jurian ({@link http://juriansluiman.nl})
  */
 /**
  * Update:

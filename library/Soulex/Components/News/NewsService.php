@@ -3,12 +3,14 @@
  * @package   Soulex
  * @copyright Copyright (C) 2010 - Present, miholeus
  * @author    miholeus <me@miholeus.com> {@link http://miholeus.com}
- * @license   New BSD {@link http://www.opensource.org/licenses/bsd-license.php}
+ * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @version    $Id: $
  */
 
 /**
- * Description of NewsService
+ * Soulex_Components_News_NewsService is the main class for manipulation
+ * news objects.
+ * It grants common interface for News
  *
  * @author miholeus
  */

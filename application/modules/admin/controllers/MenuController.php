@@ -3,24 +3,34 @@
  * @package   Soulex
  * @copyright Copyright (C) 2010 - Present, miholeus
  * @author    miholeus <me@miholeus.com> {@link http://miholeus.com}
- * @license   New BSD {@link http://www.opensource.org/licenses/bsd-license.php}
+ * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @version    $Id: $
  */
 
 /**
- * Description of MenuController
+ * MenuController processes requests to menus in admin panel
+ * Menus are like groups to menu items. Each menu contains
+ * many menu items
  *
  * @author miholeus
  */
 class Admin_MenuController extends Soulex_Controller_Abstract
 {
+    /**
+     * Show all menus
+     */
     public function indexAction()
     {
         $mdlMenu = new Admin_Model_Menu();
         $this->view->menus = $mdlMenu->fetchAll();
         $this->view->render('menu/index.phtml');
     }
-
+    /**
+     * Show form for menu creation and process postback requests
+     * to save new menu
+     *
+     * @return void
+     */
     public function createAction()
     {
         $frmMenu = new Admin_Form_Menu();
@@ -40,7 +50,12 @@ class Admin_MenuController extends Soulex_Controller_Abstract
         $this->renderSubmenu(false);
         $this->view->render('menu/create.phtml');
     }
-
+    /**
+     * Show form for editing menu and process postback request to
+     * save info about menu
+     *
+     * @return void
+     */
     public function editAction()
     {
         $id = $this->_getParam('id');
@@ -72,7 +87,9 @@ class Admin_MenuController extends Soulex_Controller_Abstract
 
         $this->view->render('menu/edit.phtml');
     }
-
+    /**
+     * Delete menu by its id
+     */
     public function deleteAction()
     {
         $mdlPage = new Admin_Model_Menu();

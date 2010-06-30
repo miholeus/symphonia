@@ -1,6 +1,7 @@
 <?php
 /**
- * Description of Model_ContentNode
+ * Model_ContentNode is Zend Database Table
+ * It allowes to manipulate content nodes rows in database
  *
  * @author miholeus
  */

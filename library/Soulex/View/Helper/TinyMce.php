@@ -3,7 +3,7 @@
  * @package   Soulex
  * @copyright Copyright (C) 2010 - Present, miholeus
  * @author    miholeus <me@miholeus.com> {@link http://miholeus.com}
- * @license   New BSD {@link http://www.opensource.org/licenses/bsd-license.php}
+ * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @version    $Id: $
  */
 
@@ -12,13 +12,15 @@
  * Thanks to jurian sluiman for wonderful helper :)
  * More detailed info about integration of Zend Framework and tinyMce
  * can be found here:
- * http://juriansluiman.nl/en/blog/article/100/improved-tinymce-solution-for-the-zend-framework
+ * {@link http://juriansluiman.nl/en/blog/article/100/improved-tinymce-solution-for-the-zend-framework}
  *
  * @author jurian
  */
+
 /**
  * Update:
  * Added tinyBrowser support
+ * 
  * @author miholeus
  */
 class Soulex_View_Helper_TinyMce extends Zend_View_Helper_Abstract

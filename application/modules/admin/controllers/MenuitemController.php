@@ -3,17 +3,22 @@
  * @package   Soulex
  * @copyright Copyright (C) 2010 - Present, miholeus
  * @author    miholeus <me@miholeus.com> {@link http://miholeus.com}
- * @license   New BSD {@link http://www.opensource.org/licenses/bsd-license.php}
+ * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @version    $Id: $
  */
 
 /**
- * Description of MenuitemController
+ * MenuitemController processes requests to menu items
  *
  * @author miholeus
  */
 class Admin_MenuitemController extends Soulex_Controller_Abstract
 {
+    /**
+     * Show menu items including different search criteria
+     * 
+     * @return void
+     */
     public function indexAction()
     {
         $mdlMenuItem = new Admin_Model_MenuItem();
@@ -56,7 +61,11 @@ class Admin_MenuitemController extends Soulex_Controller_Abstract
 
         $this->view->render('menuitem/index.phtml');
     }
-
+    /**
+     * Show menu item form and create a new item while postback
+     * 
+     * @return void
+     */
     public function createAction()
     {
         $frmMenuItem = new Admin_Form_MenuItem();
@@ -83,7 +92,11 @@ class Admin_MenuitemController extends Soulex_Controller_Abstract
         $this->renderSubmenu(false);
         $this->view->render('menuitem/create.phtml');
     }
-
+    /**
+     * Show menu item form for editing info and update menu item
+     * 
+     * @return void
+     */
     public function editAction()
     {
         $id = $this->_getParam('id');
@@ -122,7 +135,9 @@ class Admin_MenuitemController extends Soulex_Controller_Abstract
         $this->renderSubmenu(false);
         $this->view->render('menuitem/edit.phtml');
     }
-
+    /**
+     * Delete menu item by its id
+     */
     public function deleteAction()
     {
         $id = $this->_getParam('id');
