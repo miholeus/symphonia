@@ -1,0 +1,11 @@
+<p>
+    <a href="/events/<?=$this->eventsItem->getId()?>.html"><?=$this->escape($this->eventsItem->getTitle())?></a>
+    <br/>
+        <?php if($this->eventsItem->getImgPreview() != ''):?>
+            <a href="/events/<?=$this->eventsItem->getId()?>.html">
+                <img src="<?=$this->eventsItem->getImgPreview()?>"/>
+            </a>
+        <?endif;?>
+    <br/>
+    <?=$this->escape($this->eventsItem->getShortDescription())?>
+</p>

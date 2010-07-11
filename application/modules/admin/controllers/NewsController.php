@@ -24,7 +24,9 @@ class Admin_NewsController extends Soulex_Controller_Abstract
                     && count($post['cid']) == $post['boxchecked']) {
                 $newsService->deleteBulk($post['cid']);
             } else {
-                throw new Exception('FCS  is not correct! Wrong request!');
+                if($this->_request->getParam('action') == 'index') {
+                    throw new Exception('FCS  is not correct! Wrong request!');
+                }
             }
             return $this->_redirect('/admin/news');
         }

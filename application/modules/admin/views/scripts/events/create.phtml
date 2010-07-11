@@ -1,0 +1,30 @@
+<?php $this->placeholder('toolbar-list')->captureStart();?>
+<ul>
+    <li id="toolbar-apply" class="button">
+        <a class="toolbar" onclick="javascript:submitbutton({'action' : 'save', 'tinymcetext' : 'detail_description'})" href="#">
+            <span class="icon-32-apply"> </span>
+            Save
+        </a>
+    </li>
+    <li id="toolbar-cancel" class="button">
+        <a class="toolbar" onclick="javascript:submitbutton({'action' : 'cancel', 'uri' : '/admin/events'})" href="#">
+            <span class="icon-32-cancel"> </span>
+            Close
+        </a>
+    </li>
+</ul>
+<?php $this->placeholder('toolbar-list')->captureEnd();?>
+
+<?php $this->placeholder('pagetitle')->captureStart();?>
+<div class="pagetitle icon-48-news-add">
+    <h2> Events Manager: Add Events </h2>
+</div>
+<?php $this->placeholder('pagetitle')->captureEnd();?>
+
+<?php $this->placeholder('element-box')->captureStart();?>
+
+<?php
+echo $this->partial('partials/_events-form.phtml', array('form' => $this->form, 'skin' => $this->skin));
+?>
+
+<?php $this->placeholder('element-box')->captureEnd();?>

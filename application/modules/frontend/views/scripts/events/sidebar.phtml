@@ -1,0 +1,14 @@
+<?php
+if($this->events !== null) {
+    ?>
+    <h4>Акции</h4>
+    <p>
+        <i>Рекомендуем сезонные услуги - комплексные программы - СПРАШИВАЙТЕ В ЦЕНТРЕ!</i>
+    </p>
+    <?php
+    $this->partialLoop()->setObjectKey('eventsItem');
+    echo $this->partialLoop('partials/_events-sidebar-row.phtml', $this->events);
+    ?>
+    <?php
+}
+?>

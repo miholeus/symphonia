@@ -1,0 +1,18 @@
+<?php
+if($this->events instanceof Soulex_Components_Events_EventsModel) {
+    ?>
+    <h3><?=$this->events->getTitle()?></h3>
+    <?php
+    echo $this->events->getDetailDescription();
+    ?>
+    <br />
+    <p align="right">
+        <a href="/events.html">Все акции</a>
+    </p>
+    <?php
+} else {
+    ?>
+    <h3>Ничего не найдено</h3>
+    <?php
+}
+?>
