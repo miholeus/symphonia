@@ -20,13 +20,15 @@ class Admin_PageController extends Soulex_Controller_Abstract
 
         if($this->_request->isPost()) {
             $post = $this->_request->getPost();
-            if(is_array($post['cid'])
-                    && count($post['cid']) == $post['boxchecked']) {
-                $mdlPage->deleteBulk($post['cid']);
-            } else {
-                throw new Exception('FCS  is not correct! Wrong request!');
+            if(isset($post['cid'])) {
+                if(is_array($post['cid'])
+                        && count($post['cid']) == $post['boxchecked']) {
+                    $mdlPage->deleteBulk($post['cid']);
+                    return $this->_redirect('/admin/page');
+                } else {
+                    throw new Exception('FCS  is not correct! Wrong request!');
+                }
             }
-            return $this->_redirect('/admin/page');
         }
 
         $limit = $this->_getParam('limit', 20);

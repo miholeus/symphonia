@@ -29,10 +29,10 @@ class Admin_MenuitemController extends Soulex_Controller_Abstract
                 if(is_array($post['cid'])
                         && count($post['cid']) == $post['boxchecked']) {
                     $mdlMenuItem->delete($post['cid']);
+                    return $this->_redirect('/admin/menuitem');
                 } else {
                     throw new Exception('FCS  is not correct! Wrong request!');
                 }
-                return $this->_redirect('/admin/menuitem');
             }
         }
 
