@@ -47,6 +47,10 @@ class Admin_Form_User extends Zend_Form
         $lastName->setRequired('true');
         $lastName->addFilter('StripTags');
         $this->addElement($lastName);
+        // enabled
+        $enabled = $this->createElement('checkbox', 'enabled');
+        $enabled->setLabel('Enabled');
+        $this->addElement($enabled);
         // role
         $role = $this->createElement('select', 'role');
         $role->setLabel("Select a role:");
@@ -57,6 +61,18 @@ class Admin_Form_User extends Zend_Form
         $retpath = $this->createElement('hidden', 'retpath');
         $this->addElement($retpath);
         $submit = $this->addElement('submit', 'submit', array('label' => 'Submit'));
+    }
+
+    public function showLoginAndPasswordFields()
+    {
+        foreach($this->getElements() as $element) {
+            if(!in_array($element->getName(), array(
+                'username', 'password', 'retpath', 'submit'
+            ))) {
+                $this->removeElement($element->getName());
+            }
+        }
+
     }
 
 }

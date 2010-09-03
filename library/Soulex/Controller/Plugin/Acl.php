@@ -47,7 +47,8 @@ class Soulex_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
         $module = $request->getModuleName();
 
         if(!$acl->has($module)) {
-            $request->setModuleName('default');
+            var_dump($module);
+            $request->setModuleName($module);
             $request->setControllerName('error');
             $request->setActionName('error');
         } else {

@@ -6,6 +6,10 @@ if($this->toolbar_active === true) {
 if($this->submenu_active === true) {
     echo $this->render('global/_submenu.phtml');
 }
+
+if($this->error_active === true) {
+    echo $this->render('global/_error.phtml');
+}
 ?>
 <div id="element-box">
     <div class="t">

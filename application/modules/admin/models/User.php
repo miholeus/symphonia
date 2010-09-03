@@ -15,19 +15,24 @@
 class Admin_Model_User extends Zend_Db_Table_Abstract
 {
     protected $_name = 'users';
+    const ERR_USER_EXISTS = 1;
 
-    public function createUser($username, $password, $firstName, $lastName, $role)
+    public function createUser($data)
     {
+        // checks user existance, throws exception if found one
+        $this->checkUserExistanceByUsername($data['username']);
         // create a new row
         $rowUser = $this->createRow();
         if($rowUser) {
             // update the row values
-            $rowUser->username = $username;
-            $rowUser->password = $this->generatePassword($password);
-            $rowUser->first_name = $firstName;
-            $rowUser->last_name = $lastName;
-            $rowUser->role = $role;
+            foreach ($data as $key => $value) {
+                if($key == 'password') {
+                    $value = $this->generatePassword($value);
+                }
+                $rowUser->$key = $value;
+            }
             $rowUser->registerDate = date("Y-m-d H:i:s");
+
             $rowUser->save();
             //return the new user
             return $rowUser;
@@ -49,16 +54,17 @@ class Admin_Model_User extends Zend_Db_Table_Abstract
         return $userModel->fetchAll($select);
     }
 
-    public function updateUser($id, $username, $firstName, $lastName, $role)
+    public function updateUser($id, $data)
     {
+        // checks user existance, throws exception if found one
+        $this->checkUserExistanceByUsername($data['username']);
         // fetch the user's row
         $rowUser = $this->find($id)->current();
         if($rowUser) {
             // update the row values
-            $rowUser->username = $username;
-            $rowUser->first_name = $firstName;
-            $rowUser->last_name = $lastName;
-            $rowUser->role = $role;
+            foreach($data as $key => $value) {
+                $rowUser->$key = $value;
+            }
             $rowUser->save();
             //return the updated user
             return $rowUser;
@@ -95,6 +101,45 @@ class Admin_Model_User extends Zend_Db_Table_Abstract
     {
         $where = $this->getDefaultAdapter()->quoteInto('id = ?', $id);
         $this->update(array('lastvisitDate' => date("Y-m-d H:i:s")), $where);
+    }
+    /**
+     * Finds user by username, returns null if nothing was found
+     *
+     * @param string $name
+     * @return Zend_Db_Table_Row_Abstract|null
+     */
+    private function findByUsername($name)
+    {
+        return $this->fetchRow(
+                $this->getDefaultAdapter()->quoteInto('username = ?',
+                        $name));
+    }
+    /**
+     * Invoked in checkUserExistanceByUsername()
+     *
+     * @throws Zend_Db_Exception
+     */
+    private function triggerErrorUserExists()
+    {
+        throw new Zend_Db_Exception(
+                'username ' . $data['username'] . ' already exists',
+                self::ERR_USER_EXISTS
+        );
+    }
+    /**
+     * Checks if username already exists and throws exception if found one
+     *
+     * @param string $name
+     * @throws Zend_Db_Exception
+     * @return Zend_Db_Table_Row_Abstract|null
+     */
+    private function checkUserExistanceByUsername($name)
+    {
+        $row = $this->findByUsername($name);
+        if(null !== $row) {// username already exists
+            $this->triggerErrorUserExists();
+        }
+        return $row;
     }
 
 }

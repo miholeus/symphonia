@@ -36,10 +36,8 @@ class Admin_UserController extends Soulex_Controller_Abstract
         }
 
         $userForm = new Admin_Form_User();
+        $userForm->showLoginAndPasswordFields();
         $userForm->setAction('/admin/user/login');
-        $userForm->removeElement('first_name');
-        $userForm->removeElement('last_name');
-        $userForm->removeElement('role');
         $userForm->getElement('retpath')->setValue($this->getRequest()->getPathInfo());
         if ($this->_request->isPost() && $userForm->isValid($this->_request->getPost())) {
             
@@ -60,6 +58,7 @@ class Admin_UserController extends Soulex_Controller_Abstract
             //set the username and password
             $authAdapter->setIdentity($data['username']);
             $authAdapter->setCredential($mdlUser->generatePassword($data['password']));
+            $authAdapter->getDbSelect()->where('enabled = ?', 1);
             //authenticate
             $result = $authAdapter->authenticate();
             if ($result->isValid()) {
@@ -96,17 +95,23 @@ class Admin_UserController extends Soulex_Controller_Abstract
         if ($this->_request->isPost()) {
             if ($userForm->isValid($_POST)) {
                 $userModel = new Admin_Model_User();
-                $userModel->createUser(
-                    $userForm->getValue('username'),
-                    $userForm->getValue('password'),
-                    $userForm->getValue('first_name'),
-                    $userForm->getValue('last_name'),
-                    $userForm->getValue('role')
-                );
-                
-                $this->disableContentRender();
 
-                return $this->_forward('list');        }
+                $userForm->removeElement('id');
+                $userForm->removeElement('retpath');
+
+                try {
+
+                    $userModel->createUser($userForm->getValues());
+                    $this->disableContentRender();
+                    return $this->_forward('list');
+
+                } catch (Exception $e) {
+                    $this->renderError(
+                            "User creation failed with the following error: "
+                            . $e->getMessage());
+                }
+
+            }
         }
         $userForm->setAction('/admin/user/create');
         $this->view->form = $userForm;
@@ -134,22 +139,39 @@ class Admin_UserController extends Soulex_Controller_Abstract
         $userForm->removeElement('password');
         $userModel = new Admin_Model_User();
         if ($this->_request->isPost()) {
-          if ($userForm->isValid($_POST)) {
-               $userModel->updateUser(
-                   $userForm->getValue('id'),
-                   $userForm->getValue('username'),
-                   $userForm->getValue('first_name'),
-                   $userForm->getValue('last_name'),
-                   $userForm->getValue('role')
-               );
-               
-               $this->disableContentRender();
+            // remove element to disable its validation in the form
+            $userForm->removeElement('username');
+            
+            if ($userForm->isValid($this->_request->getPost())) {
 
-               return $this->_forward('list');        }
+              $userForm->removeElement('retpath');
+
+              try {
+                  $userModel->updateUser($userForm->getValue('id'),
+                      $userForm->getValues()
+                  );
+
+                  $this->disableContentRender();
+
+                  return $this->_forward('list');
+
+              } catch (Exception $e) {
+                  $this->renderError("User update failed with the following error: "
+                          . $e->getMessage());
+              }
+
+            }
         } else {
             $id = $this->_request->getParam('id');
+            if(null === $id) {
+                $this->renderSubmenu(false);
+                $this->renderToolbar(false);
+                return $this->_forward('list');
+            }
             $currentUser = $userModel->find($id)->current();
             $userForm->populate($currentUser->toArray());
+            // disable username field
+            $userForm->getElement('username')->setAttrib('disabled', 'disabled');
       }
 
       $this->view->form = $userForm;
@@ -196,10 +218,17 @@ class Admin_UserController extends Soulex_Controller_Abstract
     {
         $id = $this->_request->getParam('id');
         $userModel = new Admin_Model_User();
-        $userModel->deleteUser($id);
+        try {
+            $userModel->deleteUser($id);
+            $this->disableContentRender();
+            return $this->_forward('list');
+        } catch (Exception $e) {
+            $this->renderSubmenu(false);
+            $this->renderError("User deletion failed with the following error: "
+                    . $e->getMessage());
+            $this->view->render('user/delete.phtml');
+        }
 
-        $this->disableContentRender();
-        return $this->_forward('list');
     }
 
 }

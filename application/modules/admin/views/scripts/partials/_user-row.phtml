@@ -7,10 +7,7 @@
     </td>
     <td class="center"> <?=$this->escape($this->username)?> </td>
     <td class="center">
-    <a class="grid_true hasTip" href="#toggle" rel="{id:'cb0', task:'users.block'}"/>
-    </td>
-    <td class="center">
-    <a class="grid_true" rel="{id:'cb0', task:''}"/>
+    <a class="<?php if($this->enabled):?>grid_true<?else:?>grid_false<?endif;?> hasTip" href="#toggle" rel="{id:'cb0', task:'users.enabled'}"/>
     </td>
     <td class="center">
     Editor
