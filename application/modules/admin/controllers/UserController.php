@@ -36,11 +36,9 @@ class Admin_UserController extends Soulex_Controller_Abstract
         }
 
         $userForm = new Admin_Form_User();
-        $userForm->showLoginAndPasswordFields();
-        $userForm->setAction('/admin/user/login');
-        $userForm->getElement('retpath')->setValue($this->getRequest()->getPathInfo());
+
+        $userForm->setLoginForm($this->getRequest()->getPathInfo());
         if ($this->_request->isPost() && $userForm->isValid($this->_request->getPost())) {
-            
             $return_path = $this->_request->getPost('retpath');
             // we will not redirect to login, logout actions
             if(preg_match("~\/user\/(login|logout).*~", $return_path)) {
@@ -65,7 +63,7 @@ class Admin_UserController extends Soulex_Controller_Abstract
                 // store the username, first and last names of the user
                 $storage = $auth->getStorage();
                 $storage->write($authAdapter->getResultRowObject(
-                  array('id', 'username', 'first_name', 'last_name', 'role')));
+                  array('id', 'username', 'firstname', 'lastname', 'role')));
 
                 $row = $authAdapter->getResultRowObject('id');
                 $mdlUser->updateLastVisitDate($row->id);
@@ -93,15 +91,16 @@ class Admin_UserController extends Soulex_Controller_Abstract
     {
         $userForm = new Admin_Form_User();
         if ($this->_request->isPost()) {
-            if ($userForm->isValid($_POST)) {
-                $userModel = new Admin_Model_User();
+            if ($userForm->isValid($this->_request->getPost())) {
 
                 $userForm->removeElement('id');
                 $userForm->removeElement('retpath');
 
                 try {
 
-                    $userModel->createUser($userForm->getValues());
+                    $userModel = new Admin_Model_User($userForm->getValues());
+                    $userModel->save();
+
                     $this->disableContentRender();
                     return $this->_forward('list');
 
@@ -123,8 +122,23 @@ class Admin_UserController extends Soulex_Controller_Abstract
     
     public function listAction ()
     {
-        $currentUsers = Admin_Model_User::getUsers();
-        if ($currentUsers->count() > 0) {
+        $userModel = new Admin_Model_User();
+
+        if($this->_request->isPost()) {
+            $post = $this->_request->getPost();
+            if(is_array($post['cid'])) {
+                try {
+                    $userModel->deleteBulk($post['cid']);
+                } catch (Exception $e) {
+                    $this->renderSubmenu(false);
+                    $this->renderError("User deletion failed with the following error: "
+                            . $e->getMessage());
+                }
+            }
+        }
+
+        $currentUsers = $userModel->fetchAll();
+        if (sizeof($currentUsers) > 0) {
             $this->view->users = $currentUsers;
         } else {
             $this->view->users = null;
@@ -136,30 +150,50 @@ class Admin_UserController extends Soulex_Controller_Abstract
     {
         $userForm = new Admin_Form_User();
         $userForm->setAction('/admin/user/update');
-        $userForm->removeElement('password');
-        $userModel = new Admin_Model_User();
+        
         if ($this->_request->isPost()) {
             // remove element to disable its validation in the form
             $userForm->removeElement('username');
-            
+
+            $passValue = $this->_request->getParam('password');
+            $passConfirmValue = $this->_request->getParam('confirmPassword');
+
             if ($userForm->isValid($this->_request->getPost())) {
 
-              $userForm->removeElement('retpath');
+                try {
 
-              try {
-                  $userModel->updateUser($userForm->getValue('id'),
-                      $userForm->getValues()
-                  );
+                    if(!empty ($passValue)
+                            && empty($passConfirmValue)) {
+                        throw new Zend_Exception("Please confirm password");
+                    }
 
-                  $this->disableContentRender();
+                    // remove confirm password field as it doesn't exist in DB
+                    $userForm->removeElement('confirmPassword');
+                    $userForm->removeElement('retpath');
 
-                  return $this->_forward('list');
+                    $userModel = new Admin_Model_User($userForm->getValues());
+                    $userModel->save();
 
-              } catch (Exception $e) {
+                    $this->disableContentRender();
+
+                    return $this->_forward('list');
+
+                } catch (Exception $e) {
                   $this->renderError("User update failed with the following error: "
                           . $e->getMessage());
-              }
+                }
 
+            } else {
+
+                $errMsg = '';
+                foreach($userForm->getErrors() as $element => $err) {
+                    if(!empty($err[0])) {
+                        $errMsg .= $element . ' ' . $err[0] . ' ';
+                    }
+                }
+                $this->renderError("User update failed with the following error: "
+                        . $errMsg);
+                
             }
         } else {
             $id = $this->_request->getParam('id');
@@ -168,7 +202,8 @@ class Admin_UserController extends Soulex_Controller_Abstract
                 $this->renderToolbar(false);
                 return $this->_forward('list');
             }
-            $currentUser = $userModel->find($id)->current();
+            $userModel = new Admin_Model_User();
+            $currentUser = $userModel->find($id);
             $userForm->populate($currentUser->toArray());
             // disable username field
             $userForm->getElement('username')->setAttrib('disabled', 'disabled');
@@ -182,44 +217,12 @@ class Admin_UserController extends Soulex_Controller_Abstract
 
     }
 
-    public function passwordAction()
-    {
-        $passwordForm = new Admin_Form_User();
-        $passwordForm->setAction('/admin/user/password');
-        $passwordForm->removeElement('first_name');
-        $passwordForm->removeElement('last_name');
-        $passwordForm->removeElement('username');
-        $passwordForm->removeElement('role');
-        $userModel = new Admin_Model_User();
-        if ($this->_request->isPost()) {
-            if ($passwordForm->isValid($_POST)) {
-                 $userModel->updatePassword(
-                     $passwordForm->getValue('id'),
-                     $passwordForm->getValue('password')
-                 );
-
-                 $this->disableContentRender();
-
-                 return $this->_forward('list');
-            }
-        } else {
-            $id = $this->_request->getParam('id');
-            $currentUser = $userModel->find($id)->current();
-            $passwordForm->populate($currentUser->toArray());
-      }
-      $this->view->form = $passwordForm;
-
-      $this->renderSubmenu(false);
-
-      $this->view->render('user/password.phtml');
-    }
-
     public function deleteAction()
     {
         $id = $this->_request->getParam('id');
         $userModel = new Admin_Model_User();
         try {
-            $userModel->deleteUser($id);
+            $userModel->delete($id);
             $this->disableContentRender();
             return $this->_forward('list');
         } catch (Exception $e) {

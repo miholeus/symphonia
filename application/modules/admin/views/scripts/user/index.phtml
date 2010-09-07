@@ -13,7 +13,7 @@
 <?php if($this->identity == null) { ?>
     <p>To log in <a href='/admin/user/login'>click here</a></p>
 <?php }else{ ?>
-    <p>Welcome back <?php echo $this->identity->first_name;?></p>
+    <p>Welcome back, <b><?php echo $this->identity->firstname;?></b></p>
     <p>To log out <a href='/admin/user/logout'>click here</a></p>
 <?php } ?>
 

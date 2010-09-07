@@ -167,7 +167,7 @@ class Admin_Model_News extends Admin_Model_Abstract
         return $this->getMapper()->fetchPaginator($where, $order);
     }
     /**
-     * Delete menu by it's id
+     * Delete news by it's id
      *
      * @param int $id
      */
