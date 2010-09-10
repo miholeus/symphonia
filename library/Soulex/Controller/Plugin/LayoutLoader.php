@@ -24,7 +24,7 @@ class Soulex_Controller_Plugin_LayoutLoader extends Zend_Controller_Plugin_Abstr
         $view->addHelperPath('Soulex/View/Helper', 'Soulex_View_Helper');
         $view->doctype('XHTML1_TRANSITIONAL');
         if($request->getModuleName() == 'admin') {
-            $view->headTitle('Zend CMS');
+            $view->headTitle('Administrative panel', 'SET');
         }
         $view->skin = $request->getModuleName();
 		Zend_Registry::set('view', $view);

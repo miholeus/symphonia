@@ -123,9 +123,15 @@ class Admin_UserController extends Soulex_Controller_Abstract
     public function listAction ()
     {
         $userModel = new Admin_Model_User();
+        $where = null;
 
         if($this->_request->isPost()) {
             $post = $this->_request->getPost();
+
+            if(isset($post['filter_state'])) {
+                $where = 'enabled = ' . $post['filter_state'];
+            }
+
             if(is_array($post['cid'])) {
                 try {
                     $userModel->deleteBulk($post['cid']);
@@ -137,7 +143,7 @@ class Admin_UserController extends Soulex_Controller_Abstract
             }
         }
 
-        $currentUsers = $userModel->fetchAll();
+        $currentUsers = $userModel->fetchAll($where);
         if (sizeof($currentUsers) > 0) {
             $this->view->users = $currentUsers;
         } else {

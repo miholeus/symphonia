@@ -47,27 +47,14 @@
         <div class="filter-select fltrt">
         <label for="filter_state"> Filter Users by:  </label>
         <select class="inputbox" onchange="this.form.submit()" name="filter_state">
-        <option value="*">- State -</option>
-        <option value="0">Enabled</option>
-        <option value="1">Disabled</option>
+            <option value="*">- State -</option>
+            <option value="1">Enabled</option>
+            <option value="0">Disabled</option>
         </select>
-        <select class="inputbox" onchange="this.form.submit()" name="filter_active">
-        <option value="*">- Active -</option>
-        <option value="0">Activated</option>
-        <option value="1">Unactivated</option>
-        </select>
-        <select class="inputbox" onchange="this.form.submit()" name="filter_group_id">
-        <option value="">- Group -</option>
-        <option value="1">Public</option>
-        <option value="6">- Manager</option>
-        <option value="7">- - Administrator</option>
-        <option value="8">- - - Super Users</option>
-        <option value="2">- Registered</option>
-        <option value="3">- - Author</option>
-        <option value="4">- - - Editor</option>
-        <option value="5">- - - - Publisher</option>
-        <option value="10">- - - Shop Suppliers</option>
-        <option value="12">- - Customer Group</option>
+        <select class="inputbox" onchange="this.form.submit()" name="filter_group">
+            <option value=""> - Group -</option>
+            <option value="1">Administrator</option>
+            <option value="2">user</option>
         </select>
         </div>
     </fieldset>

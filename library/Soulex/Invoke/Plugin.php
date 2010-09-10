@@ -67,10 +67,6 @@ class Soulex_Invoke_Plugin extends Zend_Controller_Plugin_Abstract
         } catch (Exception $e) {
             $this->setPageNotFound($e->getMessage());
         }
-        // disable actionStack in admin panel to prevent some confuses
-        if($request->getModuleName() == 'admin') {
-            return false;
-        }
 
         $stack = $this->_getStack();
         if(count($this->_widgets) > 0):
