@@ -283,6 +283,31 @@ class Admin_Model_User extends Admin_Model_Abstract
         $this->getMapper()->setLastVisit($id, date("Y-m-d H:i:s"));
     }
     /**
+     * Selects role
+     *
+     * @param string $role
+     * @return Admin_Model_User
+     */
+    public function selectRole($role)
+    {
+        $select = $this->getMapper()->getDbTable()->select();
+        $select->where('role = ?', $role);
+        return $this;
+    }
+    /**
+     * Selects enabled status for users
+     *
+     * @param bool $enabled
+     * @return Admin_Model_User
+     */
+    public function selectEnabled($enabled)
+    {
+        $enabled = (int)$enabled;
+        $select = $this->getMapper()->getDbTable()->select();
+        $select->where('enabled = ?', $enabled);
+        return $this;
+    }
+    /**
      * Checks if username already exists and throws exception if found one
      *
      * @param string $name

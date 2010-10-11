@@ -123,13 +123,25 @@ class Admin_UserController extends Soulex_Controller_Abstract
     public function listAction ()
     {
         $userModel = new Admin_Model_User();
-        $where = null;
+        $where = null;// default where statement
+        $order = 'firstname DESC';// default order clause
+        $this->view->filter = array();// view property for where statements
 
         if($this->_request->isPost()) {
             $post = $this->_request->getPost();
 
-            if(isset($post['filter_state'])) {
-                $where = 'enabled = ' . $post['filter_state'];
+            $userModel->selectEnabled($post['filter_enabled'])->fetchAll();
+
+            $_returnedWhere = $this->_formWhereStatement($where, $post,
+                    array(0, 1), 'enabled');
+            if(null !== $_returnedWhere) {
+                $where .= $_returnedWhere;
+            }
+            $_returnedWhere = $this->_formWhereStatement($where, $post,
+                    array('Administrator', 'User'), 'role');
+            // replace where with new string
+            if(null !== $_returnedWhere) {
+                $where = $_returnedWhere;
             }
 
             if(is_array($post['cid'])) {
@@ -143,7 +155,7 @@ class Admin_UserController extends Soulex_Controller_Abstract
             }
         }
 
-        $currentUsers = $userModel->fetchAll($where);
+        $currentUsers = $userModel->fetchAll($where, $order);
         if (sizeof($currentUsers) > 0) {
             $this->view->users = $currentUsers;
         } else {
@@ -238,6 +250,40 @@ class Admin_UserController extends Soulex_Controller_Abstract
             $this->view->render('user/delete.phtml');
         }
 
+    }
+    /**
+     * Forms where statement for SQL query to match different criterias
+     * This method should use validator, not implemented yet.
+     *
+     * @param string $where current where statement
+     * @param array $post
+     * @param array $valid_values
+     * @param string $postKey
+     * @return string
+     */
+    private function _formWhereStatement($where, $post, $valid_values, $postKey)
+    {
+        $_where = null;
+        if(isset($post['filter_' . $postKey])) {
+            /*
+             * @todo add validator here
+             */
+            if(in_array($post['filter_' . $postKey], $valid_values)) {
+                $_where = $postKey . ' = ' . $post['filter_' . $postKey];
+                $this->view->filter[$postKey] = $post['filter_' . $postKey];
+            }
+        }
+        if(null !== $_where) {
+            /**
+             *  if where statement already exists, add 'and' clause
+             */
+            if(!empty($where)) {
+                $where .= ' and ';
+            }
+            $where .= $_where;
+            return $where;
+        }
+        return null;
     }
 
 }

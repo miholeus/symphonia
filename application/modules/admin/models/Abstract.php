@@ -16,6 +16,10 @@
  */
 class Admin_Model_Abstract
 {
+    /**
+     *
+     * @var Admin_Model_DataMapper_Abstract
+     */
     protected $_mapper = null;
     /**
      * Needs to be overrided
@@ -46,13 +50,21 @@ class Admin_Model_Abstract
         }
         return $this->$method();
     }
-
+    /**
+     * Sets new mapper as Admin_Model_DataMapper_Abstract
+     *
+     * @param string $mapper
+     * @return Admin_Model_DataMapper_Abstract
+     */
     public function setMapper($mapper)
     {
         $this->_mapper = $mapper;
         return $this;
     }
-
+    /**
+     *
+     * @return Admin_Model_DataMapper_Abstract
+     */
     public function getMapper()
     {
         if (null === $this->_mapper) {

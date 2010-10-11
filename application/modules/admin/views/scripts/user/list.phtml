@@ -45,16 +45,30 @@
         <button onclick="document.id('filter_search').value='';this.form.submit();" type="button">Reset</button>
         </div>
         <div class="filter-select fltrt">
-        <label for="filter_state"> Filter Users by:  </label>
-        <select class="inputbox" onchange="this.form.submit()" name="filter_state">
-            <option value="*">- State -</option>
-            <option value="1">Enabled</option>
-            <option value="0">Disabled</option>
+        <label for="filter_enabled"> Filter Users by:  </label>
+        <select class="inputbox" onchange="this.form.submit()" name="filter_enabled">
+            <?php
+            $options = array('options' => array(
+                '*' => '- State',
+                '1' => 'Enabled',
+                '0' => 'Disabled'
+                ), 'selected' => $this->filter['enabled']
+            );
+            echo $this->partial('partials/forms/select-options.phtml',
+                    array('options' => $options));
+            ?>
         </select>
-        <select class="inputbox" onchange="this.form.submit()" name="filter_group">
-            <option value=""> - Group -</option>
-            <option value="1">Administrator</option>
-            <option value="2">user</option>
+        <select class="inputbox" onchange="this.form.submit()" name="filter_role">
+            <?php
+            $user_options = array('options' => array(
+                '' => '- Group',
+                'Administrator' => 'Administrator',
+                'User' => 'User'
+                ), 'selected' => $this->filter['role']
+            );
+            echo $this->partial('partials/forms/select-options.phtml',
+                    array('options' => $user_options));
+            ?>
         </select>
         </div>
     </fieldset>
