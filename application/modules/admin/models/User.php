@@ -321,9 +321,23 @@ class Admin_Model_User extends Admin_Model_Abstract
      */
     public function selectEnabled($enabled)
     {
-        if($enabled != '*') {
+        /**
+         * isset added to prevent the clause when user is updated
+         * and $enabled value comes as null
+         */
+        if($enabled != '*' && isset($enabled)) {
             $enabled = (int)$enabled;
             $this->getMapper()->enabled($enabled);
+        }
+        return $this;
+    }
+
+    public function search($searchValue)
+    {
+        if(!empty($searchValue)) {
+            $searchValue = str_replace('\\', '\\\\', $searchValue);
+            $searchValue = addcslashes($searchValue, '_%');
+            $this->getMapper()->search($searchValue);
         }
         return $this;
     }
@@ -344,7 +358,7 @@ class Admin_Model_User extends Admin_Model_Abstract
      * @throws Zend_Exception
      * @return Admin_Model_User|null
      */
-    private function checkUserExistanceByUsername($name)
+    public function checkUserExistanceByUsername($name)
     {
         $user = $this->getMapper()->findByUsername($name);
         if(null !== $user) {// username already exists

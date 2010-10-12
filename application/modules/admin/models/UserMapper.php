@@ -154,6 +154,7 @@ class Admin_Model_UserMapper extends Admin_Model_DataMapper_Abstract
         $this->_select->where('enabled = ?', $enabled);
     }
     /**
+     * Sets ordering state
      *
      * @param string $spec the column and direction to sort by
      * @return void
@@ -164,12 +165,23 @@ class Admin_Model_UserMapper extends Admin_Model_DataMapper_Abstract
         $this->_select->order($spec);
     }
     /**
+     * Simple search by firstname field using like operator
+     *
+     * @param string $value search value
+     * @return void
+     */
+    public function search($value)
+    {
+        $this->_select = $this->getSelect();
+        $this->_select->where('firstname LIKE ?', '%' . $value . '%');
+    }
+    /**
      * Finds user by username, returns null if nothing was found
      *
      * @param string $name
      * @return Admin_Model_User|null
      */
-    private function findByUsername($name)
+    public function findByUsername($name)
     {
         $row = $this->getDbTable()->fetchRow(
                $this->getDbTable()->getDefaultAdapter()

@@ -17,14 +17,19 @@
  */
 class Soulex_View_Helper_GetUrlReverseSorting extends Zend_View_Helper_Abstract
 {
-    public function getUrlReverseSorting($field)
+    /**
+     *
+     * @param array $urlParams include module, controller, action
+     * @param string $orderField sort by field
+     * @return string new url
+     */
+    public function getUrlReverseSorting($urlParams, $orderField)
     {
+        $direction = 'desc';
         if($this->view->orderParams['direction'] == 'desc') {
-            return $this->url(array(
-                    'module' => 'admin',
-                    'controller' => 'user',
-                    'action' => 'list'
-                ), null, true);
+            $direction = 'asc';
         }
+        return $this->view->url($urlParams, null, true) . '/order/' 
+                . $orderField . '/direction/' . $direction;
     }
 }

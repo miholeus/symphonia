@@ -42,7 +42,7 @@
         <label class="filter-search-lbl" for="filter_search">Search Users:</label>
         <input id="filter_search" type="text" title="Search Users" value="" name="filter_search"/>
         <button type="submit">Search</button>
-        <button onclick="document.id('filter_search').value='';this.form.submit();" type="button">Reset</button>
+        <button onclick="$('#filter_search').attr('value', '');this.form.submit();" type="button">Reset</button>
         </div>
         <div class="filter-select fltrt">
         <label for="filter_enabled"> Filter Users by:  </label>
@@ -75,11 +75,6 @@
 
     <div class="clr"> </div>
 
-    <?php
-    $s = new Zend_View();
-    
-    ?>
-
     <?php if(sizeof($this->paginator) > 0):?>
 
     <table class="adminlist">
@@ -89,7 +84,11 @@
                     <input type="checkbox" onclick="checkAll(<?=count($this->users)?>)" value="" name="toggle"/>
                 </th>
                 <th class="left">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.name','desc','');">
+                    <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                    'module' => 'admin',
+                    'controller' => 'user',
+                    'action' => 'list'
+                 ), 'firstname');?>">
                     Name
                     <?php
                     echo $this->getSortImage('firstname');
@@ -97,14 +96,22 @@
                     </a>
                 </th>
                 <th class="nowrap" width="10%">
-                    <a title="Click to sort by this column" href="javascript:void(0)">User Name
+                    <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                    'module' => 'admin',
+                    'controller' => 'user',
+                    'action' => 'list'
+                 ), 'username');?>">User Name
                     <?php
                     echo $this->getSortImage('username');
                     ?>
                     </a>
                 </th>
                 <th class="nowrap" width="5%">
-                    <a title="Click to sort by this column" href="javascript:void(0)">Enabled
+                    <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                    'module' => 'admin',
+                    'controller' => 'user',
+                    'action' => 'list'
+                 ), 'enabled');?>">Enabled
                     <?php
                     echo $this->getSortImage('enabled');
                     ?>
@@ -112,28 +119,44 @@
                 </th>
                 <th class="nowrap" width="10%"> Groups </th>
                 <th class="nowrap" width="15%">
-                    <a title="Click to sort by this column" href="javascript:void(0)">E-mail
+                    <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                    'module' => 'admin',
+                    'controller' => 'user',
+                    'action' => 'list'
+                 ), 'email');?>">E-mail
                     <?php
                     echo $this->getSortImage('email');
                     ?>
                     </a>
                 </th>
                 <th class="nowrap" width="15%">
-                    <a title="Click to sort by this column" href="javascript:void(0)">Last Visit Date
+                    <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                    'module' => 'admin',
+                    'controller' => 'user',
+                    'action' => 'list'
+                 ), 'lastvisitDate');?>">Last Visit Date
                     <?php
                     echo $this->getSortImage('lastvisitDate');
                     ?>
                     </a>
                 </th>
                 <th class="nowrap" width="15%">
-                    <a title="Click to sort by this column" href="javascript:void(0)">Registration Date
+                    <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                    'module' => 'admin',
+                    'controller' => 'user',
+                    'action' => 'list'
+                 ), 'registerDate');?>">Registration Date
                     <?php
                     echo $this->getSortImage('registerDate');
                     ?>
                     </a>
                 </th>
                 <th class="nowrap" width="3%">
-                    <a title="Click to sort by this column" href="javascript:void(0)">ID
+                    <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                    'module' => 'admin',
+                    'controller' => 'user',
+                    'action' => 'list'
+                 ), 'id');?>">ID
                     <?php
                     echo $this->getSortImage('id');
                     ?>
@@ -160,6 +183,8 @@
     </table>
     
     <input type="hidden" name="boxchecked" id="boxchecked" value="0" />
+    <input type="hidden" name="order" value="<?php echo $this->orderParams['order']?>" />
+    <input type="hidden" name="direction" value="<?php echo $this->orderParams['direction']?>" />
 
     <?else:?>
         You do not have any users

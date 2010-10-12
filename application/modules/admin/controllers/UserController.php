@@ -123,17 +123,16 @@ class Admin_UserController extends Soulex_Controller_Abstract
     public function listAction ()
     {
         $userModel = new Admin_Model_User();
-        $where = null;// default where statement
         $this->view->orderParams = $this->_getOrderParams();
         $order = join(' ', $this->view->orderParams);
         $this->view->filter = array();// view property for where statements
         $limit = $this->_getParam('limit', 20);
-
         if($this->_request->isPost()) {
             $post = $this->_request->getPost();
 
             $paginator = $userModel->selectEnabled($post['filter_enabled'])
                                 ->selectRole($post['filter_role'])
+                                ->search($post['filter_search'])
                                 ->order($order)->paginate();
 
             $this->view->filter['enabled'] = $post['filter_enabled'];
