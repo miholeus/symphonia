@@ -124,7 +124,8 @@ class Admin_UserController extends Soulex_Controller_Abstract
     {
         $userModel = new Admin_Model_User();
         $where = null;// default where statement
-        $order = 'firstname DESC';// default order clause
+        $this->view->orderParams = $this->_getOrderParams();
+        $order = join(' ', $this->view->orderParams);
         $this->view->filter = array();// view property for where statements
         $limit = $this->_getParam('limit', 20);
 
@@ -249,6 +250,24 @@ class Admin_UserController extends Soulex_Controller_Abstract
                     . $e->getMessage());
             $this->view->render('user/delete.phtml');
         }
+    }
 
+    private function _getOrderParams()
+    {
+        $order = $this->_getParam('order', 'firstname');
+        $direction = $this->_getParam('direction', 'desc');
+        /**
+         * sets default order if model does not have proper field
+         */
+        if(!is_callable(array('Admin_Model_User',
+            'get' . ucfirst($order)))) {
+            $order = 'firstname';
+        }
+
+        if(!in_array(strtolower($direction), array('asc', 'desc'))) {
+            $direction = 'desc';
+        }
+
+        return array('order' => $order, 'direction' => $direction);
     }
 }

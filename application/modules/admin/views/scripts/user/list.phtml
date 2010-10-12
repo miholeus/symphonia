@@ -75,6 +75,11 @@
 
     <div class="clr"> </div>
 
+    <?php
+    $s = new Zend_View();
+    
+    ?>
+
     <?php if(sizeof($this->paginator) > 0):?>
 
     <table class="adminlist">
@@ -86,27 +91,53 @@
                 <th class="left">
                     <a title="Click to sort by this column" href="javascript:tableOrdering('a.name','desc','');">
                     Name
-                    <img alt="" src="/_data/admin/system/images/sort_asc.png"/>
+                    <?php
+                    echo $this->getSortImage('firstname');
+                    ?>
                     </a>
                 </th>
                 <th class="nowrap" width="10%">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.username','desc','');">User Name</a>
+                    <a title="Click to sort by this column" href="javascript:void(0)">User Name
+                    <?php
+                    echo $this->getSortImage('username');
+                    ?>
+                    </a>
                 </th>
                 <th class="nowrap" width="5%">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.block','desc','');">Enabled</a>
+                    <a title="Click to sort by this column" href="javascript:void(0)">Enabled
+                    <?php
+                    echo $this->getSortImage('enabled');
+                    ?>
+                    </a>
                 </th>
                 <th class="nowrap" width="10%"> Groups </th>
                 <th class="nowrap" width="15%">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.email','desc','');">E-mail</a>
+                    <a title="Click to sort by this column" href="javascript:void(0)">E-mail
+                    <?php
+                    echo $this->getSortImage('email');
+                    ?>
+                    </a>
                 </th>
                 <th class="nowrap" width="15%">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.lastvisitDate','desc','');">Last Visit Date</a>
+                    <a title="Click to sort by this column" href="javascript:void(0)">Last Visit Date
+                    <?php
+                    echo $this->getSortImage('lastvisitDate');
+                    ?>
+                    </a>
                 </th>
                 <th class="nowrap" width="15%">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.registerDate','desc','');">Registration Date</a>
+                    <a title="Click to sort by this column" href="javascript:void(0)">Registration Date
+                    <?php
+                    echo $this->getSortImage('registerDate');
+                    ?>
+                    </a>
                 </th>
                 <th class="nowrap" width="3%">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.id','desc','');">ID</a>
+                    <a title="Click to sort by this column" href="javascript:void(0)">ID
+                    <?php
+                    echo $this->getSortImage('id');
+                    ?>
+                    </a>
                 </th>
             </tr>
         </thead>
