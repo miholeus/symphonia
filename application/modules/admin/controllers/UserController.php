@@ -126,23 +126,17 @@ class Admin_UserController extends Soulex_Controller_Abstract
         $where = null;// default where statement
         $order = 'firstname DESC';// default order clause
         $this->view->filter = array();// view property for where statements
+        $limit = $this->_getParam('limit', 20);
 
         if($this->_request->isPost()) {
             $post = $this->_request->getPost();
 
-            $userModel->selectEnabled($post['filter_enabled'])->fetchAll();
+            $paginator = $userModel->selectEnabled($post['filter_enabled'])
+                                ->selectRole($post['filter_role'])
+                                ->order($order)->paginate();
 
-            $_returnedWhere = $this->_formWhereStatement($where, $post,
-                    array(0, 1), 'enabled');
-            if(null !== $_returnedWhere) {
-                $where .= $_returnedWhere;
-            }
-            $_returnedWhere = $this->_formWhereStatement($where, $post,
-                    array('Administrator', 'User'), 'role');
-            // replace where with new string
-            if(null !== $_returnedWhere) {
-                $where = $_returnedWhere;
-            }
+            $this->view->filter['enabled'] = $post['filter_enabled'];
+            $this->view->filter['role'] = $post['filter_role'];
 
             if(is_array($post['cid'])) {
                 try {
@@ -153,14 +147,20 @@ class Admin_UserController extends Soulex_Controller_Abstract
                             . $e->getMessage());
                 }
             }
+        } else {
+            $paginator = $userModel->order($order)->paginate();
+        }
+        
+        // show items per page
+        if($limit != 0) {
+            $paginator->setItemCountPerPage($limit);
+        } else {
+            $paginator->setItemCountPerPage(-1);
         }
 
-        $currentUsers = $userModel->fetchAll($where, $order);
-        if (sizeof($currentUsers) > 0) {
-            $this->view->users = $currentUsers;
-        } else {
-            $this->view->users = null;
-        }
+        $this->view->paginator = $paginator;
+        Zend_Registry::set('pagination_limit', $limit);
+
         $this->view->render('user/list.phtml');
     }
 
@@ -251,39 +251,4 @@ class Admin_UserController extends Soulex_Controller_Abstract
         }
 
     }
-    /**
-     * Forms where statement for SQL query to match different criterias
-     * This method should use validator, not implemented yet.
-     *
-     * @param string $where current where statement
-     * @param array $post
-     * @param array $valid_values
-     * @param string $postKey
-     * @return string
-     */
-    private function _formWhereStatement($where, $post, $valid_values, $postKey)
-    {
-        $_where = null;
-        if(isset($post['filter_' . $postKey])) {
-            /*
-             * @todo add validator here
-             */
-            if(in_array($post['filter_' . $postKey], $valid_values)) {
-                $_where = $postKey . ' = ' . $post['filter_' . $postKey];
-                $this->view->filter[$postKey] = $post['filter_' . $postKey];
-            }
-        }
-        if(null !== $_where) {
-            /**
-             *  if where statement already exists, add 'and' clause
-             */
-            if(!empty($where)) {
-                $where .= ' and ';
-            }
-            $where .= $_where;
-            return $where;
-        }
-        return null;
-    }
-
 }

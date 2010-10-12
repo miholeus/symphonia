@@ -213,6 +213,24 @@ class Admin_Model_User extends Admin_Model_Abstract
         return md5($password);
     }
     /**
+     * Fetches users including where statements and order
+     *
+     * @return Admin_Model_User|null
+     */
+    public function fetch()
+    {
+        return $this->getMapper()->fetch();
+    }
+    /**
+     *
+     * @return Zend_Paginator 
+     */
+    public function paginate()
+    {
+        $adapter = $this->getMapper()->fetchPaginator();
+        return new Zend_Paginator($adapter);
+    }
+    /**
      *
      * @param string|array|Zend_Db_Table_Select $where  OPTIONAL An SQL WHERE clause or Zend_Db_Table_Select object.
      * @param string|array                      $order  OPTIONAL An SQL ORDER clause.
@@ -290,8 +308,9 @@ class Admin_Model_User extends Admin_Model_Abstract
      */
     public function selectRole($role)
     {
-        $select = $this->getMapper()->getDbTable()->select();
-        $select->where('role = ?', $role);
+        if($role != '') {
+            $this->getMapper()->role($role);
+        }
         return $this;
     }
     /**
@@ -302,9 +321,20 @@ class Admin_Model_User extends Admin_Model_Abstract
      */
     public function selectEnabled($enabled)
     {
-        $enabled = (int)$enabled;
-        $select = $this->getMapper()->getDbTable()->select();
-        $select->where('enabled = ?', $enabled);
+        if($enabled != '*') {
+            $enabled = (int)$enabled;
+            $this->getMapper()->enabled($enabled);
+        }
+        return $this;
+    }
+    /**
+     *
+     * @param string $spec the column and direction to sort by
+     * @return Admin_Model_User
+     */
+    public function order($spec)
+    {
+        $this->getMapper()->order($spec);
         return $this;
     }
     /**

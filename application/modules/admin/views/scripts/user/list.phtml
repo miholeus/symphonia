@@ -75,7 +75,7 @@
 
     <div class="clr"> </div>
 
-    <?php if($this->users != null) {?>
+    <?php if(sizeof($this->paginator) > 0):?>
 
     <table class="adminlist">
         <thead>
@@ -113,41 +113,26 @@
         <tfoot>
             <tr>
                 <td colspan="15">
-                    <div class="container">
-                    <div class="pagination">
-                    <div class="limit">
-                    Display #
-                    <select id="limit" class="inputbox" onchange="submitform();" size="1" name="limit">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option selected="selected" value="20">20</option>
-                    <option value="25">25</option>
-                    <option value="30">30</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                    <option value="0">All</option>
-                    </select>
-                    </div>
-                    <div class="limit"/>
-                    <input type="hidden" value="0" name="limitstart"/>
-                    </div>
-                    </div>
+                    <?php
+                    echo $this->paginationControl($this->paginator,
+                     'Sliding',
+                     'partials/pagination-control.phtml');
+                    ?>
                 </td>
             </tr>
         </tfoot>
         <tbody>
             <?php
-            $this->partialLoop()->setObjectKey('user');
-            echo $this->partialLoop('partials/_user-row.phtml', $this->users);
+            echo $this->partialLoop('partials/_user-row.phtml', $this->paginator);
             ?>
         </tbody>
     </table>
     
     <input type="hidden" name="boxchecked" id="boxchecked" value="0" />
-    <?php }else{?>
-    <p>You do not have any users yet.</p>
-    <?php }?>
+
+    <?else:?>
+        You do not have any users
+    <?endif;?>
     
 </form>
 

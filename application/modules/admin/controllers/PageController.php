@@ -36,6 +36,7 @@ class Admin_PageController extends Soulex_Controller_Abstract
         $adapter = $mdlPage->fetchPaginator(null, array('title'));
 
         $paginator = new Zend_Paginator($adapter);
+
         // show items per page
         if($limit != 0) {
             $paginator->setItemCountPerPage($limit);

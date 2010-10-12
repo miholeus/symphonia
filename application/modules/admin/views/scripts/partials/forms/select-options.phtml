@@ -1,5 +1,5 @@
 <?php foreach($this->options['options'] as $key => $value):?>
 <option value="<?=$key?>" <?php if(isset ($this->options['selected']) &&
-        $this->options['selected'] == $key):
+    0 == strcmp($this->options['selected'], $key)):
         echo 'selected'; endif;?>><?=$value?></option>
 <?endforeach;?>

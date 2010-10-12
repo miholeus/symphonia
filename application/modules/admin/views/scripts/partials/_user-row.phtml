@@ -1,23 +1,23 @@
 <tr class="row<?php echo $this->partialCounter % 2 == 0 ? 1 : 0?>">
     <td class="center">
-    <input id="cb0" type="checkbox" title="Checkbox for row <?=$this->partialCounter?>" onclick="isChecked(this.checked);" value="<?=$this->user->id?>" name="cid[]"/>
+    <input id="cb0" type="checkbox" title="Checkbox for row <?=$this->partialCounter?>" onclick="isChecked(this.checked);" value="<?=$this->id?>" name="cid[]"/>
     </td>
     <td>
         <?php
-        $firstName = $this->user->firstname;
-        $name = !empty($firstName) ? $firstName : $this->user->username;
+        $firstName = $this->firstname;
+        $name = !empty($firstName) ? $firstName : $this->username;
         ?>
-    <a title="Edit User <?=$this->escape($name)?>" href="/admin/user/update/id/<?=$this->user->id?>"> <?=$this->escape($name)?></a>
+    <a title="Edit User <?=$this->escape($name)?>" href="/admin/user/update/id/<?=$this->id?>"> <?=$this->escape($name)?></a>
     </td>
-    <td class="center"> <?=$this->escape($this->user->username)?> </td>
+    <td class="center"> <?=$this->escape($this->username)?> </td>
     <td class="center">
-    <a class="<?php if($this->user->enabled):?>grid_true<?else:?>grid_false<?endif;?> hasTip" href="#toggle" rel="{id:'cb0', task:'users.enabled'}"/>
+    <a class="<?php if($this->enabled):?>grid_true<?else:?>grid_false<?endif;?> hasTip" href="#toggle" rel="{id:'cb0', task:'users.enabled'}"/>
     </td>
     <td class="center">
-        <?=$this->user->role?>
+        <?=$this->role?>
     </td>
-    <td class="center"> <?=$this->user->email?> </td>
-    <td class="center"> <?=intval($this->user->lastvisitDate) == 0 ? 'Never' : $this->user->lastvisitDate?> </td>
-    <td class="center"> <?=$this->user->registerDate?> </td>
-    <td class="center"> <?=$this->user->id?> </td>
+    <td class="center"> <?=$this->email?> </td>
+    <td class="center"> <?=intval($this->lastvisitDate) == 0 ? 'Never' : $this->lastvisitDate?> </td>
+    <td class="center"> <?=$this->registerDate?> </td>
+    <td class="center"> <?=$this->id?> </td>
 </tr>

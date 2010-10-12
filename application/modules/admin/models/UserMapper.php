@@ -15,6 +15,11 @@
 class Admin_Model_UserMapper extends Admin_Model_DataMapper_Abstract
 {
     protected $_dbTableClass = 'Admin_Model_DbTable_User';
+    /**
+     *
+     * @var Zend_Db_Table_Select
+     */
+    protected $_select;
 
     public function save(Admin_Model_User $user)
     {
@@ -80,24 +85,23 @@ class Admin_Model_UserMapper extends Admin_Model_DataMapper_Abstract
         }
         return $entries;
     }
-	/**
-	 * Fetches user items
+    /**
+     * Fetches users due to a select statement
+     *
+     * @return Admin_Model_User array all set
+     */
+    public function fetch()
+    {
+        return $this->fetchAll($this->_select);
+    }
+    /**
+	 * Fetches paginator
 	 *
-     * @param string|array|Zend_Db_Table_Select $where  OPTIONAL An SQL WHERE clause or Zend_Db_Table_Select object.
-     * @param string|array                      $order  OPTIONAL An SQL ORDER clause.
      * @return Zend_Paginator_Adapter_DbSelect
 	 */
-    public function fetchPaginator($where, $order)
+    public function fetchPaginator()
     {
-        $select = $this->getDbTable()->select();
-        if(null !== $where) {
-            $select->where($where);
-        }
-        if(null !== $order) {
-            $select->order($order);
-        }
-
-        $adapter = new Zend_Paginator_Adapter_DbSelect($select);
+        $adapter = new Zend_Paginator_Adapter_DbSelect($this->_select);
         return $adapter;
     }
 
@@ -127,7 +131,38 @@ class Admin_Model_UserMapper extends Admin_Model_DataMapper_Abstract
                  ->quoteInto('id = ?', $userId);
         $this->getDbTable()->update(array('lastvisitDate' => $date), $where);
     }
-
+    /**
+     * Sets role in where clause
+     *
+     * @param string $role
+     * @return void
+     */
+    public function role($role)
+    {
+        $this->_select = $this->getSelect();
+        $this->_select->where('role = ?', $role);
+    }
+    /**
+     * Sets enabled in where clause
+     *
+     * @param int $enabled
+     * @return void
+     */
+    public function enabled($enabled)
+    {
+        $this->_select = $this->getSelect();
+        $this->_select->where('enabled = ?', $enabled);
+    }
+    /**
+     *
+     * @param string $spec the column and direction to sort by
+     * @return void
+     */
+    public function order($spec)
+    {
+        $this->_select = $this->getSelect();
+        $this->_select->order($spec);
+    }
     /**
      * Finds user by username, returns null if nothing was found
      *
@@ -143,5 +178,13 @@ class Admin_Model_UserMapper extends Admin_Model_DataMapper_Abstract
             return new Admin_Model_User($row->toArray());
         }
         return null;
+    }
+
+    private function getSelect()
+    {
+        if(null === $this->_select) {
+            $this->_select = $this->getDbTable()->select();
+        }
+        return $this->_select;
     }
 }
