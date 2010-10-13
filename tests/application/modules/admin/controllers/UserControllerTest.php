@@ -111,9 +111,7 @@ class Admin_Controller_UserControllerTest extends ControllerTestCase
                 ));
         $this->dispatch('/admin/');
 
-        $request = new Zend_Controller_Request_Simple('index', 'user', 'admin');
-
-        $this->getFrontController()->dispatch($request);
+        $this->dispatch('/admin/user/logout');
 
         $this->assertNull(Zend_Auth::getInstance()->getIdentity(),
                 "user session data was not cleared after logout");
