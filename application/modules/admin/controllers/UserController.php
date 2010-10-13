@@ -72,8 +72,8 @@ class Admin_UserController extends Soulex_Controller_Abstract
                          $this->_redirect($return_path) :
                          $this->_forward('index', 'index');
             } else {
-                $this->view->loginMessage = "Sorry, your username or
-                  password was incorrect";
+                $this->view->loginMessage = "Sorry, your username or"
+                  . " password was incorrect";
             }
         }
         $this->view->form = $userForm;
