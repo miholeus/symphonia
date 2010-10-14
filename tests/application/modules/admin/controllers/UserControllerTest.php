@@ -28,14 +28,16 @@ class Admin_Controller_UserControllerTest extends ControllerTestCase
 
     public function testUserLoggedIn()
     {
-        $this->getRequest()->setMethod('POST')
-                ->setPost(array(
-                    "username" => "admin",
-                    "password" => "1"
-                ));
-        $this->dispatch('/admin/');
+        $this->_loginUser();
 
         $this->_assertCredentials();
+
+        /**
+         * test that user will be forwarded to index action
+         */
+        $this->dispatch('/admin/user/login');
+
+        $this->assertAction('index');
 
     }
 
@@ -104,17 +106,139 @@ class Admin_Controller_UserControllerTest extends ControllerTestCase
 
     public function testUserLoggedOut()
     {
-        $this->getRequest()->setMethod('POST')
-                ->setPost(array(
-                    "username" => "admin",
-                    "password" => "1"
-                ));
-        $this->dispatch('/admin/');
+        $this->_loginUser();
 
         $this->dispatch('/admin/user/logout');
 
         $this->assertNull(Zend_Auth::getInstance()->getIdentity(),
                 "user session data was not cleared after logout");
+    }
+
+    public function testUserCreation()
+    {
+        $this->_loginUser();
+        $random = rand(0, 100000);
+        $newUser = array(
+            "username" => "user" . $random,
+            "firstname" => "firstname" . $random,
+            "lastname" => "lastname" . $random,
+            "password" => "1",
+            "confirmPassword" => "1",
+            "email" => "test@gmail.com",
+            "enabled" => "0"
+        );
+        $this->getRequest()->setMethod('POST')
+                ->setPost($newUser);
+        $this->dispatch('/admin/user/create');
+        /**
+         * user will be forwarded to list action
+         */
+        $this->assertAction('list');
+    }
+
+    public function testUserCreationForm()
+    {
+        $this->_loginUser();
+        $this->dispatch('/admin/user/create');
+        $this->assertQueryContentContains('h2', 'User Manager: Add New User');
+    }
+
+    public function testDisplayAllUsers()
+    {
+        $this->_loginUser();
+        $this->getRequest()->setParam('limit', 0);
+        $this->dispatch('/admin/user/list');
+        $this->assertQueryContentContains('h2', 'User Manager: Users');
+
+        $this->getRequest()->setMethod('POST')
+                ->setPost(array(
+                    'cid' => array(0)
+                ));
+        $this->dispatch('/admin/user/list');
+        $this->assertQueryContentContains('li',
+                'User deletion failed with the following error: '
+                . 'User with id 0 not found');
+        /**
+         * wrong order params
+         */
+        $this->dispatch('/admin/user/list/order/asdf/direction/ddd');
+        $this->assertAction('list');
+    }
+
+    public function testUserCanBeDeletedWithUrlParams()
+    {
+        $this->_loginUser();
+        $this->dispatch('/admin/user/delete/id/0');
+        $this->assertQueryContentContains('li',
+                'User deletion failed with the following error: '
+                . 'User with id 0 not found');
+    }
+
+    public function testUserUpdateAction()
+    {
+        $this->_loginUser();
+        $this->getRequest()->setMethod('GET');
+        $this->dispatch('/admin/user/update/id/2');
+        $this->assertQueryContentContains('h2', 'User Manager: Update User');
+        /**
+         * test forwarding to list action without id
+         */
+        $this->getRequest()->setMethod('GET');
+        $this->dispatch('/admin/user/update/id');
+        $this->assertAction('list');
+    }
+
+    public function testUserMayUpdateInfo()
+    {
+        $this->_loginUser();
+        $testUser = array(
+            "username" => "admin",
+            "firstname" => "admin" . $random,
+            "lastname" => "admin",
+            "password" => "1",
+            "confirmPassword" => "1",
+            "email" => "admin@gmail.com",
+            "enabled" => "1"
+        );
+        $this->getRequest()->setMethod('POST')
+                ->setPost($testUser);
+        $this->dispatch('/admin/user/update');
+        $this->assertAction('list');
+    }
+
+
+    public function testUserNotConfirmedPassword()
+    {
+        $this->_loginUser();
+        $testUser = array(
+            "username" => "admin",
+            "firstname" => "admin" . $random,
+            "lastname" => "admin",
+            "password" => "1",
+            "email" => "admin@gmail.com",
+            "enabled" => "1"
+        );
+        $this->getRequest()->setMethod('POST')
+                ->setPost($testUser);
+        $this->dispatch('/admin/user/update');
+        $this->assertQueryContentContains('li',
+         'User update failed with the following error: Please confirm password');
+    }
+
+    public function testUserUpdatedNotValidForm()
+    {
+        $this->_loginUser();
+        $testUser = array(
+            "username" => "admin",
+            "firstname" => "admin" . $random,
+            "lastname" => "admin",
+            "enabled" => "1"
+        );
+        $this->getRequest()->setMethod('POST')
+                ->setPost($testUser);
+        $this->dispatch('/admin/user/update');
+        $this->assertQueryContentContains('li',
+                'User update failed with the following error: email isEmpty');
     }
 
     private function _assertCredentials()
@@ -123,6 +247,16 @@ class Admin_Controller_UserControllerTest extends ControllerTestCase
 
         $this->assertEquals($user->username, 'admin');
         $this->assertEquals($user->role, 'Administrator');
+    }
+
+    private function _loginUser()
+    {
+        $this->getRequest()->setMethod('POST')
+                ->setPost(array(
+                    "username" => "admin",
+                    "password" => "1"
+                ));
+        $this->dispatch('/admin/');
     }
 
 //    public function testUserAlreadyLoggedIn()

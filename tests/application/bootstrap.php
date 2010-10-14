@@ -17,3 +17,4 @@ set_include_path(implode(PATH_SEPARATOR, array(
 /** Zend_Application */
 require_once 'Zend/Application.php';
 require_once 'ControllerTestCase.php';
+require_once 'modules/admin/Fixture/User.php';

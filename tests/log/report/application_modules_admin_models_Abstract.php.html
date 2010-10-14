@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Admin_Controller_UserControllerTest</title>
+    <title>Admin_Controller_SysinfoControllerTest</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="container.css">
     <script type="text/javascript" src="yahoo-dom-event.js"></script>
@@ -12,7 +12,7 @@
 
   <body class="yui-skin-sam">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr><td class="title">Admin_Controller_UserControllerTest</td></tr>
+      <tr><td class="title">Admin_Controller_SysinfoControllerTest</td></tr>
       <tr><td class="ruler"><img src="glass.png" width="3" height="3" alt=""></td></tr>
 
       <tr>
@@ -293,10 +293,10 @@
 <span class="lineNum" id="container28"><a name="28"></a><a href="#28" id="line28">      28</a> </span>                :                                                                                                 
 <span class="lineNum" id="container29"><a name="29"></a><a href="#29" id="line29">      29</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">public</span><span class="default">&nbsp;</span><span class="keyword">function</span><span class="default">&nbsp;</span><span class="default">__construct</span><span class="keyword">(</span><span class="keyword">array</span><span class="default">&nbsp;</span><span class="default">$options</span><span class="default">&nbsp;</span><span class="keyword">=</span><span class="default">&nbsp;</span><span class="default">null</span><span class="keyword">)</span>                                          
 <span class="lineNum" id="container30"><a name="30"></a><a href="#30" id="line30">      30</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">{</span>                                                                                           
-<span class="lineNum" id="container31"><a name="31"></a><a href="#31" id="line31">      31</a> </span><span class="lineCov">              6 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">if</span><span class="keyword">(</span><span class="default">is_array</span><span class="keyword">(</span><span class="default">$options</span><span class="keyword">)</span><span class="keyword">)</span><span class="default">&nbsp;</span><span class="keyword">{</span>                                                                </span>
+<span class="lineNum" id="container31"><a name="31"></a><a href="#31" id="line31">      31</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">if</span><span class="keyword">(</span><span class="default">is_array</span><span class="keyword">(</span><span class="default">$options</span><span class="keyword">)</span><span class="keyword">)</span><span class="default">&nbsp;</span><span class="keyword">{</span>                                                                </span>
 <span class="lineNum" id="container32"><a name="32"></a><a href="#32" id="line32">      32</a> </span><span class="lineNoCov">              0 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">setOptions</span><span class="keyword">(</span><span class="default">$options</span><span class="keyword">)</span><span class="keyword">;</span>                                                        </span>
 <span class="lineNum" id="container33"><a name="33"></a><a href="#33" id="line33">      33</a> </span><span class="lineNoCov">              0 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span>                                                                                       </span>
-<span class="lineNum" id="container34"><a name="34"></a><a href="#34" id="line34">      34</a> </span><span class="lineCov">              6 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span>                                                                                           </span>
+<span class="lineNum" id="container34"><a name="34"></a><a href="#34" id="line34">      34</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span>                                                                                           </span>
 <span class="lineNum" id="container35"><a name="35"></a><a href="#35" id="line35">      35</a> </span>                :                                                                                                 
 <span class="lineNum" id="container36"><a name="36"></a><a href="#36" id="line36">      36</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">public</span><span class="default">&nbsp;</span><span class="keyword">function</span><span class="default">&nbsp;</span><span class="default">__set</span><span class="keyword">(</span><span class="default">$name</span><span class="keyword">,</span><span class="default">&nbsp;</span><span class="default">$value</span><span class="keyword">)</span>                                                        
 <span class="lineNum" id="container37"><a name="37"></a><a href="#37" id="line37">      37</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">{</span>                                                                                           
@@ -323,8 +323,8 @@
 <span class="lineNum" id="container58"><a name="58"></a><a href="#58" id="line58">      58</a> </span>                : <span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span>                                                                                         
 <span class="lineNum" id="container59"><a name="59"></a><a href="#59" id="line59">      59</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">public</span><span class="default">&nbsp;</span><span class="keyword">function</span><span class="default">&nbsp;</span><span class="default">setMapper</span><span class="keyword">(</span><span class="default">$mapper</span><span class="keyword">)</span>                                                          
 <span class="lineNum" id="container60"><a name="60"></a><a href="#60" id="line60">      60</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">{</span>                                                                                           
-<span class="lineNum" id="container61"><a name="61"></a><a href="#61" id="line61">      61</a> </span><span class="lineCov">              5 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">_mapper</span><span class="default">&nbsp;</span><span class="keyword">=</span><span class="default">&nbsp;</span><span class="default">$mapper</span><span class="keyword">;</span>                                                               </span>
-<span class="lineNum" id="container62"><a name="62"></a><a href="#62" id="line62">      62</a> </span><span class="lineCov">              5 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">return</span><span class="default">&nbsp;</span><span class="default">$this</span><span class="keyword">;</span>                                                                           </span>
+<span class="lineNum" id="container61"><a name="61"></a><a href="#61" id="line61">      61</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">_mapper</span><span class="default">&nbsp;</span><span class="keyword">=</span><span class="default">&nbsp;</span><span class="default">$mapper</span><span class="keyword">;</span>                                                               </span>
+<span class="lineNum" id="container62"><a name="62"></a><a href="#62" id="line62">      62</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">return</span><span class="default">&nbsp;</span><span class="default">$this</span><span class="keyword">;</span>                                                                           </span>
 <span class="lineNum" id="container63"><a name="63"></a><a href="#63" id="line63">      63</a> </span><span class="lineDeadCode">                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span>                                                                                           </span>
 <span class="lineNum" id="container64"><a name="64"></a><a href="#64" id="line64">      64</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment">/**</span>                                                                                         
 <span class="lineNum" id="container65"><a name="65"></a><a href="#65" id="line65">      65</a> </span>                : <span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span>                                                                                          
@@ -332,10 +332,10 @@
 <span class="lineNum" id="container67"><a name="67"></a><a href="#67" id="line67">      67</a> </span>                : <span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span>                                                                                         
 <span class="lineNum" id="container68"><a name="68"></a><a href="#68" id="line68">      68</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">public</span><span class="default">&nbsp;</span><span class="keyword">function</span><span class="default">&nbsp;</span><span class="default">getMapper</span><span class="keyword">(</span><span class="keyword">)</span>                                                                 
 <span class="lineNum" id="container69"><a name="69"></a><a href="#69" id="line69">      69</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">{</span>                                                                                           
-<span class="lineNum" id="container70"><a name="70"></a><a href="#70" id="line70">      70</a> </span><span class="lineCov">              5 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">if</span><span class="default">&nbsp;</span><span class="keyword">(</span><span class="default">null</span><span class="default">&nbsp;</span><span class="keyword">===</span><span class="default">&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">_mapper</span><span class="keyword">)</span><span class="default">&nbsp;</span><span class="keyword">{</span>                                                          </span>
-<span class="lineNum" id="container71"><a name="71"></a><a href="#71" id="line71">      71</a> </span><span class="lineCov">              5 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">setMapper</span><span class="keyword">(</span><span class="keyword">new</span><span class="default">&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">_mapperClass</span><span class="keyword">)</span><span class="keyword">;</span>                                          </span>
-<span class="lineNum" id="container72"><a name="72"></a><a href="#72" id="line72">      72</a> </span><span class="lineCov">              5 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span>                                                                                       </span>
-<span class="lineNum" id="container73"><a name="73"></a><a href="#73" id="line73">      73</a> </span><span class="lineCov">              5 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">return</span><span class="default">&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">_mapper</span><span class="keyword">;</span>                                                                  </span>
+<span class="lineNum" id="container70"><a name="70"></a><a href="#70" id="line70">      70</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">if</span><span class="default">&nbsp;</span><span class="keyword">(</span><span class="default">null</span><span class="default">&nbsp;</span><span class="keyword">===</span><span class="default">&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">_mapper</span><span class="keyword">)</span><span class="default">&nbsp;</span><span class="keyword">{</span>                                                          </span>
+<span class="lineNum" id="container71"><a name="71"></a><a href="#71" id="line71">      71</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">setMapper</span><span class="keyword">(</span><span class="keyword">new</span><span class="default">&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">_mapperClass</span><span class="keyword">)</span><span class="keyword">;</span>                                          </span>
+<span class="lineNum" id="container72"><a name="72"></a><a href="#72" id="line72">      72</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span>                                                                                       </span>
+<span class="lineNum" id="container73"><a name="73"></a><a href="#73" id="line73">      73</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">return</span><span class="default">&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">_mapper</span><span class="keyword">;</span>                                                                  </span>
 <span class="lineNum" id="container74"><a name="74"></a><a href="#74" id="line74">      74</a> </span><span class="lineDeadCode">                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span>                                                                                           </span>
 <span class="lineNum" id="container75"><a name="75"></a><a href="#75" id="line75">      75</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment">/**</span>                                                                                         
 <span class="lineNum" id="container76"><a name="76"></a><a href="#76" id="line76">      76</a> </span>                : <span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Using&nbsp;setXXX()&nbsp;methods&nbsp;to&nbsp;set&nbsp;values</span>                                                     
@@ -376,7 +376,7 @@
 
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr><td class="ruler"><img src="glass.png" width="3" height="3" alt=""></td></tr>
-      <tr><td class="versionInfo">Generated by <a href="http://www.phpunit.de/" target="_top">PHPUnit 3.4.12</a> and <a href="http://www.xdebug.org/" target="_top">Xdebug 2.0.5</a> using <a href="http://www.php.net/" target="_top">PHP 5.2.10-2ubuntu6.4</a> at Thu Oct 14 2:46:50 MSD 2010.</td></tr>
+      <tr><td class="versionInfo">Generated by <a href="http://www.phpunit.de/" target="_top">PHPUnit 3.4.13</a> and <a href="http://www.xdebug.org/" target="_top">Xdebug 2.0.5</a> using <a href="http://www.php.net/" target="_top">PHP 5.2.10-2ubuntu6.4</a> at Thu Oct 14 16:21:06 MSD 2010.</td></tr>
     </table>
 
     <br />
@@ -388,47 +388,47 @@
       YAHOO.phpunit.container.panelsData = {
         "panel18": {
           "header": "1 test covers line 18",
-          "body": "<ul><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedIn</li></ul>",
+          "body": "<ul><li class=\"testPassed\">Admin_Controller_SysinfoControllerTest::testSystemInformationIsDisplayed</li></ul>",
           "footer": ""
         },
         "panel31": {
-          "header": "6 tests cover line 31",
-          "body": "<ul><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedIn</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLoginUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLogoutUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInWithReturnPath</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserFailedToLogin</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedOut</li></ul>",
+          "header": "1 test covers line 31",
+          "body": "<ul><li class=\"testPassed\">Admin_Controller_SysinfoControllerTest::testSystemInformationIsDisplayed</li></ul>",
           "footer": ""
         },
         "panel34": {
-          "header": "6 tests cover line 34",
-          "body": "<ul><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedIn</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLoginUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLogoutUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInWithReturnPath</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserFailedToLogin</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedOut</li></ul>",
+          "header": "1 test covers line 34",
+          "body": "<ul><li class=\"testPassed\">Admin_Controller_SysinfoControllerTest::testSystemInformationIsDisplayed</li></ul>",
           "footer": ""
         },
         "panel61": {
-          "header": "5 tests cover line 61",
-          "body": "<ul><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedIn</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLoginUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLogoutUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInWithReturnPath</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedOut</li></ul>",
+          "header": "1 test covers line 61",
+          "body": "<ul><li class=\"testPassed\">Admin_Controller_SysinfoControllerTest::testSystemInformationIsDisplayed</li></ul>",
           "footer": ""
         },
         "panel62": {
-          "header": "5 tests cover line 62",
-          "body": "<ul><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedIn</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLoginUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLogoutUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInWithReturnPath</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedOut</li></ul>",
+          "header": "1 test covers line 62",
+          "body": "<ul><li class=\"testPassed\">Admin_Controller_SysinfoControllerTest::testSystemInformationIsDisplayed</li></ul>",
           "footer": ""
         },
         "panel70": {
-          "header": "5 tests cover line 70",
-          "body": "<ul><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedIn</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLoginUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLogoutUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInWithReturnPath</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedOut</li></ul>",
+          "header": "1 test covers line 70",
+          "body": "<ul><li class=\"testPassed\">Admin_Controller_SysinfoControllerTest::testSystemInformationIsDisplayed</li></ul>",
           "footer": ""
         },
         "panel71": {
-          "header": "5 tests cover line 71",
-          "body": "<ul><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedIn</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLoginUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLogoutUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInWithReturnPath</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedOut</li></ul>",
+          "header": "1 test covers line 71",
+          "body": "<ul><li class=\"testPassed\">Admin_Controller_SysinfoControllerTest::testSystemInformationIsDisplayed</li></ul>",
           "footer": ""
         },
         "panel72": {
-          "header": "5 tests cover line 72",
-          "body": "<ul><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedIn</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLoginUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLogoutUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInWithReturnPath</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedOut</li></ul>",
+          "header": "1 test covers line 72",
+          "body": "<ul><li class=\"testPassed\">Admin_Controller_SysinfoControllerTest::testSystemInformationIsDisplayed</li></ul>",
           "footer": ""
         },
         "panel73": {
-          "header": "5 tests cover line 73",
-          "body": "<ul><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedIn</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLoginUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLogoutUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInWithReturnPath</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedOut</li></ul>",
+          "header": "1 test covers line 73",
+          "body": "<ul><li class=\"testPassed\">Admin_Controller_SysinfoControllerTest::testSystemInformationIsDisplayed</li></ul>",
           "footer": ""
         },
       "dummy": ""

@@ -1,5 +1,5 @@
 <phpunit bootstrap="./application/bootstrap.php" colors="true">
-    <testsuite name="Tatdom Tests">
+    <testsuite name="Project Tests">
         <directory>./application</directory>
         <directory>./library/Soulex</directory>
     </testsuite>

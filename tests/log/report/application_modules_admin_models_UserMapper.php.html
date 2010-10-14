@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Admin_Controller_UserControllerTest</title>
+    <title>Admin_Controller_SysinfoControllerTest</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="container.css">
     <script type="text/javascript" src="yahoo-dom-event.js"></script>
@@ -12,7 +12,7 @@
 
   <body class="yui-skin-sam">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr><td class="title">Admin_Controller_UserControllerTest</td></tr>
+      <tr><td class="title">Admin_Controller_SysinfoControllerTest</td></tr>
       <tr><td class="ruler"><img src="glass.png" width="3" height="3" alt=""></td></tr>
 
       <tr>
@@ -546,10 +546,10 @@
 <span class="lineNum" id="container127"><a name="127"></a><a href="#127" id="line127">     127</a> </span>                :                                                                                                                     
 <span class="lineNum" id="container128"><a name="128"></a><a href="#128" id="line128">     128</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">public</span><span class="default">&nbsp;</span><span class="keyword">function</span><span class="default">&nbsp;</span><span class="default">setLastVisit</span><span class="keyword">(</span><span class="default">$userId</span><span class="keyword">,</span><span class="default">&nbsp;</span><span class="default">$date</span><span class="keyword">)</span>                                                                    
 <span class="lineNum" id="container129"><a name="129"></a><a href="#129" id="line129">     129</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">{</span>                                                                                                               
-<span class="lineNum" id="container130"><a name="130"></a><a href="#130" id="line130">     130</a> </span><span class="lineCov">              5 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$where</span><span class="default">&nbsp;</span><span class="keyword">=</span><span class="default">&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">getDbTable</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">-&gt;</span><span class="default">getDefaultAdapter</span><span class="keyword">(</span><span class="keyword">)</span>                                                           </span>
-<span class="lineNum" id="container131"><a name="131"></a><a href="#131" id="line131">     131</a> </span><span class="lineCov">              5 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">-&gt;</span><span class="default">quoteInto</span><span class="keyword">(</span><span class="default">'id&nbsp;=&nbsp;?'</span><span class="keyword">,</span><span class="default">&nbsp;</span><span class="default">$userId</span><span class="keyword">)</span><span class="keyword">;</span>                                                                    </span>
-<span class="lineNum" id="container132"><a name="132"></a><a href="#132" id="line132">     132</a> </span><span class="lineCov">              5 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">getDbTable</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">-&gt;</span><span class="default">update</span><span class="keyword">(</span><span class="keyword">array</span><span class="keyword">(</span><span class="default">'lastvisitDate'</span><span class="default">&nbsp;</span><span class="keyword">=&gt;</span><span class="default">&nbsp;</span><span class="default">$date</span><span class="keyword">)</span><span class="keyword">,</span><span class="default">&nbsp;</span><span class="default">$where</span><span class="keyword">)</span><span class="keyword">;</span>                                       </span>
-<span class="lineNum" id="container133"><a name="133"></a><a href="#133" id="line133">     133</a> </span><span class="lineCov">              5 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span>                                                                                                               </span>
+<span class="lineNum" id="container130"><a name="130"></a><a href="#130" id="line130">     130</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$where</span><span class="default">&nbsp;</span><span class="keyword">=</span><span class="default">&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">getDbTable</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">-&gt;</span><span class="default">getDefaultAdapter</span><span class="keyword">(</span><span class="keyword">)</span>                                                           </span>
+<span class="lineNum" id="container131"><a name="131"></a><a href="#131" id="line131">     131</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">-&gt;</span><span class="default">quoteInto</span><span class="keyword">(</span><span class="default">'id&nbsp;=&nbsp;?'</span><span class="keyword">,</span><span class="default">&nbsp;</span><span class="default">$userId</span><span class="keyword">)</span><span class="keyword">;</span>                                                                    </span>
+<span class="lineNum" id="container132"><a name="132"></a><a href="#132" id="line132">     132</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">getDbTable</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">-&gt;</span><span class="default">update</span><span class="keyword">(</span><span class="keyword">array</span><span class="keyword">(</span><span class="default">'lastvisitDate'</span><span class="default">&nbsp;</span><span class="keyword">=&gt;</span><span class="default">&nbsp;</span><span class="default">$date</span><span class="keyword">)</span><span class="keyword">,</span><span class="default">&nbsp;</span><span class="default">$where</span><span class="keyword">)</span><span class="keyword">;</span>                                       </span>
+<span class="lineNum" id="container133"><a name="133"></a><a href="#133" id="line133">     133</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span>                                                                                                               </span>
 <span class="lineNum" id="container134"><a name="134"></a><a href="#134" id="line134">     134</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment">/**</span>                                                                                                             
 <span class="lineNum" id="container135"><a name="135"></a><a href="#135" id="line135">     135</a> </span>                : <span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Sets&nbsp;role&nbsp;in&nbsp;where&nbsp;clause</span>                                                                                    
 <span class="lineNum" id="container136"><a name="136"></a><a href="#136" id="line136">     136</a> </span>                : <span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span>                                                                                                              
@@ -627,7 +627,7 @@
 
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr><td class="ruler"><img src="glass.png" width="3" height="3" alt=""></td></tr>
-      <tr><td class="versionInfo">Generated by <a href="http://www.phpunit.de/" target="_top">PHPUnit 3.4.12</a> and <a href="http://www.xdebug.org/" target="_top">Xdebug 2.0.5</a> using <a href="http://www.php.net/" target="_top">PHP 5.2.10-2ubuntu6.4</a> at Thu Oct 14 2:46:50 MSD 2010.</td></tr>
+      <tr><td class="versionInfo">Generated by <a href="http://www.phpunit.de/" target="_top">PHPUnit 3.4.13</a> and <a href="http://www.xdebug.org/" target="_top">Xdebug 2.0.5</a> using <a href="http://www.php.net/" target="_top">PHP 5.2.10-2ubuntu6.4</a> at Thu Oct 14 16:21:06 MSD 2010.</td></tr>
     </table>
 
     <br />
@@ -639,27 +639,27 @@
       YAHOO.phpunit.container.panelsData = {
         "panel15": {
           "header": "1 test covers line 15",
-          "body": "<ul><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedIn</li></ul>",
+          "body": "<ul><li class=\"testPassed\">Admin_Controller_SysinfoControllerTest::testSystemInformationIsDisplayed</li></ul>",
           "footer": ""
         },
         "panel130": {
-          "header": "5 tests cover line 130",
-          "body": "<ul><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedIn</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLoginUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLogoutUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInWithReturnPath</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedOut</li></ul>",
+          "header": "1 test covers line 130",
+          "body": "<ul><li class=\"testPassed\">Admin_Controller_SysinfoControllerTest::testSystemInformationIsDisplayed</li></ul>",
           "footer": ""
         },
         "panel131": {
-          "header": "5 tests cover line 131",
-          "body": "<ul><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedIn</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLoginUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLogoutUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInWithReturnPath</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedOut</li></ul>",
+          "header": "1 test covers line 131",
+          "body": "<ul><li class=\"testPassed\">Admin_Controller_SysinfoControllerTest::testSystemInformationIsDisplayed</li></ul>",
           "footer": ""
         },
         "panel132": {
-          "header": "5 tests cover line 132",
-          "body": "<ul><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedIn</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLoginUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLogoutUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInWithReturnPath</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedOut</li></ul>",
+          "header": "1 test covers line 132",
+          "body": "<ul><li class=\"testPassed\">Admin_Controller_SysinfoControllerTest::testSystemInformationIsDisplayed</li></ul>",
           "footer": ""
         },
         "panel133": {
-          "header": "5 tests cover line 133",
-          "body": "<ul><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedIn</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLoginUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInFromLogoutUriGoesToAdminControllerIndexAction</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedInWithReturnPath</li><li class=\"testPassed\">Admin_Controller_UserControllerTest::testUserLoggedOut</li></ul>",
+          "header": "1 test covers line 133",
+          "body": "<ul><li class=\"testPassed\">Admin_Controller_SysinfoControllerTest::testSystemInformationIsDisplayed</li></ul>",
           "footer": ""
         },
       "dummy": ""
