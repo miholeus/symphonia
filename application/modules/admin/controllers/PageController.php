@@ -82,25 +82,27 @@ class Admin_PageController extends Soulex_Controller_Abstract
 
         $this->view->nodes = array();
 
-        foreach($nodeData as $nodeName => $nodeValue) {
-            if($frmPage->getElement($nodeName) !== null) {
-                // setting node switcher value
-                $frmPage->getElement('nodes' . $nodeName . 'type')
-                        ->setValue($nodeValue['isInvokable']);
-                if($nodeValue['isInvokable'] == 1) {
-                    $_nodeData = unserialize($nodeValue['value']);
-                    $frmPage->setDynamicNodeData($nodeName, $_nodeData);
-                } else {
-                    $frmPage->getElement($nodeName)->setValue($nodeValue['value']);
+        if(count($nodeData) > 0) {
+            foreach($nodeData as $nodeName => $nodeValue) {
+                if($frmPage->getElement($nodeName) !== null) {
+                    // setting node switcher value
+                    $frmPage->getElement('nodes' . $nodeName . 'type')
+                            ->setValue($nodeValue['isInvokable']);
+                    if($nodeValue['isInvokable'] == 1) {
+                        $_nodeData = unserialize($nodeValue['value']);
+                        $frmPage->setDynamicNodeData($nodeName, $_nodeData);
+                    } else {
+                        $frmPage->getElement($nodeName)->setValue($nodeValue['value']);
+                    }
+                } else { // add new elements to form
+    //                $frmPage->addTextAreaControl($nodeName, $nodeValue['value']);
+                    $this->view->nodes[] = array(
+                        'id'        => $nodeValue['id'],
+                        'name'      => $nodeName,
+                        'value'     => $nodeValue['value'],
+                        'pageId'    => $id
+                    );
                 }
-            } else { // add new elements to form
-//                $frmPage->addTextAreaControl($nodeName, $nodeValue['value']);
-                $this->view->nodes[] = array(
-                    'id'        => $nodeValue['id'],
-                    'name'      => $nodeName,
-                    'value'     => $nodeValue['value'],
-                    'pageId'    => $id
-                );
             }
         }
 
@@ -121,21 +123,19 @@ class Admin_PageController extends Soulex_Controller_Abstract
 
 		$frmPage = new Admin_Form_Pages();
 
-		if($this->_request->isPost()) {
-			if($frmPage->isValid($this->_request->getPost())) {
-				$mdlPage = new Model_Page();
+		if($this->_request->isPost() && $frmPage->isValid($this->_request->getPost())) {
+            $mdlPage = new Model_Page();
 
-				$mdlPage->create(
-				$frmPage->getValue('title'),
-				$frmPage->getValue('uri'),
-				$frmPage->getValue('meta_keywords'),
-				$frmPage->getValue('meta_description'),
+            $mdlPage->create(
+                $frmPage->getValue('title'),
+                $frmPage->getValue('uri'),
+                $frmPage->getValue('meta_keywords'),
+                $frmPage->getValue('meta_description'),
                 $frmPage->getValue('published'),
-				$frmPage->getValue('content')
-				);
+                $frmPage->getValue('content')
+            );
 
-				return $this->_redirect('/admin/page');
-			}
+            return $this->_redirect('/admin/page');
 		}
 
 		$this->view->form = $frmPage;

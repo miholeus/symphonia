@@ -12,6 +12,8 @@
  *
  * @author miholeus
  */
+require_once dirname(__FILE__) . '/../../../ControllerTestCase.php';
+
 class Admin_NewsController extends Soulex_Controller_Abstract
 {
     public function indexAction()
@@ -40,8 +42,8 @@ class Admin_NewsController extends Soulex_Controller_Abstract
         $frmNews = new Admin_Form_News();
 
 
-        if($this->getRequest()->isPost()) {
-            if($frmNews->isValid($this->getRequest()->getPost())) {
+        if($this->getRequest()->isPost() &&
+            $frmNews->isValid($this->getRequest()->getPost())) {
                 $data = array(
                     'id' => $frmNews->getValue('id'),
                     'title' => $frmNews->getValue('title'),
@@ -57,7 +59,6 @@ class Admin_NewsController extends Soulex_Controller_Abstract
                 $this->disableContentRender();
 
                 return $this->_forward('index');
-            }
         } else {
             $newsService = new Soulex_Components_News_NewsService();
             $currentNews = $newsService->findById($this->getRequest()->getParam('id'));
