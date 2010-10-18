@@ -102,4 +102,23 @@ class Admin_Model_Abstract
         }
         return $this;
     }
+    /**
+     *
+     * @param string $spec the column and direction to sort by
+     * @return Admin_Model_User
+     */
+    public function order($spec)
+    {
+        $this->getMapper()->order($spec);
+        return $this;
+    }
+    /**
+     *
+     * @return Zend_Paginator
+     */
+    public function paginate()
+    {
+        $adapter = $this->getMapper()->fetchPaginator();
+        return new Zend_Paginator($adapter);
+    }
 }

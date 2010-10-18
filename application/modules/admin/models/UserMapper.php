@@ -15,11 +15,6 @@
 class Admin_Model_UserMapper extends Admin_Model_DataMapper_Abstract
 {
     protected $_dbTableClass = 'Admin_Model_DbTable_User';
-    /**
-     *
-     * @var Zend_Db_Table_Select
-     */
-    protected $_select;
 
     public function save(Admin_Model_User $user)
     {
@@ -94,16 +89,6 @@ class Admin_Model_UserMapper extends Admin_Model_DataMapper_Abstract
     {
         return $this->fetchAll($this->_select);
     }
-    /**
-	 * Fetches paginator
-	 *
-     * @return Zend_Paginator_Adapter_DbSelect
-	 */
-    public function fetchPaginator()
-    {
-        $adapter = new Zend_Paginator_Adapter_DbSelect($this->_select);
-        return $adapter;
-    }
 
     public function delete($id)
     {
@@ -154,17 +139,6 @@ class Admin_Model_UserMapper extends Admin_Model_DataMapper_Abstract
         $this->_select->where('enabled = ?', $enabled);
     }
     /**
-     * Sets ordering state
-     *
-     * @param string $spec the column and direction to sort by
-     * @return void
-     */
-    public function order($spec)
-    {
-        $this->_select = $this->getSelect();
-        $this->_select->order($spec);
-    }
-    /**
      * Simple search by firstname field using like operator
      *
      * @param string $value search value
@@ -190,13 +164,5 @@ class Admin_Model_UserMapper extends Admin_Model_DataMapper_Abstract
             return new Admin_Model_User($row->toArray());
         }
         return null;
-    }
-
-    private function getSelect()
-    {
-        if(null === $this->_select) {
-            $this->_select = $this->getDbTable()->select();
-        }
-        return $this->_select;
     }
 }

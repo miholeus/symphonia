@@ -3,16 +3,16 @@
         <input id="cb0" type="checkbox" title="Checkbox for row 1" onclick="isChecked(this.checked);" value="2" name="cid[]"/>
     </td>
     <td>
-        <a href="/admin/menuitem"><?=$this->menuItem->getTitle()?></a>
+        <a href="/admin/menuitem"><?=$this->title?></a>
         <p class="smallsub">
             (
             <span>Menu Type:</span>
-            <a href="/admin/menu/edit/id/<?=$this->menuItem->getId()?>"><?=$this->menuItem->getMenutype()?></a>
+            <a href="/admin/menu/edit/id/<?=$this->menutype?>"><?=$this->menutype?></a>
             )
         </p>
     </td>
     <td class="center btns">0</td>
     <td class="center btns">0</td>
     <td class="center btns">0</td>
-    <td class="center"><?=$this->menuItem->getId()?></td>
+    <td class="center"><?=$this->id?></td>
 </tr>

@@ -22,7 +22,22 @@ class Admin_MenuController extends Soulex_Controller_Abstract
     public function indexAction()
     {
         $mdlMenu = new Admin_Model_Menu();
-        $this->view->menus = $mdlMenu->fetchAll();
+        $this->view->orderParams = $this->_getOrderParams();
+        $order = join(' ', $this->view->orderParams);
+        $limit = $this->_getParam('limit', 20);
+
+        $paginator = $mdlMenu->order($order)->paginate();
+
+        // show items per page
+        if($limit != 0) {
+            $paginator->setItemCountPerPage($limit);
+        } else {
+            $paginator->setItemCountPerPage(-1);
+        }
+
+        $this->view->paginator = $paginator;
+        Zend_Registry::set('pagination_limit', $limit);
+
         $this->view->render('menu/index.phtml');
     }
     /**
@@ -97,5 +112,24 @@ class Admin_MenuController extends Soulex_Controller_Abstract
 
 		$mdlPage->delete($id);
 		$this->_redirect('/admin/menu');
+    }
+
+    private function _getOrderParams()
+    {
+        $order = $this->_getParam('order', 'title');
+        $direction = $this->_getParam('direction', 'desc');
+        /**
+         * sets default order if model does not have proper field
+         */
+        if(!is_callable(array('Admin_Model_Menu',
+            'get' . ucfirst($order)))) {
+            $order = 'title';
+        }
+
+        if(!in_array(strtolower($direction), array('asc', 'desc'))) {
+            $direction = 'desc';
+        }
+
+        return array('order' => $order, 'direction' => $direction);
     }
 }

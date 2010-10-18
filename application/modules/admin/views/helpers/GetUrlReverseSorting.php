@@ -29,7 +29,11 @@ class Soulex_View_Helper_GetUrlReverseSorting extends Zend_View_Helper_Abstract
         if($this->view->orderParams['direction'] == 'desc') {
             $direction = 'asc';
         }
-        return $this->view->url($urlParams, null, true) . '/order/' 
-                . $orderField . '/direction/' . $direction;
+        $uriPart = $urlParams['action'] == 'index' ?
+                    '/' . $urlParams['module'] . '/' . $urlParams['controller']
+                    . '/index' :
+                    $this->view->url($urlParams, null, true);
+        return $uriPart . '/order/'
+                    . $orderField . '/direction/' . $direction;
     }
 }

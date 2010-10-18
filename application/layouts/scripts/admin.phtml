@@ -38,14 +38,19 @@ echo $this->doctype();
 </div>
 <div id="footer">
     <p class="copyright">
-        Powered by Zend Framework | 
-	 memory allocated:
-			<?php
-				$memory_used =  memory_get_peak_usage();
-				printf("%0.02f Mb", $memory_used/1024/1024);
-                ?> |
-                <a href="http://joomla.org" target="_blank">Joomla</a>
-                theme
+    <span style="margin-left:130px;">
+    memory allocated:
+        <?php
+            $memory_used =  memory_get_peak_usage();
+            printf("%0.02f Mb", $memory_used/1024/1024);
+            ?> |
+            <a href="http://joomla.org" target="_blank">Joomla</a>
+            theme
+    </span>
+    <span style="float:right;"><a href="http://framework.zend.com">
+            <img src="/_data/admin/images/zfpowered.png" />
+        </a>
+    </span>
     </p>
 </div>
 </body>

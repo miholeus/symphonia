@@ -223,15 +223,6 @@ class Admin_Model_User extends Admin_Model_Abstract
     }
     /**
      *
-     * @return Zend_Paginator 
-     */
-    public function paginate()
-    {
-        $adapter = $this->getMapper()->fetchPaginator();
-        return new Zend_Paginator($adapter);
-    }
-    /**
-     *
      * @param string|array|Zend_Db_Table_Select $where  OPTIONAL An SQL WHERE clause or Zend_Db_Table_Select object.
      * @param string|array                      $order  OPTIONAL An SQL ORDER clause.
      * @param int                               $count  OPTIONAL An SQL LIMIT count.
@@ -339,16 +330,6 @@ class Admin_Model_User extends Admin_Model_Abstract
             $searchValue = addcslashes($searchValue, '_%');
             $this->getMapper()->search($searchValue);
         }
-        return $this;
-    }
-    /**
-     *
-     * @param string $spec the column and direction to sort by
-     * @return Admin_Model_User
-     */
-    public function order($spec)
-    {
-        $this->getMapper()->order($spec);
         return $this;
     }
     /**
