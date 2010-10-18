@@ -69,7 +69,7 @@ class Admin_ContentnodeController extends Zend_Controller_Action
         $this->_helper->layout()->disableLayout();
         $this->_helper->viewRenderer->setNoRender();
         $post = $this->_request->getPost();
-        if(empty($post['nodeId'])) {
+        if(!isset($post['nodeId'])) {
             $isSucceeded = false;
         } else {
             $id = $post['nodeId'];

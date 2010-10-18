@@ -12,8 +12,6 @@
  *
  * @author miholeus
  */
-require_once dirname(__FILE__) . '/../../../ControllerTestCase.php';
-
 class Admin_NewsController extends Soulex_Controller_Abstract
 {
     public function indexAction()

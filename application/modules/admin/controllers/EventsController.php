@@ -40,25 +40,24 @@ class Admin_EventsController extends Soulex_Controller_Abstract
         $frmEvents = new Admin_Form_Events();
 
 
-        if($this->getRequest()->isPost()) {
-            if($frmEvents->isValid($this->getRequest()->getPost())) {
-                $data = array(
-                    'id' => $frmEvents->getValue('id'),
-                    'title' => $frmEvents->getValue('title'),
-                    'shortDescription' => $frmEvents->getValue('short_description'),
-                    'detailDescription' => $frmEvents->getValue('detail_description'),
-                    'img_preview' => $frmEvents->getValue('img_preview'),
-                    'published' => $frmEvents->getValue('published'),
-                    'updatedAt' => date("Y-m-d H:i:s"),
-                    'publishedAt' => $frmEvents->getValue('published_at')
-                );
-                $eventsService = new Soulex_Components_Events_EventsService($data);
-                $eventsService->save();
+        if($this->getRequest()->isPost() &&
+            $frmEvents->isValid($this->getRequest()->getPost())) {
+            $data = array(
+                'id' => $frmEvents->getValue('id'),
+                'title' => $frmEvents->getValue('title'),
+                'shortDescription' => $frmEvents->getValue('short_description'),
+                'detailDescription' => $frmEvents->getValue('detail_description'),
+                'img_preview' => $frmEvents->getValue('img_preview'),
+                'published' => $frmEvents->getValue('published'),
+                'updatedAt' => date("Y-m-d H:i:s"),
+                'publishedAt' => $frmEvents->getValue('published_at')
+            );
+            $eventsService = new Soulex_Components_Events_EventsService($data);
+            $eventsService->save();
 
-                $this->disableContentRender();
+            $this->disableContentRender();
 
-                return $this->_forward('index');
-            }
+            return $this->_forward('index');
         } else {
             $eventsService = new Soulex_Components_Events_EventsService();
             $currentEvents = $eventsService->findById($this->getRequest()->getParam('id'));
