@@ -37,8 +37,8 @@ class Admin_Controller_NewsControllerTest extends ControllerTestCase
                     'cid' => array(0)
                 ));
         $this->dispatch('/admin/news');
-        $this->assertQueryContentContains('h2', 'Application error');
-        $this->assertResponseCode(500);
+        $this->assertQueryContentContains('li',
+                'News deletion failed with the following error: Checksum is not correct');
     }
 
     public function testNewsCanBeDeleted()

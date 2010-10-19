@@ -18,8 +18,20 @@ class Admin_PageController extends Soulex_Controller_Abstract
     {
         $mdlPage = new Model_Page();
 
+        $this->view->orderParams = $this->_getOrderParams();
+        $order = join(' ', $this->view->orderParams);
+        $this->view->filter = array();// view property for where statements
+        $limit = $this->_getParam('limit', 20);
+
         if($this->_request->isPost()) {
             $post = $this->_request->getPost();
+
+            $paginator = $mdlPage->selectPublished($post['filter_published'])
+                                ->search($post['filter_search'])
+                                ->order($order)->paginate();
+
+            $this->view->filter['published'] = $post['filter_published'];
+
             if(isset($post['cid'])) {
                 if(is_array($post['cid'])
                         && count($post['cid']) == $post['boxchecked']) {
@@ -29,13 +41,9 @@ class Admin_PageController extends Soulex_Controller_Abstract
                     throw new Exception('FCS  is not correct! Wrong request!');
                 }
             }
+        } else {
+            $paginator = $mdlPage->order($order)->paginate();
         }
-
-        $limit = $this->_getParam('limit', 20);
-
-        $adapter = $mdlPage->fetchPaginator(null, array('title'));
-
-        $paginator = new Zend_Paginator($adapter);
 
         // show items per page
         if($limit != 0) {
@@ -154,5 +162,24 @@ class Admin_PageController extends Soulex_Controller_Abstract
 		$mdlPage->delete($id);
 		$this->_redirect('/admin/page');
 	}
+
+    private function _getOrderParams()
+    {
+        $order = $this->_getParam('order', 'title');
+        $direction = $this->_getParam('direction', 'desc');
+        /**
+         * sets default order if model does not have proper field
+         */
+//        if(!is_callable(array('Model_Page',
+//            'get' . ucfirst($order)))) {
+//            $order = 'title';
+//        }
+
+        if(!in_array(strtolower($direction), array('asc', 'desc'))) {
+            $direction = 'desc';
+        }
+
+        return array('order' => $order, 'direction' => $direction);
+    }
 }
 ?>

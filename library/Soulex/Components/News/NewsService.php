@@ -38,16 +38,6 @@ class Soulex_Components_News_NewsService
         return $this->_news->fetchAll($where, $order, $limit, $offset);
     }
     /**
-     *
-     * @param string|array|Zend_Db_Table_Select $where  OPTIONAL An SQL WHERE clause or Zend_Db_Table_Select object.
-     * @param string|array                      $order  OPTIONAL An SQL ORDER clause.
-     * @return Zend_Paginator_Adapter_DbSelect
-     */
-    public function fetchPaginator($where = null, $order = null)
-    {
-        return $this->_news->fetchPaginator($where, $order);
-    }
-    /**
      * Finds object in data source by its id
      *
      * @param int $id
@@ -96,5 +86,40 @@ class Soulex_Components_News_NewsService
     public function setOptions($options)
     {
         $this->_news->setOptions($options);
+    }
+    /**
+     * Selects published status for news
+     *
+     * @param bool $published
+     * @return Soulex_Components_News_NewsService
+     */
+    public function selectEnabled($published)
+    {
+        $this->_news->selectPublished($published);
+        return $this;
+    }
+
+    public function search($searchValue)
+    {
+        $this->_news->search($searchValue);
+        return $this;
+    }
+    /**
+     *
+     * @param string $spec the column and direction to sort by
+     * @return Soulex_Components_News_NewsService
+     */
+    public function order($spec)
+    {
+        $this->_news->order($spec);
+        return $this;
+    }
+    /**
+     *
+     * @return Zend_Paginator
+     */
+    public function paginate()
+    {
+        return $this->_news->paginate();
     }
 }

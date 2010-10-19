@@ -41,16 +41,20 @@
             <label class="filter-search-lbl" for="filter_search">Filter:</label>
             <input id="filter_search" type="text" title="Search title or alias. Prefix with id: to search for an article id." value="" name="filter_search"/>
             <button class="btn" type="submit">Search</button>
-            <button onclick="document.id('filter_search').value='';this.form.submit();" type="button">Clear</button>
+            <button onclick="$('#filter_search').attr('value', '');this.form.submit();" type="button">Clear</button>
         </div>
         <div class="filter-select fltrt">
             <select class="inputbox" onchange="this.form.submit()" name="filter_published">
-                <option value="">- Select State -</option>
-                <option value="1">Published</option>
-                <option value="0">Unpublished</option>
-                <option value="2">Archived</option>
-                <option value="-2">Trash</option>
-                <option value="*">All</option>
+                <?php
+                $options = array('options' => array(
+                    '*' => '- Select State -',
+                    '1' => 'Published',
+                    '0' => 'Unpublished'
+                    ), 'selected' => $this->filter['published']
+                );
+                echo $this->partial('partials/forms/select-options.phtml',
+                        array('options' => $options));
+                ?>
             </select>
         </div>
     </fieldset>
@@ -62,34 +66,64 @@
                         <input type="checkbox" onclick="checkAll(this)" value="" name="toggle"/>
                     </th>
                     <th>
-                        <a title="Click to sort by this column" href="javascript:tableOrdering('a.title','desc','');">
+                        <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                        'module' => 'admin',
+                        'controller' => 'page',
+                        'action' => 'index'
+                     ), 'title');?>">
                         Title
-                        <img alt="" src="/_data/admin/system/images/sort_asc.png"/>
+                        <?php
+                        echo $this->getSortImage('title');
+                        ?>
                         </a>
                     </th>
                     <th width="5%">
-                        <a title="Click to sort by this column" href="javascript:tableOrdering('a.state','desc','');">Published</a>
-                    </th>
-                    <th width="10%">
-                        <a title="Click to sort by this column" href="javascript:tableOrdering('a.catid','desc','');">Category</a>
+                        <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                        'module' => 'admin',
+                        'controller' => 'page',
+                        'action' => 'index'
+                     ), 'published');?>">
+                        Published
+                        <?php
+                        echo $this->getSortImage('published');
+                        ?>
+                        </a>
                     </th>
                     <th class="nowrap" width="10%">
-                        <a title="Click to sort by this column" href="javascript:tableOrdering('a.ordering','desc','');">Ordering</a>
-                        <a title="Save Order" href="javascript:saveorder(1, 'articles.saveorder')">
+                        <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                        'module' => 'admin',
+                        'controller' => 'page',
+                        'action' => 'index'
+                     ), 'lft');?>">
+                        Ordering
+                        <?php
+                        echo $this->getSortImage('lft');
+                        ?>
+                        </a>
+                        <a title="Save Order" href="javascript:void(0)">
                         <img alt="Save Order" src="/skins/<?=$this->skin?>/images/admin/filesave.png"/>
                         </a>
                     </th>
                     <th width="10%">
-                        <a title="Click to sort by this column" href="javascript:tableOrdering('a.created_by','desc','');">Created by</a>
+                        Created by
                     </th>
                     <th width="5%">
-                        <a title="Click to sort by this column" href="javascript:tableOrdering('a.created','desc','');">Date</a>
+                        Date
                     </th>
                     <th width="5%">
-                        <a title="Click to sort by this column" href="javascript:tableOrdering('a.hits','desc','');">Hits</a>
+                        Hits
                     </th>
                     <th class="nowrap" width="1%">
-                        <a title="Click to sort by this column" href="javascript:tableOrdering('a.id','desc','');">ID</a>
+                        <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                        'module' => 'admin',
+                        'controller' => 'page',
+                        'action' => 'index'
+                     ), 'id');?>">
+                        ID
+                        <?php
+                        echo $this->getSortImage('id');
+                        ?>
+                        </a>
                     </th>
                 </tr>
             </thead>

@@ -188,5 +188,32 @@ class Admin_Model_Events extends Admin_Model_Abstract
         $this->getMapper()->delete($id);
     }
 
+    /**
+     * Selects enabled status for events
+     *
+     * @param bool $published
+     * @return Admin_Model_Events
+     */
+    public function selectPublished($published)
+    {
+        /**
+         * isset added to prevent the clause when user is updated
+         * and $enabled value comes as null
+         */
+        if($published != '*' && isset($published)) {
+            $published = (int)$published;
+            $this->getMapper()->published($published);
+        }
+        return $this;
+    }
 
+    public function search($searchValue)
+    {
+        if(!empty($searchValue)) {
+            $searchValue = str_replace('\\', '\\\\', $searchValue);
+            $searchValue = addcslashes($searchValue, '_%');
+            $this->getMapper()->search($searchValue);
+        }
+        return $this;
+    }
 }

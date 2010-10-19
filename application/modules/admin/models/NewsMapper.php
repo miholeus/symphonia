@@ -83,31 +83,32 @@ class Admin_Model_NewsMapper extends Admin_Model_DataMapper_Abstract
         }
         return $entries;
     }
-	/**
-	 * Fetches news items
-	 *
-     * @param string|array|Zend_Db_Table_Select $where  OPTIONAL An SQL WHERE clause or Zend_Db_Table_Select object.
-     * @param string|array                      $order  OPTIONAL An SQL ORDER clause.
-     * @return Zend_Paginator_Adapter_DbSelect
-	 */
-    public function fetchPaginator($where, $order)
-    {
-        $select = $this->getDbTable()->select();
-        if(null !== $where) {
-            $select->where($where);
-        }
-        if(null !== $order) {
-            $select->order($order);
-        }
-
-        $adapter = new Zend_Paginator_Adapter_DbSelect($select);
-        return $adapter;
-    }
 
     public function delete($id)
     {
         $where = $this->getDbTable()->getDefaultAdapter()->quoteInto('id = ?', $id);
         $this->getDbTable()->delete($where);
     }
-
+    /**
+     * Sets published in where clause
+     *
+     * @param int $published
+     * @return void
+     */
+    public function published($published)
+    {
+        $this->_select = $this->getSelect();
+        $this->_select->where('published = ?', $published);
+    }
+    /**
+     * Simple search by title field using like operator
+     *
+     * @param string $value search value
+     * @return void
+     */
+    public function search($value)
+    {
+        $this->_select = $this->getSelect();
+        $this->_select->where('title LIKE ?', '%' . $value . '%');
+    }
 }
