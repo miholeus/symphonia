@@ -1,23 +1,20 @@
 <tr class="row<?php echo $this->partialCounter % 2 == 0 ? 1 : 0?>">
     <td class="center">
-    <input id="cb0" type="checkbox" title="Checkbox for row 1" onclick="isChecked(this.checked);" value="44" name="cid[]"/>
+    <input id="cb0" type="checkbox" title="Checkbox for row <?=$this->partialCounter?>" onclick="isChecked(this.checked);" value="<?=$this->id?>" name="cid[]"/>
     </td>
     <td>
-    <a title="Edit User <?=$this->escape($this->username)?>" href="/admin/user/update/id/<?=$this->id?>"> <?=$this->escape($this->username)?></a>
+        <?php
+        $firstName = $this->firstname;
+        $name = !empty($firstName) ? $firstName : $this->username;
+        ?>
+    <a title="Edit User <?=$this->escape($name)?>" href="/admin/user/update/id/<?=$this->id?>"> <?=$this->escape($name)?></a>
     </td>
     <td class="center"> <?=$this->escape($this->username)?> </td>
     <td class="center">
-    <a class="grid_true hasTip" href="#toggle" rel="{id:'cb0', task:'users.block'}"/>
+    <a class="<?php if($this->enabled):?>grid_true<?else:?>grid_false<?endif;?> hasTip" href="#toggle" rel="{id:'cb0', task:'users.enabled'}"/>
     </td>
     <td class="center">
-    <a class="grid_true" rel="{id:'cb0', task:''}"/>
-    </td>
-    <td class="center">
-    Editor
-    <br/>
-    Shop Suppliers
-    <br/>
-    Customer Group
+        <?=$this->role?>
     </td>
     <td class="center"> <?=$this->email?> </td>
     <td class="center"> <?=intval($this->lastvisitDate) == 0 ? 'Never' : $this->lastvisitDate?> </td>

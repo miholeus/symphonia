@@ -1,0 +1,60 @@
+<style type="text/css">
+#contact, #msg{
+	width:400px;
+}
+
+#contact input, #contact textarea, #msg input, #msg textarea{
+	width:100%;
+}
+
+#contact .submit, #msg .submit{
+	width:100px;
+}
+</style>
+
+<table class="text" width="100%" cellspacing="10" cellpadding="10" border="0">
+    <tbody>
+        <tr>
+            <td height="57">
+                <h1>
+                    <strong>
+                    <span style="text-decoration: underline;">Контакты</span>
+                    </strong>
+                </h1>
+
+                <form action="<?=$this->form->getAction()?>"
+                      method="<?=$this->form->getMethod()?>"
+                      id="<?=$this->form->getAttrib('id')?>"
+                      name="<?=$this->form->getName()?>"
+                      >
+                    <p>
+                        <?=$this->form->name?>
+                    </p>
+                    <p>
+                        <?=$this->form->contacts?>
+                    </p>
+                    <p>
+                        <?=$this->form->text?>
+                    </p>
+
+                    <p><input class="submit" type="submit" value="Отправить" /></p>
+                </form>
+                <?php
+                if(null !== $this->messageSent) {
+                    ?>
+                    <p>
+                        Спасибо! Ваше сообщение было отправлено.
+                    </p>
+                    <?php
+                }
+                ?>
+            </td>
+        </tr>
+        <tr>
+        <td align="center">
+        <br/>
+        <img width="255" height="220" alt="" src="../../../_data/frontend/images/main_pic.png"/>
+        </td>
+        </tr>
+    </tbody>
+</table>

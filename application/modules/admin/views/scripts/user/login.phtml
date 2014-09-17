@@ -21,8 +21,34 @@
             <?php if($this->loginMessage) { ?>
             <p><?php echo $this->loginMessage?></p>
             <?php }
-            echo $this->form;
             ?>
+            <form action="<?=$this->form->getAction()?>"
+                  method="<?=$this->form->getMethod()?>"
+                  id="<?=$this->form->getAttrib('id')?>"
+                  name="<?=$this->form->getName()?>"
+                >
+                <fieldset class="loginform">
+                            <label for="login-username" id="login-username-lbl">User Name</label>
+                            <?=$this->form->username?>
+
+                            <label for="login-password" id="login-password-lbl">Password</label>
+                            <?=$this->form->password?>
+
+                            <div class="button-holder">
+                                <div class="button1">
+                                    <div class="next">
+                                        <a onclick="document.forms['login'].submit();" href="#">
+                                            Log in</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                    <div class="clr"></div>
+                    <?=$this->form->retpath?>
+                    <input type="submit" value="Log in" class="hide">
+                </fieldset>
+            </form>
+
             <!-- //login form -->
         <div class="clr"></div>
     </div>

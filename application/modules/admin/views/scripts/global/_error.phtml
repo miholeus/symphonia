@@ -1,0 +1,10 @@
+<?php if(null !== $this->errorMessage):?>
+    <dl id="system-message">
+    <dt class="message">Message</dt>
+    <dd class="message message fade">
+        <ul>
+            <li><?php echo $this->errorMessage?></li>
+        </ul>
+    </dd>
+    </dl>
+<?endif;?>

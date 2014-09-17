@@ -20,7 +20,7 @@
           <table cellpadding="1" border="0" width="100%">
             <tr>
               <td class="headerItem" width="20%">Current file:</td>
-              <td class="headerValue" width="80%"><a href="index.html">/var/www/systems/soulex</a>/<a href="library.html">library</a>/<a href="library_Soulex.html">Soulex</a>/<a href="library_Soulex_Invoke.html">Invoke</a>/<a href="library_Soulex_Invoke_FooController.php.html">FooController.php</a></td>
+              <td class="headerValue" width="80%"><a href="index.html">/var/www/danaya-clk.ru</a>/<a href="library.html">library</a>/<a href="library_Soulex.html">Soulex</a>/<a href="library_Soulex_Invoke.html">Invoke</a>/<a href="library_Soulex_Invoke_FooController.php.html">FooController.php</a></td>
             </tr>
             <tr>
               <td class="legendItem" width="20%">Legend:</td>
@@ -88,7 +88,7 @@
           <td class="tableHead" colspan="10">&nbsp;</td>
         </tr>
         <tr>
-          <td class="coverItem"><b><a href="#12">Soulex_Invoke_FooController</a></b></td>
+          <td class="coverItem"><b><a href="#15">Soulex_Invoke_FooController</a></b></td>
           <td class="coverBar" align="center" width="100">
             <table border="0" cellspacing="0" cellpadding="1">
               <tr>
@@ -119,7 +119,7 @@
         </tr>
 
         <tr>
-          <td class="coverFile" colspan="4">&nbsp;<a href="#14">public function fooAction()</a></td>
+          <td class="coverFile" colspan="4">&nbsp;<a href="#17">public function fooAction()</a></td>
           <td class="coverBar" align="center" width="100">
             <table border="0" cellspacing="0" cellpadding="1">
               <tr>
@@ -153,26 +153,29 @@
       <tr>
         <td>
 <pre class="source">
-<span class="lineNum" id="container1"><a name="1"></a><a href="#1" id="line1">       1</a> </span>                : <span class="default">&lt;?php</span>                                                                    
-<span class="lineNum" id="container2"><a name="2"></a><a href="#2" id="line2">       2</a> </span>                : <span class="comment">/*&nbsp;</span>                                                                       
-<span class="lineNum" id="container3"><a name="3"></a><a href="#3" id="line3">       3</a> </span>                : <span class="comment">&nbsp;*&nbsp;To&nbsp;change&nbsp;this&nbsp;template,&nbsp;choose&nbsp;Tools&nbsp;|&nbsp;Templates</span>                     
-<span class="lineNum" id="container4"><a name="4"></a><a href="#4" id="line4">       4</a> </span>                : <span class="comment">&nbsp;*&nbsp;and&nbsp;open&nbsp;the&nbsp;template&nbsp;in&nbsp;the&nbsp;editor.</span>                                  
-<span class="lineNum" id="container5"><a name="5"></a><a href="#5" id="line5">       5</a> </span>                : <span class="comment">&nbsp;*/</span>                                                                      
-<span class="lineNum" id="container6"><a name="6"></a><a href="#6" id="line6">       6</a> </span>                :                                                                          
-<span class="lineNum" id="container7"><a name="7"></a><a href="#7" id="line7">       7</a> </span>                : <span class="comment">/**</span>                                                                      
-<span class="lineNum" id="container8"><a name="8"></a><a href="#8" id="line8">       8</a> </span>                : <span class="comment">&nbsp;*&nbsp;Description&nbsp;of&nbsp;FooController</span>                                          
-<span class="lineNum" id="container9"><a name="9"></a><a href="#9" id="line9">       9</a> </span>                : <span class="comment">&nbsp;*</span>                                                                       
-<span class="lineNum" id="container10"><a name="10"></a><a href="#10" id="line10">      10</a> </span>                : <span class="comment">&nbsp;*&nbsp;@author&nbsp;miholeus</span>                                                      
-<span class="lineNum" id="container11"><a name="11"></a><a href="#11" id="line11">      11</a> </span>                : <span class="comment">&nbsp;*/</span>                                                                      
-<span class="lineNum" id="container12"><a name="12"></a><a href="#12" id="line12">      12</a> </span><span class="lineCov">              1 : <span class="keyword">class</span><span class="default">&nbsp;</span><span class="default">Soulex_Invoke_FooController</span><span class="default">&nbsp;</span><span class="keyword">extends</span><span class="default">&nbsp;</span><span class="default">Zend_Controller_Action</span>         </span>
-<span class="lineNum" id="container13"><a name="13"></a><a href="#13" id="line13">      13</a> </span>                : <span class="keyword">{</span>                                                                        
-<span class="lineNum" id="container14"><a name="14"></a><a href="#14" id="line14">      14</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">public</span><span class="default">&nbsp;</span><span class="keyword">function</span><span class="default">&nbsp;</span><span class="default">fooAction</span><span class="keyword">(</span><span class="keyword">)</span>                                          
-<span class="lineNum" id="container15"><a name="15"></a><a href="#15" id="line15">      15</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">{</span>                                                                    
-<span class="lineNum" id="container16"><a name="16"></a><a href="#16" id="line16">      16</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">_helper</span><span class="keyword">-&gt;</span><span class="default">viewRenderer</span><span class="keyword">-&gt;</span><span class="default">setNoRender</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">;</span>                     </span>
-<span class="lineNum" id="container17"><a name="17"></a><a href="#17" id="line17">      17</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">return</span><span class="default">&nbsp;</span><span class="default">'this&nbsp;is&nbsp;foo&nbsp;action&nbsp;of&nbsp;foo&nbsp;controller&nbsp;invoked&nbsp;by&nbsp;parser!'</span><span class="keyword">;</span></span>
-<span class="lineNum" id="container18"><a name="18"></a><a href="#18" id="line18">      18</a> </span><span class="lineDeadCode">                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span>                                                                    </span>
-<span class="lineNum" id="container19"><a name="19"></a><a href="#19" id="line19">      19</a> </span>                : <span class="keyword">}</span>                                                                        
-<span class="lineNum" id="container20"><a name="20"></a><a href="#20" id="line20">      20</a> </span>                : <span class="default">?&gt;</span>                                                                       
+<span class="lineNum" id="container1"><a name="1"></a><a href="#1" id="line1">       1</a> </span>                : <span class="default">&lt;?php</span>                                                                           
+<span class="lineNum" id="container2"><a name="2"></a><a href="#2" id="line2">       2</a> </span>                : <span class="comment">/**</span>                                                                             
+<span class="lineNum" id="container3"><a name="3"></a><a href="#3" id="line3">       3</a> </span>                : <span class="comment">&nbsp;*&nbsp;@package&nbsp;&nbsp;&nbsp;Soulex</span>                                                            
+<span class="lineNum" id="container4"><a name="4"></a><a href="#4" id="line4">       4</a> </span>                : <span class="comment">&nbsp;*&nbsp;@copyright&nbsp;Copyright&nbsp;(C)&nbsp;2010&nbsp;-&nbsp;Present,&nbsp;miholeus</span>                            
+<span class="lineNum" id="container5"><a name="5"></a><a href="#5" id="line5">       5</a> </span>                : <span class="comment">&nbsp;*&nbsp;@author&nbsp;&nbsp;&nbsp;&nbsp;miholeus&nbsp;&lt;me@miholeus.com&gt;&nbsp;{@link&nbsp;http://miholeus.com}</span>            
+<span class="lineNum" id="container6"><a name="6"></a><a href="#6" id="line6">       6</a> </span>                : <span class="comment">&nbsp;*&nbsp;@license&nbsp;&nbsp;&nbsp;http://www.opensource.org/licenses/bsd-license.php&nbsp;New&nbsp;BSD&nbsp;License</span>
+<span class="lineNum" id="container7"><a name="7"></a><a href="#7" id="line7">       7</a> </span>                : <span class="comment">&nbsp;*&nbsp;@version&nbsp;&nbsp;&nbsp;&nbsp;$Id:&nbsp;$</span>                                                           
+<span class="lineNum" id="container8"><a name="8"></a><a href="#8" id="line8">       8</a> </span>                : <span class="comment">&nbsp;*/</span>                                                                             
+<span class="lineNum" id="container9"><a name="9"></a><a href="#9" id="line9">       9</a> </span>                :                                                                                 
+<span class="lineNum" id="container10"><a name="10"></a><a href="#10" id="line10">      10</a> </span>                : <span class="comment">/**</span>                                                                             
+<span class="lineNum" id="container11"><a name="11"></a><a href="#11" id="line11">      11</a> </span>                : <span class="comment">&nbsp;*&nbsp;FooController&nbsp;basic&nbsp;test&nbsp;controller</span>                                          
+<span class="lineNum" id="container12"><a name="12"></a><a href="#12" id="line12">      12</a> </span>                : <span class="comment">&nbsp;*</span>                                                                              
+<span class="lineNum" id="container13"><a name="13"></a><a href="#13" id="line13">      13</a> </span>                : <span class="comment">&nbsp;*&nbsp;@author&nbsp;miholeus</span>                                                             
+<span class="lineNum" id="container14"><a name="14"></a><a href="#14" id="line14">      14</a> </span>                : <span class="comment">&nbsp;*/</span>                                                                             
+<span class="lineNum" id="container15"><a name="15"></a><a href="#15" id="line15">      15</a> </span><span class="lineCov">              1 : <span class="keyword">class</span><span class="default">&nbsp;</span><span class="default">Soulex_Invoke_FooController</span><span class="default">&nbsp;</span><span class="keyword">extends</span><span class="default">&nbsp;</span><span class="default">Zend_Controller_Action</span>                </span>
+<span class="lineNum" id="container16"><a name="16"></a><a href="#16" id="line16">      16</a> </span>                : <span class="keyword">{</span>                                                                               
+<span class="lineNum" id="container17"><a name="17"></a><a href="#17" id="line17">      17</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">public</span><span class="default">&nbsp;</span><span class="keyword">function</span><span class="default">&nbsp;</span><span class="default">fooAction</span><span class="keyword">(</span><span class="keyword">)</span>                                                 
+<span class="lineNum" id="container18"><a name="18"></a><a href="#18" id="line18">      18</a> </span>                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">{</span>                                                                           
+<span class="lineNum" id="container19"><a name="19"></a><a href="#19" id="line19">      19</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="keyword">-&gt;</span><span class="default">_helper</span><span class="keyword">-&gt;</span><span class="default">viewRenderer</span><span class="keyword">-&gt;</span><span class="default">setNoRender</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">;</span>                            </span>
+<span class="lineNum" id="container20"><a name="20"></a><a href="#20" id="line20">      20</a> </span><span class="lineCov">              1 : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">return</span><span class="default">&nbsp;</span><span class="default">'this&nbsp;is&nbsp;foo&nbsp;action&nbsp;of&nbsp;foo&nbsp;controller&nbsp;invoked&nbsp;by&nbsp;parser!'</span><span class="keyword">;</span>       </span>
+<span class="lineNum" id="container21"><a name="21"></a><a href="#21" id="line21">      21</a> </span><span class="lineDeadCode">                : <span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span>                                                                           </span>
+<span class="lineNum" id="container22"><a name="22"></a><a href="#22" id="line22">      22</a> </span>                : <span class="keyword">}</span>                                                                               
+<span class="lineNum" id="container23"><a name="23"></a><a href="#23" id="line23">      23</a> </span>                : <span class="default">?&gt;</span>                                                                              
 
 </pre>
         </td>
@@ -181,7 +184,7 @@
 
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr><td class="ruler"><img src="glass.png" width="3" height="3" alt=""></td></tr>
-      <tr><td class="versionInfo">Generated by <a href="http://www.phpunit.de/" target="_top">PHPUnit 3.4.13</a> and <a href="http://www.xdebug.org/" target="_top">Xdebug 2.0.5</a> using <a href="http://www.php.net/" target="_top">PHP 5.2.10-2ubuntu6.4</a> at Mon May 24 11:48:31 MSD 2010.</td></tr>
+      <tr><td class="versionInfo">Generated by <a href="http://www.phpunit.de/" target="_top">PHPUnit 3.4.13</a> and <a href="http://www.xdebug.org/" target="_top">Xdebug 2.0.5</a> using <a href="http://www.php.net/" target="_top">PHP 5.2.10-2ubuntu6.4</a> at Tue Oct 19 14:03:14 MSD 2010.</td></tr>
     </table>
 
     <br />
@@ -191,18 +194,18 @@
       $E = YAHOO.util.Event;
       YAHOO.namespace("phpunit.container");
       YAHOO.phpunit.container.panelsData = {
-        "panel12": {
-          "header": "1 test covers line 12",
+        "panel15": {
+          "header": "1 test covers line 15",
           "body": "<ul><li class=\"testPassed\">Soulex_Invoke_ParserTest::testParse</li></ul>",
           "footer": ""
         },
-        "panel16": {
-          "header": "1 test covers line 16",
+        "panel19": {
+          "header": "1 test covers line 19",
           "body": "<ul><li class=\"testPassed\">Soulex_Invoke_ParserTest::testParse</li></ul>",
           "footer": ""
         },
-        "panel17": {
-          "header": "1 test covers line 17",
+        "panel20": {
+          "header": "1 test covers line 20",
           "body": "<ul><li class=\"testPassed\">Soulex_Invoke_ParserTest::testParse</li></ul>",
           "footer": ""
         },

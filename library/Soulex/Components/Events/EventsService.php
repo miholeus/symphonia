@@ -97,4 +97,39 @@ class Soulex_Components_Events_EventsService
     {
         $this->_events->setOptions($options);
     }
+    /**
+     * Selects published status for events
+     *
+     * @param bool $published
+     * @return Soulex_Components_Events_EventsService
+     */
+    public function selectEnabled($published)
+    {
+        $this->_events->selectPublished($published);
+        return $this;
+    }
+
+    public function search($searchValue)
+    {
+        $this->_events->search($searchValue);
+        return $this;
+    }
+    /**
+     *
+     * @param string $spec the column and direction to sort by
+     * @return Soulex_Components_Events_EventsService
+     */
+    public function order($spec)
+    {
+        $this->_events->order($spec);
+        return $this;
+    }
+    /**
+     *
+     * @return Zend_Paginator
+     */
+    public function paginate()
+    {
+        return $this->_events->paginate();
+    }
 }

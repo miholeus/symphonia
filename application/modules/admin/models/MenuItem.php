@@ -261,4 +261,53 @@ class Admin_Model_MenuItem extends Admin_Model_Abstract
             $this->getMapper()->delete($id);
         }
     }
+    /**
+     * Published state
+     *
+     * @param int $state
+     * @return Admin_Model_MenuItem
+     */
+    public function selectState($state)
+    {
+        if($state != '') {
+            $this->getMapper()->published($state);
+        }
+        return $this;
+    }
+    /**
+     * Menu Item's Menu Id (menu type
+     * )
+     * @param int $id
+     * @return Admin_Model_MenuItem
+     */
+    public function selectMenuId($id)
+    {
+        if($id != '') {
+            $this->getMapper()->menuId($id);
+        }
+        return $this;
+    }
+    /**
+     * Menu Item's level (level used in nested set hierarchy)
+     *
+     * @param int $lvl
+     * @return Admin_Model_MenuItem
+     */
+    public function selectLevel($lvl)
+    {
+        if($lvl != '') {
+            $this->getMapper()->level($lvl);
+        }
+        return $this;
+    }
+
+    public function search($searchValue)
+    {
+        if(!empty($searchValue)) {
+            $searchValue = str_replace('\\', '\\\\', $searchValue);
+            $searchValue = addcslashes($searchValue, '_%');
+            $this->getMapper()->search($searchValue);
+        }
+        return $this;
+    }
 }

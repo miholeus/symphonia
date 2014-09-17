@@ -119,4 +119,47 @@ class Admin_Model_MenuItemMapper extends Admin_Model_DataMapper_Abstract
     {
         $this->getDbTable()->_delete($id);
     }
+    /**
+     * Sets published in where clause
+     * @param int $published
+     * @return void
+     */
+    public function published($published)
+    {
+        $this->_select = $this->getSelect();
+        $this->_select->where('published = ?', $published);
+    }
+    /**
+     * Sets Menu Id in where clause
+     *
+     * @param int $menuId
+     * @return void
+     */
+    public function menuId($menuId)
+    {
+        $this->_select = $this->getSelect();
+        $this->_select->where('menu_id = ?', $menuId);
+    }
+    /**
+     * Sets level in where clause
+     *
+     * @param int $lvl
+     * @return void
+     */
+    public function level($lvl)
+    {
+        $this->_select = $this->getSelect();
+        $this->_select->where('level = ?', $lvl);
+    }
+    /**
+     * Simple search by firstname field using like operator
+     *
+     * @param string $value search value
+     * @return void
+     */
+    public function search($value)
+    {
+        $this->_select = $this->getSelect();
+        $this->_select->where('label LIKE ?', '%' . $value . '%');
+    }
 }

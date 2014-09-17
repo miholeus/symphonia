@@ -32,6 +32,8 @@ class Soulex_Controller_Abstract extends Zend_Controller_Action
         $this->view->submenu_active = true;
         // render toolbar?
         $this->view->toolbar_active = true;
+        // no errors by default
+        $this->view->error_active = false;
     }
 
     public function postDispatch()
@@ -60,6 +62,17 @@ class Soulex_Controller_Abstract extends Zend_Controller_Action
     {
         $isRendered = (bool)$isRendered;
         $this->view->toolbar_active = $isRendered;
+    }
+    /**
+     * Enable rendering of error box
+     * Set error message
+     *
+     * @param bool $isRendered
+     */
+    protected function renderError($errMsg)
+    {
+        $this->view->error_active = true;
+        $this->view->errorMessage = $errMsg;
     }
     /**
      * Disables global/content.phtml to be rendered

@@ -6,6 +6,12 @@
         New
         </a>
     </li>
+    <li id="toolbar-delete" class="button">
+        <a class="toolbar" onclick="javascript:if (document.adminForm.boxchecked.value==0){alert('Please first make a selection from the list');}else{ submitbutton({'action':'delete'})}" href="#">
+        <span class="icon-32-delete"> </span>
+        Delete
+        </a>
+    </li>
 </ul>
 <?php $this->placeholder('toolbar-list')->captureEnd();?>
 
@@ -36,39 +42,40 @@
         <label class="filter-search-lbl" for="filter_search">Search Users:</label>
         <input id="filter_search" type="text" title="Search Users" value="" name="filter_search"/>
         <button type="submit">Search</button>
-        <button onclick="document.id('filter_search').value='';this.form.submit();" type="button">Reset</button>
+        <button onclick="$('#filter_search').attr('value', '');this.form.submit();" type="button">Reset</button>
         </div>
         <div class="filter-select fltrt">
-        <label for="filter_state"> Filter Users by:  </label>
-        <select class="inputbox" onchange="this.form.submit()" name="filter_state">
-        <option value="*">- State -</option>
-        <option value="0">Enabled</option>
-        <option value="1">Disabled</option>
+        <label for="filter_enabled"> Filter Users by:  </label>
+        <select class="inputbox" onchange="this.form.submit()" name="filter_enabled">
+            <?php
+            $options = array('options' => array(
+                '*' => '- State',
+                '1' => 'Enabled',
+                '0' => 'Disabled'
+                ), 'selected' => $this->filter['enabled']
+            );
+            echo $this->partial('partials/forms/select-options.phtml',
+                    array('options' => $options));
+            ?>
         </select>
-        <select class="inputbox" onchange="this.form.submit()" name="filter_active">
-        <option value="*">- Active -</option>
-        <option value="0">Activated</option>
-        <option value="1">Unactivated</option>
-        </select>
-        <select class="inputbox" onchange="this.form.submit()" name="filter_group_id">
-        <option value="">- Group -</option>
-        <option value="1">Public</option>
-        <option value="6">- Manager</option>
-        <option value="7">- - Administrator</option>
-        <option value="8">- - - Super Users</option>
-        <option value="2">- Registered</option>
-        <option value="3">- - Author</option>
-        <option value="4">- - - Editor</option>
-        <option value="5">- - - - Publisher</option>
-        <option value="10">- - - Shop Suppliers</option>
-        <option value="12">- - Customer Group</option>
+        <select class="inputbox" onchange="this.form.submit()" name="filter_role">
+            <?php
+            $user_options = array('options' => array(
+                '' => '- Group',
+                'Administrator' => 'Administrator',
+                'User' => 'User'
+                ), 'selected' => $this->filter['role']
+            );
+            echo $this->partial('partials/forms/select-options.phtml',
+                    array('options' => $user_options));
+            ?>
         </select>
         </div>
     </fieldset>
 
     <div class="clr"> </div>
 
-    <?php if($this->users != null) {?>
+    <?php if(sizeof($this->paginator) > 0):?>
 
     <table class="adminlist">
         <thead>
@@ -77,72 +84,111 @@
                     <input type="checkbox" onclick="checkAll(<?=count($this->users)?>)" value="" name="toggle"/>
                 </th>
                 <th class="left">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.name','desc','');">
+                    <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                    'module' => 'admin',
+                    'controller' => 'user',
+                    'action' => 'list'
+                 ), 'firstname');?>">
                     Name
-                    <img alt="" src="/_data/admin/system/images/sort_asc.png"/>
+                    <?php
+                    echo $this->getSortImage('firstname');
+                    ?>
                     </a>
                 </th>
                 <th class="nowrap" width="10%">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.username','desc','');">User Name</a>
+                    <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                    'module' => 'admin',
+                    'controller' => 'user',
+                    'action' => 'list'
+                 ), 'username');?>">User Name
+                    <?php
+                    echo $this->getSortImage('username');
+                    ?>
+                    </a>
                 </th>
                 <th class="nowrap" width="5%">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.block','desc','');">Enabled</a>
-                </th>
-                <th class="nowrap" width="5%">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.activation','desc','');">Activated</a>
+                    <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                    'module' => 'admin',
+                    'controller' => 'user',
+                    'action' => 'list'
+                 ), 'enabled');?>">Enabled
+                    <?php
+                    echo $this->getSortImage('enabled');
+                    ?>
+                    </a>
                 </th>
                 <th class="nowrap" width="10%"> Groups </th>
                 <th class="nowrap" width="15%">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.email','desc','');">E-mail</a>
+                    <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                    'module' => 'admin',
+                    'controller' => 'user',
+                    'action' => 'list'
+                 ), 'email');?>">E-mail
+                    <?php
+                    echo $this->getSortImage('email');
+                    ?>
+                    </a>
                 </th>
                 <th class="nowrap" width="15%">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.lastvisitDate','desc','');">Last Visit Date</a>
+                    <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                    'module' => 'admin',
+                    'controller' => 'user',
+                    'action' => 'list'
+                 ), 'lastvisitDate');?>">Last Visit Date
+                    <?php
+                    echo $this->getSortImage('lastvisitDate');
+                    ?>
+                    </a>
                 </th>
                 <th class="nowrap" width="15%">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.registerDate','desc','');">Registration Date</a>
+                    <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                    'module' => 'admin',
+                    'controller' => 'user',
+                    'action' => 'list'
+                 ), 'registerDate');?>">Registration Date
+                    <?php
+                    echo $this->getSortImage('registerDate');
+                    ?>
+                    </a>
                 </th>
                 <th class="nowrap" width="3%">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.id','desc','');">ID</a>
+                    <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                    'module' => 'admin',
+                    'controller' => 'user',
+                    'action' => 'list'
+                 ), 'id');?>">ID
+                    <?php
+                    echo $this->getSortImage('id');
+                    ?>
+                    </a>
                 </th>
             </tr>
         </thead>
         <tfoot>
             <tr>
                 <td colspan="15">
-                    <div class="container">
-                    <div class="pagination">
-                    <div class="limit">
-                    Display #
-                    <select id="limit" class="inputbox" onchange="submitform();" size="1" name="limit">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option selected="selected" value="20">20</option>
-                    <option value="25">25</option>
-                    <option value="30">30</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                    <option value="0">All</option>
-                    </select>
-                    </div>
-                    <div class="limit"/>
-                    <input type="hidden" value="0" name="limitstart"/>
-                    </div>
-                    </div>
+                    <?php
+                    echo $this->paginationControl($this->paginator,
+                     'Sliding',
+                     'partials/pagination-control.phtml');
+                    ?>
                 </td>
             </tr>
         </tfoot>
         <tbody>
             <?php
-            echo $this->partialLoop('partials/_user-row.phtml', $this->users);
+            echo $this->partialLoop('partials/_user-row.phtml', $this->paginator);
             ?>
         </tbody>
     </table>
     
     <input type="hidden" name="boxchecked" id="boxchecked" value="0" />
-    <?php }else{?>
-    <p>You do not have any users yet.</p>
-    <?php }?>
+    <input type="hidden" name="order" value="<?php echo $this->orderParams['order']?>" />
+    <input type="hidden" name="direction" value="<?php echo $this->orderParams['direction']?>" />
+
+    <?else:?>
+        You do not have any users
+    <?endif;?>
     
 </form>
 

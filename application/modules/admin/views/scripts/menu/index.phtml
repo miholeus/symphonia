@@ -36,13 +36,26 @@
                     <input type="checkbox" onclick="checkAll(this)" value="" name="toggle"/>
                 </th>
                 <th rowspan="2">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.title','desc','');">Title</a>
+                    <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                    'module' => 'admin',
+                    'controller' => 'menu',
+                    'action' => 'index'
+                 ), 'title');?>">Title
+                    <?php
+                    echo $this->getSortImage('title');
+                    ?>
+                    </a>
                 </th>
                 <th width="50%" colspan="3"> Number of Menu Items </th>
                 <th class="nowrap" width="1%" rowspan="2">
-                    <a title="Click to sort by this column" href="javascript:tableOrdering('a.id','desc','');">
-                        ID
-                        <img alt="" src="/_data/<?=$this->skin?>/system/images/sort_asc.png"/>
+                    <a title="Click to sort by this column" href="<?php echo $this->getUrlReverseSorting(array(
+                    'module' => 'admin',
+                    'controller' => 'menu',
+                    'action' => 'index'
+                 ), 'id');?>">ID
+                    <?php
+                    echo $this->getSortImage('id');
+                    ?>
                     </a>
                 </th>
             </tr>
@@ -55,33 +68,17 @@
         <tfoot>
             <tr>
                 <td colspan="15">
-                    <div class="container">
-                        <div class="pagination">
-                            <div class="limit">
-                                Display #
-                                <select id="limit" class="inputbox" onchange="submitform();" size="1" name="limit">
-                                    <option value="5">5</option>
-                                    <option selected="selected" value="10">10</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
-                                    <option value="25">25</option>
-                                    <option value="30">30</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                    <option value="0">All</option>
-                                </select>
-                            </div>
-                            <div class="limit"/>
-                            <input type="hidden" value="0" name="limitstart"/>
-                        </div>
-                    </div>
+                    <?php
+                    echo $this->paginationControl($this->paginator,
+                     'Sliding',
+                     'partials/pagination-control.phtml');
+                    ?>
                 </td>
             </tr>
         </tfoot>
         <tbody>
             <?php
-            $this->partialLoop()->setObjectKey('menuItem');
-            echo $this->partialLoop('partials/_menu-row.phtml', $this->menus );
+            echo $this->partialLoop('partials/_menu-row.phtml', $this->paginator);
             ?>
         </tbody>
     </table>

@@ -13,6 +13,11 @@ class Model_PageMapper extends Zend_Db_Table_Abstract
 	protected $_name = 'pages';
 	
 	protected $_dependentTables = 'Model_ContentNode';
+    /**
+     *
+     * @var Zend_Db_Table_Select
+     */
+    protected $_select;
 	/*
 	protected $_referenceMap = array(
 		'Page' => array(
@@ -218,5 +223,56 @@ class Model_PageMapper extends Zend_Db_Table_Abstract
         }
 
         return $this->fetchAll($select);
+    }
+    /**
+     * Sets published in where clause
+     *
+     * @param int $enabled
+     * @return void
+     */
+    public function published($published)
+    {
+        $this->_select = $this->getSelect();
+        $this->_select->where('published = ?', $published);
+    }
+    /**
+     * Simple search by title field using like operator
+     *
+     * @param string $value search value
+     * @return void
+     */
+    public function search($value)
+    {
+        $this->_select = $this->getSelect();
+        $this->_select->where('title LIKE ?', '%' . $value . '%');
+    }
+
+    public function getSelect()
+    {
+        if(null === $this->_select) {
+            $this->_select = $this->select();
+        }
+        return $this->_select;
+    }
+    /**
+	 * Fetches paginator
+	 *
+     * @return Zend_Paginator_Adapter_DbSelect
+	 */
+    public function fetchPaginator()
+    {
+        $adapter = new Zend_Paginator_Adapter_DbSelect($this->_select);
+        return $adapter;
+    }
+    /**
+     * Sets ordering state
+     *
+     * @param string $spec the column and direction to sort by
+     * @return void
+     */
+    public function order($spec)
+    {
+        $this->_select = $this->getSelect();
+        $this->_select->order($spec);
     }
 }

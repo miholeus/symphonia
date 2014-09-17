@@ -10,3 +10,4 @@
 /public/upload/*
 /public/_data/frontend/
 .idea
+/tests/log/report

@@ -1,0 +1,66 @@
+<form action="<?=$this->form->getAction()?>"
+      method="<?=$this->form->getMethod()?>"
+      id="<?=$this->form->getAttrib('id')?>"
+      class="<?=$this->form->getAttrib('class')?>"
+      name="<?=$this->form->getName()?>"
+      autocomplete="off"
+      >
+          <div class="width-60 fltlft">
+            <fieldset class="adminform">
+                <legend>Account Details</legend>
+                <ul class="adminformlist">
+                    <li>
+                        <label id="title-lbl" for="title" class="required">User Name</label>
+                        <?=$this->form->username?>
+                    </li>
+                    <li>
+                        <label id="firstname-lbl" for="firstname">First Name</label>
+                        <?=$this->form->firstname?>
+                    </li>
+                    <li>
+                        <label id="lastname-lbl" for="lastname">Last Name</label>
+                        <?=$this->form->lastname?>
+                    </li>
+                    <li>
+                        <label id="password-lbl" for="password">Password</label>
+                        <?=$this->form->password?>
+                    </li>
+                    <li>
+                        <label id="confirmPassword-lbl" for="confirmPassword">Confirm Password</label>
+                        <?=$this->form->confirmPassword?>
+                    </li>
+                    <li>
+                        <label id="email-lbl" for="email" class="required">Email</label>
+                        <?=$this->form->email?>
+                    </li>
+                    <li>
+                        <label id="enabled-lbl" for="enabled">Block this User</label>
+                        <fieldset class="radio" id="userform_block">
+                            <?php
+                            echo $this->partial('partials/radiobutton-control.phtml', array(
+                                'options' => $this->form->enabled->getMultiOptions(),
+                                'selected' => $this->form->enabled->getValue(),
+                                'name' => 'enabled'
+                            ));
+                            ?>
+                        </fieldset>
+                    </li>
+                    <li>
+                        <label id="registerDate-lbl" for="registerDate">Registration Date</label>
+                        <?=$this->form->registerDate?>
+                    </li>
+                    <li>
+                        <label id="lastvisitDate-lbl" for="lastvisitDate">Last visit Date</label>
+                        <?=$this->form->lastvisitDate?>
+                    </li>
+                </ul>
+            </fieldset>
+
+            <fieldset class="adminform" id="user-groups">
+                <legend>Assigned Groups</legend>
+                <?=$this->form->role?>
+            </fieldset>
+
+          </div>
+    <?=$this->form->id?>
+</form>

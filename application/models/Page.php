@@ -123,7 +123,53 @@ class Model_Page
         $select = $this->_mapper->select()->where('name = ?', $nodeName);
 
         $result = $this->_mapper->fetchAll($select);
-        var_dump($result);
+    }
+    /**
+     * Selects publish status for pages
+     *
+     * @param bool $published
+     * @return Model_Page
+     */
+    public function selectPublished($published)
+    {
+        /**
+         * isset added to prevent the clause when page is updated
+         * and $enabled value comes as null
+         */
+        if($published != '*' && isset($published)) {
+            $published = (int)$published;
+            $this->_mapper->published($published);
+        }
+        return $this;
+    }
+
+    public function search($searchValue)
+    {
+        if(!empty($searchValue)) {
+            $searchValue = str_replace('\\', '\\\\', $searchValue);
+            $searchValue = addcslashes($searchValue, '_%');
+            $this->_mapper->search($searchValue);
+        }
+        return $this;
+    }
+    /**
+     *
+     * @param string $spec the column and direction to sort by
+     * @return Model_Page
+     */
+    public function order($spec)
+    {
+        $this->_mapper->order($spec);
+        return $this;
+    }
+    /**
+     *
+     * @return Zend_Paginator
+     */
+    public function paginate()
+    {
+        $adapter = $this->_mapper->fetchPaginator();
+        return new Zend_Paginator($adapter);
     }
 
 }

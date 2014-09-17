@@ -1,20 +1,30 @@
 <?php $this->placeholder('toolbar-list')->captureStart();?>
-<!-- toolbar list content -->
+<ul>
+    <li id="toolbar-apply" class="button">
+        <a class="toolbar" onclick="javascript:submitbutton({'action' : 'save'})" href="#">
+            <span class="icon-32-apply"> </span>
+            Save
+        </a>
+    </li>
+    <li id="toolbar-cancel" class="button">
+        <a class="toolbar" onclick="javascript:submitbutton({'action' : 'cancel', 'uri' : '/admin/user/list'})" href="#">
+            <span class="icon-32-cancel"> </span>
+            Close
+        </a>
+    </li>
+</ul>
 <?php $this->placeholder('toolbar-list')->captureEnd();?>
 
 <?php $this->placeholder('pagetitle')->captureStart();?>
-<div class="pagetitle icon-48-user">
+<div class="pagetitle icon-48-user-add">
     <h2> User Manager: Update User </h2>
 </div>
 <?php $this->placeholder('pagetitle')->captureEnd();?>
 
 <?php $this->placeholder('element-box')->captureStart();?>
 
-<?php echo $this->form; ?>
-<p>
-     <a href='/admin/user/password/id/<?php echo $this->form->getElement('id')->getValue(); ?>'>
-          Update Password
-     </a>
-</p>
+<?php
+echo $this->partial('partials/_user-form.phtml', array('form' => $this->form));
+?>
 
 <?php $this->placeholder('element-box')->captureEnd();?>

@@ -1807,15 +1807,15 @@ fieldset.loginform {
 	width: auto;
 }
 
-label#mod-login-password-lbl,
-label#mod-login-username-lbl,
-label#mod-login-language-lbl {
+label#login-password-lbl,
+label#login-username-lbl,
+label#login-language-lbl {
 	display:block;
 	margin:5px 15px 16px 0;
 }
 
-input#mod-login-username,
-input#mod-login-password,
+input#login-username,
+input#login-password,
 select#lang {
 	float:right;
 	margin: 0 0 20px 0;

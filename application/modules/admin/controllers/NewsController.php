@@ -18,20 +18,50 @@ class Admin_NewsController extends Soulex_Controller_Abstract
     {
         $newsService = new Soulex_Components_News_NewsService();
 
+        $this->view->orderParams = $this->_getOrderParams();
+        $order = join(' ', $this->view->orderParams);
+        $this->view->filter = array();// view property for where statements
+        $limit = $this->_getParam('limit', 20);
+
         if($this->_request->isPost()) {
             $post = $this->_request->getPost();
-            if(is_array($post['cid'])
-                    && count($post['cid']) == $post['boxchecked']) {
-                $newsService->deleteBulk($post['cid']);
-            } else {
-                if($this->_request->getParam('action') == 'index') {
-                    throw new Exception('FCS  is not correct! Wrong request!');
+
+            $paginator = $newsService->selectEnabled($post['filter_published'])
+                                ->search($post['filter_search'])
+                                ->order($order)->paginate();
+            $this->view->filter['published'] = $post['filter_published'];
+
+            try {
+                if(is_array($post['cid'])
+                        && count($post['cid']) == $post['boxchecked']) {
+                    try {
+                        $newsService->deleteBulk($post['cid']);
+                        return $this->_redirect('/admin/news');
+                    } catch (Exception $e) {
+                        throw new Exception($e->getMessage(), $e->getCode(), $e);
+                    }
+                } else {
+                    throw new Exception("Checksum is not correct");
                 }
+            } catch (Exception $e) {
+                $this->renderSubmenu(false);
+                $this->renderError("News deletion failed with the following error: "
+                        . $e->getMessage());
             }
-            return $this->_redirect('/admin/news');
+        } else {
+            $paginator = $newsService->order($order)->paginate();
         }
 
-        $this->view->news = $newsService->fetchAll();
+        // show items per page
+        if($limit != 0) {
+            $paginator->setItemCountPerPage($limit);
+        } else {
+            $paginator->setItemCountPerPage(-1);
+        }
+
+        $this->view->paginator = $paginator;
+        Zend_Registry::set('pagination_limit', $limit);
+
         $this->view->render('news/index.phtml');
     }
 
@@ -40,8 +70,8 @@ class Admin_NewsController extends Soulex_Controller_Abstract
         $frmNews = new Admin_Form_News();
 
 
-        if($this->getRequest()->isPost()) {
-            if($frmNews->isValid($this->getRequest()->getPost())) {
+        if($this->getRequest()->isPost() &&
+            $frmNews->isValid($this->getRequest()->getPost())) {
                 $data = array(
                     'id' => $frmNews->getValue('id'),
                     'title' => $frmNews->getValue('title'),
@@ -57,7 +87,6 @@ class Admin_NewsController extends Soulex_Controller_Abstract
                 $this->disableContentRender();
 
                 return $this->_forward('index');
-            }
         } else {
             $newsService = new Soulex_Components_News_NewsService();
             $currentNews = $newsService->findById($this->getRequest()->getParam('id'));
@@ -104,5 +133,24 @@ class Admin_NewsController extends Soulex_Controller_Abstract
         
         $this->renderSubmenu(false);
         $this->view->render('news/create.phtml');
+    }
+
+    private function _getOrderParams()
+    {
+        $order = $this->_getParam('order', 'title');
+        $direction = $this->_getParam('direction', 'desc');
+        /**
+         * sets default order if model does not have proper field
+         */
+        if(!is_callable(array('Admin_Model_News',
+            'get' . ucfirst($order)))) {
+            $order = 'title';
+        }
+
+        if(!in_array(strtolower($direction), array('asc', 'desc'))) {
+            $direction = 'desc';
+        }
+
+        return array('order' => $order, 'direction' => $direction);
     }
 }
