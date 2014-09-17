@@ -18,8 +18,8 @@ class Soulex_Invoke_Plugin extends Zend_Controller_Plugin_Abstract
 {
     /**
      * Set of widgets on page
-     * 
-     * @var array 
+     *
+     * @var array
      */
     private $_widgets = array();
     /**
@@ -76,10 +76,11 @@ class Soulex_Invoke_Plugin extends Zend_Controller_Plugin_Abstract
                   ->setControllerName($widget['controller'])
                   ->setActionName($widget['action'])
                   ->setParams($widget['params']);
+				 // echo $r->getActionName();
+				 
                 $stack->pushStack($r);
             endforeach;
         endif;
-
     }
     /**
      * Returns page data
@@ -104,9 +105,10 @@ class Soulex_Invoke_Plugin extends Zend_Controller_Plugin_Abstract
 
 			$mdlPage = new Model_Page();
 			$currentPage = $mdlPage->find($id, array('published' => 1));
+			
             if(!$currentPage) {
 				throw new Zend_Exception('Page not Found!');
-			}
+			}			
 
             if(isset($currentPage['_data'])) {
 
@@ -166,6 +168,7 @@ class Soulex_Invoke_Plugin extends Zend_Controller_Plugin_Abstract
      */
     protected function _getStack()
     {
+       
         if (null === $this->_stack) {
             $front = Zend_Controller_Front::getInstance();
             if (!$front->hasPlugin('Zend_Controller_Plugin_ActionStack')) {
@@ -173,9 +176,11 @@ class Soulex_Invoke_Plugin extends Zend_Controller_Plugin_Abstract
                 $front->registerPlugin($stack);
             } else {
                 $stack = $front->getPlugin('ActionStack');
+                 
             }
             $this->_stack = $stack;
         }
+        
         return $this->_stack;
     }
 }

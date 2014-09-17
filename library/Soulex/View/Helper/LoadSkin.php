@@ -23,17 +23,34 @@ class Soulex_View_Helper_LoadSkin extends Zend_View_Helper_Abstract
              $skinPath = './skins/';
          }
          $skinData = new Zend_Config_Xml($skinPath . $skin . '/skin.xml');
-         $stylesheets = $skinData->stylesheets->stylesheet;
+         $skinDataArray = $skinData->stylesheets->toArray();
+         $stylesheets = array_pop($skinDataArray);
+
+         if(!is_array($stylesheets) || count($stylesheets) == 0) {
+             return false;
+         }
+         $version = 1;
+         try {
+             $appVersion = \Zend_Registry::get('App_Version');
+
+             $version = $appVersion->css;
+         } catch (\Exception $e) {
+             // nothing here
+         }
          // append each stylesheet
-         if (!is_string($stylesheets)) {
-         	 $stylesheets = $stylesheets->toArray();
-             foreach ($stylesheets as $stylesheet) {
+         foreach ($stylesheets as $stylesheet) {
+             if(is_array($stylesheet)) {
+                 if(!isset($stylesheet['condition'])) {
+                     $this->view->headLink()->appendStylesheet('/skins/' . $skin .
+                         '/css/' . $stylesheet['style'] . '?v=' . $version);
+                 } else {
+                     $this->view->headLink()->appendStylesheet('/skins/' . $skin .
+                         '/css/' . $stylesheet['style'] . '?v=' . $version, 'screen', $stylesheet['condition']);
+                 }
+             } else { // string type
                  $this->view->headLink()->appendStylesheet('/skins/' . $skin .
-                     '/css/' . $stylesheet);
+                         '/css/' . $stylesheet . '?v=' . $version);
              }
-         } else {
-     	    $this->view->headLink()->appendStylesheet('/skins/' . $skin .
-                '/css/' . $stylesheets);
          }
      }
 }
