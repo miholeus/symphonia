@@ -1,0 +1,9 @@
+{
+    "config"       : {
+        "vendor-dir" : "library",
+        "bin-dir"    : "bin"
+    },
+    "require"      : {
+        "zendframework/zendframework1"    : "1.12.3"
+    }
+}

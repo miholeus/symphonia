@@ -1,7 +1,7 @@
 *~
-.tmp_*
-/library/ZendX
-/library/Zend
+/library/zendframework
+/library/autoload.php
+/library/composer
 /logs/*
 /application/configs/application.ini
 /application/configs/routes.*
