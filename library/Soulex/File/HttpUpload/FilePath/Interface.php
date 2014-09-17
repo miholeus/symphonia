@@ -1,18 +1,18 @@
 <?php
 /**
  * @package   Soulex
- * @copyright Copyright (C) 2010 - Present, miholeus
+ * @copyright Copyright (C) 2012 - Present, miholeus
  * @author    miholeus <me@miholeus.com> {@link http://miholeus.com}
  * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
- * @version    $Id: $
+ * @version   $Id: $
  */
 
 /**
- * Soulex_Components_News_NewsModel manages News objects
- *
+ * File path interface
+ * 
  * @author miholeus
  */
-class Soulex_Components_News_NewsModel extends Admin_Model_News
+interface Soulex_File_HttpUpload_FilePath_Interface
 {
-
+    public function apply($method, $settings);
 }

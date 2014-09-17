@@ -20,7 +20,7 @@
 /**
  * Update:
  * Added tinyBrowser support
- * 
+ *
  * @author miholeus
  */
 class Soulex_View_Helper_TinyMce extends Zend_View_Helper_Abstract
@@ -39,7 +39,7 @@ class Soulex_View_Helper_TinyMce extends Zend_View_Helper_Abstract
                              'iespell', 'insertdatetime', 'preview', 'media',
                              'searchreplace', 'print', 'contextmenu', 'paste',
                              'directionality', 'fullscreen', 'noneditable', 'visualchars',
-                             'nonbreaking', 'xhtmlxtras', 'imagemanager', 'filemanager','template'));
+                             'nonbreaking', 'xhtmlxtras', 'imagemanager', 'filemanager','template', 'phpimage'));
 
     protected $_config = array('mode'  =>'textareas',
        'theme' => 'advanced',
@@ -105,6 +105,23 @@ class Soulex_View_Helper_TinyMce extends Zend_View_Helper_Abstract
     public function setScriptFile ($file)
     {
         $this->_scriptFile = (string) $file;
+    }
+    /**
+     * Set file browser callback or disable it
+     *
+     * @param bool $enabled enable/disable callback
+     * @param string $callback function that will be used when opening images/files
+     * window
+     */
+    public function setFileBrowser($enabled, $callback = null)
+    {
+        if(false === (bool)$enabled) {
+            unset($this->_config['file_browser_callback']);
+        } else {
+            if(null !== $callback) {
+                $this->_config['file_browser_callback'] = $callback;
+            }
+        }
     }
 
     public function useCompressor ($switch)
@@ -176,7 +193,10 @@ class Soulex_View_Helper_TinyMce extends Zend_View_Helper_Abstract
 
     protected function _renderTinyBrowser()
     {
-        $this->view->headScript()->appendFile($this->_tinyBrowserScript);
+        if(isset($this->_config['file_browser_callback']) &&
+                $this->_config['file_browser_callback'] == 'tinyBrowser') {
+            $this->view->headScript()->appendFile($this->_tinyBrowserScript);
+        }
         return $this;
     }
 }

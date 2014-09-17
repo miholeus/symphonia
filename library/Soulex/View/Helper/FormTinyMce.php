@@ -10,7 +10,7 @@
 
 /**
  * The rendering of the view element. Using the TinyMce view helper javascript
- *  initiazion.
+ *  initialization.
  *
  * @author jurian ({@link http://juriansluiman.nl})
  */
@@ -26,10 +26,10 @@ class Soulex_View_Helper_FormTinyMce extends Zend_View_Helper_FormTextarea
 	protected $_tinyMce;
     /**
      * Used to override editor options
-     * 
+     *
      * @var array
      */
-    protected $_overridedOptions = array('mode', 'elements');
+    protected $_overridedOptions = array('mode', 'elements', 'fileBrowser');
 
 	public function FormTinyMce ($name, $value = null, $attribs = null)
 	{
