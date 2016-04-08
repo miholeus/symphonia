@@ -2,7 +2,9 @@ Soulex Project
 ==============
 
 CMS system based on popular Framework. Zend Framework 1.x used.
+
 Features:
+
 1. Build pages
 2. Custom nodes on pages
 3. Integrated menu
