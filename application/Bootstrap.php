@@ -14,7 +14,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	protected function _initAutoload()
 	{
 		// Add autoloader empty namespace
-		$autoloader = Zend_Loader_Autoloader::getInstance();
+		Zend_Loader_Autoloader::getInstance();
         $autoloader = new Zend_Application_Module_Autoloader(array(
             'namespace' => '',
             'basePath' => dirname(__FILE__)

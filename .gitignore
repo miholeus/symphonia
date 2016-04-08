@@ -11,3 +11,4 @@
 /public/_data/frontend/
 .idea
 /tests/log/report
+*.iml
