@@ -16,3 +16,4 @@
 /web/bundles/
 *.iml
 .idea
+/web/_data/
