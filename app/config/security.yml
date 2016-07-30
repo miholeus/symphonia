@@ -6,6 +6,10 @@ security:
     providers:
         in_memory:
             memory: ~
+        db_provider:
+            entity:
+                class: CoreBundle\Entity\User
+                property: login
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -15,6 +19,15 @@ security:
 
         main:
             anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login
+                username_parameter: login[username]
+                password_parameter: login[password]
+            logout:
+                path: /logout
+                target: /
+            provider: in_memory
             # activate different ways to authenticate
 
             # http_basic: ~
@@ -22,3 +35,8 @@ security:
 
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    role_hierarchy:
+        ROLE_AMDIN: ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]

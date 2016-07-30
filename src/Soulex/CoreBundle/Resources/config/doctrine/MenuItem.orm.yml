@@ -1,0 +1,68 @@
+Soulex\CoreBundle\Entity\MenuItem:
+    type: entity
+    table: menu_items
+    indexes:
+        menu_id:
+            columns:
+                - menu_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        menuId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: menu_id
+        label:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        uri:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        position:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        published:
+            type: boolean
+            nullable: false
+        lft:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'Nested sets left key'
+        rgt:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'Nested sets right key'
+        parentId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'Adjacency List'
+            column: parent_id
+        level:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }
