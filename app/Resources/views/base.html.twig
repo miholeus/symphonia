@@ -3,11 +3,38 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('/skins/admin/css/layout.css') }}">
+            <link rel="stylesheet" href="{{ asset('/skins/admin/css/rounded.css') }}">
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <div id="border-top" class="h_blue">
+            <div>
+                <div>
+                    <span class="title"><a href="/admin">Administration</a></span>
+
+                </div>
+            </div>
+        </div>
+            {% block headerbox %}{% endblock %}
+        <div id="content-box">
+            <div class="border">
+                <div class="padding">
+            {% block body %}{% endblock %}
+                    <div class="clr"></div>
+                </div>
+            </div>
+        </div>
+        <div id="border-bottom"><div><div></div></div>
+        </div>
+        <div id="footer">
+
+        </div>
+        {% block javascripts %}
+            <script src="{{ asset('/_data/admin/js/jquery/jquery.js') }}"></script>
+            <script src="{{ asset('/_data/admin/js/default.js') }}"></script>
+        {% endblock %}
     </body>
 </html>
