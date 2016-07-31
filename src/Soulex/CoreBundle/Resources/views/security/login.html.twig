@@ -1,5 +1,77 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    Default login page
+    <div class="padding">
+        <div class="clr"></div>
+        <div id="element-box" class="login">
+            <div class="t">
+                <div class="t">
+
+                    <div class="t"></div>
+                </div>
+            </div>
+            <div class="m wbg">
+                <h1>Administration Login</h1>
+
+                <div id="section-box">
+                    <div class="t">
+                        <div class="t">
+                            <div class="t"></div>
+                        </div>
+                    </div>
+                    <div class="m">
+                        <!-- login form -->
+                        <form action=""
+                              method=""
+                              id=""
+                              name="">
+                            <fieldset class="loginform">
+                                <label for="login-username" id="login-username-lbl">User Name</label>
+                                <input type="text">
+
+                                <label for="login-password" id="login-password-lbl">Password</label>
+                                <input type="text">
+
+                                <div class="button-holder">
+                                    <div class="button1">
+                                        <div class="next">
+                                            <a onclick="document.forms['login'].submit();" href="#">
+                                                Log in</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="clr"></div>
+
+                                <input type="submit" value="Log in" class="hide">
+                            </fieldset>
+                        </form>
+
+                        <!-- //login form -->
+                        <div class="clr"></div>
+                    </div>
+                    <div class="b">
+                        <div class="b">
+                            <div class="b"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <p>Use a valid username and password to gain access to the administrator backend.</p>
+
+                <p><a href="/">Go to site home page.</a></p>
+                <div id="lock"></div>
+                <div class="clr"></div>
+            </div>
+            <div class="b">
+                <div class="b">
+                    <div class="b"></div>
+                </div>
+
+            </div>
+        </div>
+        <noscript>
+            Warning! JavaScript must be enabled for proper operation of the Administrator backend.			</noscript>
+        <div class="clr"></div>
+    </div>
 {% endblock %}

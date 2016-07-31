@@ -1,3 +1,6 @@
 soulex_core_homepage:
     path:     /
     defaults: { _controller: SoulexCoreBundle:Default:index }
+login:
+    path:     /login
+    defaults: { _controller: SoulexCoreBundle:Security:login }
