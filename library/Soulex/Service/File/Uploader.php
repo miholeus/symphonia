@@ -6,6 +6,7 @@
  * @license   New BSD {@link http://www.opensource.org/licenses/bsd-license.php}
  * @version    $Id: $
  */
+use Soulex\File\HttpUpload;
 
 /**
  * File Uploader uploads file to server using HTTP method
@@ -50,7 +51,7 @@ class Soulex_Service_File_Uploader
     /**
      * Uploader object
      *
-     * @var Soulex_File_HttpUpload
+     * @var HttpUpload
      */
     protected $_uploader;
     /**
@@ -85,7 +86,7 @@ class Soulex_Service_File_Uploader
      */
     public function __construct($fileName, $options = array())
     {
-        $this->_uploader = new Soulex_File_HttpUpload($fileName);
+        $this->_uploader = new HttpUpload($fileName);
         if(count($options) > 0) {
             foreach($options as $propertyName => $propertyValue) {
                 $this->_uploader->$propertyName = $propertyValue;

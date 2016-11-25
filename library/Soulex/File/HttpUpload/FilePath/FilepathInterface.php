@@ -7,12 +7,13 @@
  * @version   $Id: $
  */
 
+namespace Soulex\File\HttpUpload\FilePath;
 /**
  * File path interface
- * 
+ *
  * @author miholeus
  */
-interface Soulex_File_HttpUpload_FilePath_Interface
+interface FilePathInterface
 {
     public function apply($method, $settings);
 }

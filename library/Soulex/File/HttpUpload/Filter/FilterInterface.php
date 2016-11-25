@@ -6,8 +6,16 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @version   $Id: $
  */
-namespace Soulex\File\HttpUpload\Filter\PictureTamer;
+namespace Soulex\File\HttpUpload\Filter;
 
-class Exception extends \Soulex\File\HttpUpload\Exception
+interface FilterInterface
 {
+	/**
+     * Apply filter
+     *
+	 * @param $filter
+	 * @param null $params
+	 * @return mixed
+	 */
+	public function apply($filter, $params = null);
 }

@@ -6,12 +6,12 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @version   $Id: $
  */
-
+namespace Soulex\File\HttpUpload;
 /**
- * Description of Exception
+ * Base Exception for http uploads
  *
  * @author miholeus
  */
-class Soulex_File_HttpUpload_Exception extends Exception
+class Exception extends \Exception
 {
 }

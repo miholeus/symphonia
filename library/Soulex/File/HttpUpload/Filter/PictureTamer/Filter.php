@@ -1,6 +1,16 @@
 <?php
+/**
+ * @package   Soulex
+ * @copyright Copyright (C) 2010 - Present, miholeus
+ * @author    miholeus <me@miholeus.com> {@link http://miholeus.com}
+ * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
+ * @version   $Id: $
+ */
+namespace Soulex\File\HttpUpload\Filter\PictureTamer;
 
-class Soulex_File_HttpUpload_Filter_PictureTamer_Filter implements Soulex_File_HttpUpload_Filter_Interface
+use Soulex\File\HttpUpload\Filter\FilterInterface;
+
+class Filter implements FilterInterface
 {
     /*
       * Служит для записи ошибок при выполнении операций
@@ -24,13 +34,13 @@ class Soulex_File_HttpUpload_Filter_PictureTamer_Filter implements Soulex_File_H
      *
      * @param string $imagePath Путь к изображению
      *
-     * @throws Soulex_File_HttpUpload_Filter_PictureTamer_Exception
+     * @throws Exception
      * @return array|false
      */
     public static function getRotation($imagePath)
     {
         if (!is_readable($imagePath)) {
-            throw new Soulex_File_HttpUpload_Filter_PictureTamer_Exception("Cannot read '{$imagePath}' file!");
+            throw new Exception("Cannot read '{$imagePath}' file!");
         }
 
         if (!function_exists('exif_read_data')) {
@@ -85,20 +95,20 @@ class Soulex_File_HttpUpload_Filter_PictureTamer_Filter implements Soulex_File_H
     /**
      * Make thumbs
      *
-     * @param PhpThumbAdapter $adapter
+     * @param \PhpThumbAdapter $adapter
      * @param array           $options [file_fullpath - path to original file to make
      *                                 thumb from, widht/height - width and height of new image,
      *                                 dstpathfile - new file path destination]
      *
-     * @throws Soulex_File_HttpUpload_Filter_PictureTamer_Exception
+     * @throws Exception
      * @return string new file name path
      */
-    public function makeThumb(PhpThumbAdapter $adapter, $options)
+    public function makeThumb(\PhpThumbAdapter $adapter, $options)
     {
         $thumb = $adapter->create($options['file_fullpath']);
 
         if(!isset($options['width']) || !isset($options['height'])) {
-            throw new Soulex_File_HttpUpload_Filter_PictureTamer_Exception(
+            throw new Exception(
                 'width and height parameters are required to make thumb');
         }
 
@@ -138,9 +148,7 @@ class Soulex_File_HttpUpload_Filter_PictureTamer_Filter implements Soulex_File_H
 
     public function __construct()
     {
-
         $this->post_processed_file = array();
-
     }
 
     /**
@@ -151,28 +159,21 @@ class Soulex_File_HttpUpload_Filter_PictureTamer_Filter implements Soulex_File_H
      * @param object $filter
      * @param object $params[optional]
      *
-     * @throws Soulex_File_HttpUpload_Filter_PictureTamer_Exception
+     * @throws Exception
      */
     public function apply($filter, $params = null)
     {
         try {
-
             if( !method_exists( $this, $filter ) ) {
-
-                throw new Soulex_File_HttpUpload_Filter_PictureTamer_Exception(__CLASS__ . ' :' . $filter . ' doesn\'t exist');
-
+                throw new Exception(__CLASS__ . ' :' . $filter . ' doesn\'t exist');
             }
 
             $this->settings['upload_params'] = $params;
 
             call_user_func(array($this, $filter), $params);
-
-        } catch (Soulex_File_HttpUpload_Filter_PictureTamer_Exception $e) {
-
+        } catch (Exception $e) {
             $this->errorMsg = $e->getMessage();
-
         }
-
     }
 
     /**
@@ -271,10 +272,9 @@ class Soulex_File_HttpUpload_Filter_PictureTamer_Filter implements Soulex_File_H
     private function grayscaleImage($filename, $extension, $bwimage_path)
     {
         /*
-           * Making grayscale image
-           * Example from http://php.about.com/od/gdlibrary/ss/grayscale_gd.htm
-           */
-
+         * Making grayscale image
+         * Example from http://php.about.com/od/gdlibrary/ss/grayscale_gd.htm
+         */
         // Get the dimensions
         list($width, $height) = getimagesize($filename);
 
@@ -344,8 +344,9 @@ class Soulex_File_HttpUpload_Filter_PictureTamer_Filter implements Soulex_File_H
     /**
      * Загрузка библиотек для обработки картинок
      *
-     * @return
-     * @param object $library
+     *
+     * @param string $library
+     * @return $this
      */
     private function loadLibrary($library)
     {
@@ -354,7 +355,6 @@ class Soulex_File_HttpUpload_Filter_PictureTamer_Filter implements Soulex_File_H
             require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'library' . DIRECTORY_SEPARATOR . $library . '.php');
 
             $this->_library[$library] = array('object'=> new $library);
-
         }
 
         return $this;
@@ -364,17 +364,12 @@ class Soulex_File_HttpUpload_Filter_PictureTamer_Filter implements Soulex_File_H
     {
         try {
             if( !isset( $this->_library[$name] ) ) {
-
-                throw new Soulex_File_HttpUpload_Filter_PictureTamer_Exception('Can not get library ' . $name . '. Library ' . $name . ' was not loaded.');
-
+                throw new Exception('Can not get library ' . $name . '. Library ' . $name . ' was not loaded.');
             }
 
             return $this->_library[$name]['object'];
-
-        } catch( Soulex_File_HttpUpload_Filter_PictureTamer_Exception $e) {
-
+        } catch( Exception $e) {
             $this->errorMsg = $e->getMessage();
-
         }
     }
 }

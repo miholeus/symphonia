@@ -7,21 +7,26 @@
  * @version   $Id: $
  */
 
+namespace Soulex\File\HttpUpload;
+use Soulex\File\HttpUpload\FilePath\FilePathInterface;
+
 /**
  * File Path manager
  *
  * @author miholeus
  */
-class Soulex_File_HttpUpload_FilePath implements Soulex_File_HttpUpload_FilePath_Interface
+class FilePath implements FilePathInterface
 {
     protected $suffixCounter = null;
+
     public function apply($method, $settings)
     {
-        if(!is_callable(array($this, $method), true)) {
-            throw new InvalidArgumentException("Unknown method in " . __CLASS__);
+        if (!is_callable(array($this, $method), true)) {
+            throw new \InvalidArgumentException("Unknown method in " . __CLASS__);
         }
         return $this->{$method}($settings);
     }
+
     /**
      * Set new file's name in path
      *
@@ -30,17 +35,17 @@ class Soulex_File_HttpUpload_FilePath implements Soulex_File_HttpUpload_FilePath
      */
     protected function setName($settings)
     {
-        if(!empty($settings['path']) && !empty($settings['file'])) {
+        if (!empty($settings['path']) && !empty($settings['file'])) {
             $path = $settings['path'];
             $directory = dirname($path);
 
             // rename file?
-            $fileExtension= substr($settings['file'], strrpos($settings['file'], '.'));
+            $fileExtension = substr($settings['file'], strrpos($settings['file'], '.'));
 
             $fileName = $settings['file'];
 
-            if(isset($settings['fileName'])) {
-                if(isset($settings['suffix'])) {
+            if (isset($settings['fileName'])) {
+                if (isset($settings['suffix'])) {
                     $fileName = $settings['fileName'] . '_' . $settings['suffix'] . $fileExtension;
                 } else {
                     $fileName = $settings['fileName'] . $fileExtension;
@@ -54,6 +59,7 @@ class Soulex_File_HttpUpload_FilePath implements Soulex_File_HttpUpload_FilePath
 
         return null;
     }
+
     /**
      * Smart folder divider
      *
@@ -62,39 +68,39 @@ class Soulex_File_HttpUpload_FilePath implements Soulex_File_HttpUpload_FilePath
      */
     protected function smartFolders($settings)
     {
-        if(!empty($settings['path']) && !empty($settings['file'])) {
+        if (!empty($settings['path']) && !empty($settings['file'])) {
             $path = $settings['path'];
             $directory = dirname($path);
 
             $levels = isset($settings['sliceLength']) ? $settings['sliceLength'] : 2;
 
             // rename file?
-            $fileExtension= substr($settings['file'], strrpos($settings['file'], '.'));
+            $fileExtension = substr($settings['file'], strrpos($settings['file'], '.'));
 
             $fileName = $settings['file'];
 
-            if(isset($settings['fileName'])) {
+            if (isset($settings['fileName'])) {
                 $fileName = $settings['fileName'];
             }
 
             $fileNameLength = strlen($fileName);
 
             $numberOfSplits = ceil($fileNameLength / $levels);
-            if($numberOfSplits >= 2) {
-                $chars = preg_split('//u',$fileName,-1,PREG_SPLIT_NO_EMPTY);
+            if ($numberOfSplits >= 2) {
+                $chars = preg_split('//u', $fileName, -1, PREG_SPLIT_NO_EMPTY);
                 $newString = '';
-                for($i=1;$i<=count($chars);$i+=2) {
-                    $newString .= $chars[$i-1];
-                    if(isset($chars[$i])) {
+                for ($i = 1; $i <= count($chars); $i += 2) {
+                    $newString .= $chars[$i - 1];
+                    if (isset($chars[$i])) {
                         $newString .= $chars[$i] . '/';
                     }
                 }
                 $fileName = rtrim($newString, '/');
             }
 
-            if(isset($settings['suffix'])) {
-                if(isset($settings['incSuffix']) && true === $settings['incSuffix']) {
-                    if(null === $this->suffixCounter) {
+            if (isset($settings['suffix'])) {
+                if (isset($settings['incSuffix']) && true === $settings['incSuffix']) {
+                    if (null === $this->suffixCounter) {
                         $this->suffixCounter = $settings['suffix'];
                     } else {
                         $this->suffixCounter++;
@@ -118,11 +124,11 @@ class Soulex_File_HttpUpload_FilePath implements Soulex_File_HttpUpload_FilePath
     public function getSmartPath($path, $file, $fileName, $suffix, $sliceLength = 2)
     {
         return $this->smartFolders(array(
-                'path' => $path,
-                'file' => $file,
-                'fileName' => $fileName,
-                'suffix' => $suffix,
-                'sliceLength' => $sliceLength
-            ));
+            'path' => $path,
+            'file' => $file,
+            'fileName' => $fileName,
+            'suffix' => $suffix,
+            'sliceLength' => $sliceLength
+        ));
     }
 }
