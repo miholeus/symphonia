@@ -1,7 +1,9 @@
 Soulex Project
 ==============
 
-CMS system based on popular Framework. Zend Framework 1.x used.
+CMS system based on popular Framework. Symfony Framework 2.x used.
+
+Current Progress: In development
 
 Features:
 
