@@ -6,14 +6,14 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @version    $Id: $
  */
-
+namespace Soulex\Admin\Tree;
 /**
  * Generates pages Tree
  * 
  * @author miholeus
  *
  */
-class Soulex_Admin_Tree_Page
+class Page
 {
 	/**
 	 * Generates whole tree of pages

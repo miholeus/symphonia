@@ -6,7 +6,7 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @version   $Id: $
  */
-
+namespace Soulex\Db\Table;
 /**
  * Class for managing nested set trees
  * Add, delete, move nodes
@@ -23,7 +23,7 @@
  *
  * @author miholeus
  */
-class Soulex_Db_Table_Nestedset extends Zend_Db_Table
+class Nestedset extends \Zend\Db\Table
 {
 
     const ERROR_NODE_NOT_EXIST = 19820;
@@ -61,7 +61,7 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
      *
      * @param array root properties
      * @return integer table primary key value
-     * @throws Zend_Db_Table_Exception
+     * @throws \Zend\Db\Table\Exception
      */
     public function clear($properties = array()){
         //truncate
@@ -80,12 +80,12 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
      * Returns a Left and Right IDs and Level of an node or null if node not exists
      *
      * @param integer node id
-     * @return Zend_Db_Row_Abstract
-     * @throws Zend_Db_Table_Exception
+     * @return \Zend\Db\Row\Abstract
+     * @throws \Zend\Db\Table\Exception
      */
     public function getNodeInfo($id){
         if (!$nodeInfo = $this->fetchRow($this->_id . ' = ' . (int)$id))
-            throw new Zend_Db_Table_Exception('Can\'t fetch node row (id #' . $id . ')', self::ERROR_NODE_NOT_EXIST);
+            throw new \Zend\Db\Table\Exception('Can\'t fetch node row (id #' . $id . ')', self::ERROR_NODE_NOT_EXIST);
         else
             return $nodeInfo;
     }
@@ -96,7 +96,7 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
      * @param integer parent node id
      * @param array node properties
      * @return table primary key value
-     * @throws Zend_Db_Table_Exception
+     * @throws \Zend\Db\Table\Exception
      */
     public function insertNode($id, $properties = array()){
         $parent = $this->getNodeInfo($id);
@@ -124,7 +124,7 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
             $this->_db->commit();
             
             return $insertedId;
-        } catch (Zend_Db_Exception $e) {
+        } catch (\Zend\Db\Table\Exception $e) {
             $this->_db->rollBack();
             throw new $e;
         }
@@ -136,7 +136,7 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
      * @param integer node id
      * @param array node properties
      * @return table primary key value
-     * @throws Zend_Db_Table_Exception
+     * @throws \Zend\Db\Table\Exception
      */
     public function insertNodeAfter($afterId, $properties = array()){
         $node = $this->getNodeInfo($afterId);
@@ -164,7 +164,7 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
             $this->_db->commit();
             
             return $insertedId;
-        } catch (Zend_Db_Exception $e) {
+        } catch (\Zend\Db\Table\Exception $e) {
             $this->_db->rollBack();
             throw new $e;
         }
@@ -175,7 +175,7 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
      *
      * @param integer node id
      * @param boolean delete with childs
-     * @throws Zend_Db_Table_Exception
+     * @throws \Zend\Db\Table\Exception
      */
     public function deleteNode($id, $withChilds = true){
         $node = $this->getNodeInfo($id);
@@ -190,7 +190,7 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
      * Delete one node, without childs
      *
      * @param integer node id
-     * @throws Zend_Db_Table_Exception
+     * @throws \Zend\Db\Table\Exception
      */
     private function _deleteNodeWithoutChilds($id, $node){
         //delete node
@@ -209,7 +209,7 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
                 'WHERE ' . $this->_right . '>' . $node->{$leftKey}
             );
         } else {
-            throw new Zend_Db_Table_Exception('Can\'t delete node row (id #' . $id . ')');
+            throw new \Zend\Db\Table\Exception('Can\'t delete node row (id #' . $id . ')');
         }
     }
 
@@ -217,7 +217,7 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
      *  Delete node, with childs
      *
      * @param integer node id
-     * @throws Zend_Db_Table_Exception
+     * @throws \Zend\Db\Table\Exception
      */
     private function _deleteNodeWithChilds($id, $node){
         //delete nodes
@@ -234,7 +234,7 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
                 'WHERE ' . $this->_right . ' > ' . $node->{$rightKey}
             );
         } else {
-            throw new Zend_Db_Table_Exception('Can\'t delete node row (id #' . $id . ')');
+            throw new \Zend\Db\Table\Exception('Can\'t delete node row (id #' . $id . ')');
         }
     }
 
@@ -250,10 +250,10 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
      * @param integer childs start level relative level from which start to enumerate children
      * @param integer childs end level the last relative level at which enumerate children
      * @return array
-     * @throws Exception, Zend_Db_Table_Exception
+     * @throws \Exception, Zend_Db_Table_Exception
      */
     public function getChildren($id, array $order = array(), $levelStart = 1, $levelEnd = 1){
-        if ($levelStart < 0) throw new Exception('levelStart value can\'t be less zero');
+        if ($levelStart < 0) throw new \Exception('levelStart value can\'t be less zero');
 
         $where1 = ' AND ' . $this->_name . '.' . $this->_level;
         $where2 = '_' . $this->_name . '.' . $this->_level . ' + ';
@@ -312,10 +312,10 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
      * @param integer node id
      * @param integer relative level of parent
      * @return parent row as assoc array
-     * @throws Exception
+     * @throws \Exception
      */
     public function getParent($id, $level = 1) {
-        if($level < 1) throw new Exception('level can\'t be less by one');
+        if($level < 1) throw new \Exception('level can\'t be less by one');
 
         return $this->getAdapter()->fetchRow('SELECT * FROM ' .
             $this->_name . ' _' . $this->_name . ', ' . $this->_name . ' ' .
@@ -398,7 +398,7 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
      *
      * @param node id
      * @return array
-     * @throws Exception, Zend_Db_Table_Exception
+     * @throws \Exception, Zend_Db_Table_Exception
      */
     public function getSiblings($id) {
         $result = array();
@@ -432,7 +432,7 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
                         implode(',', $params['id_edit'])
            ));
            $this->_db->commit();
-        } catch (Zend_Exception $e) {
+        } catch (\Zend\Exception $e) {
             $this->_db->rollBack();
             throw $e;
         }
@@ -463,7 +463,7 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
                         implode(',', $params['id_edit'])
            ));
            $this->_db->commit();
-        } catch (Zend_Exception $e) {
+        } catch (\Zend\Exception $e) {
             $this->_db->rollBack();
             throw $e;
         }
@@ -519,14 +519,14 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
             try {
                 $this->insert($data);
                 $rowId = $this->_db->lastInsertId();
-            } catch (Zend_Exception $e) {
+            } catch (\Zend\Exception $e) {
                 throw $e;
             }
 
             $this->_db->commit();
-        } catch (Zend_Exception $e) {
+        } catch (\Zend\Exception $e) {
             $this->_db->rollBack();
-            throw new RuntimeException("Row insertion failed " . $e->getMessage());
+            throw new \RuntimeException("Row insertion failed " . $e->getMessage());
         }
 
         return $rowId;
@@ -596,12 +596,12 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
             // editing node keys offset
             $skew_edit = $right_key_near - $left_key + 1;
             $params['skew_edit'] = $skew_edit;
-        var_dump($data);
-        print '<br />параметры дерева <br />';
-        var_dump($right_key_near, $left_key, $right_key, $params);
-        print '<br />уровень нового узла';
-        var_dump($data['level']);
-        die();
+//        var_dump($data);
+//        print '<br />параметры дерева <br />';
+//        var_dump($right_key_near, $left_key, $right_key, $params);
+//        print '<br />уровень нового узла';
+//        var_dump($data['level']);
+//        die();
             $this->moveBranchWhenNodeGoesUp($params);
         } else {// moving node down
             $skew_edit = $right_key_near - $left_key + 1 - $skew_tree;
@@ -626,7 +626,7 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
        try {
            $row = $this->find($id)->current();
            if(!$row) {
-               throw new InvalidArgumentException('menu item with id ' . $id . ' not found!');
+               throw new \InvalidArgumentException('menu item with id ' . $id . ' not found!');
            }
            
            $lft = $row->lft;
@@ -642,9 +642,9 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
 
            $this->_db->commit();
 
-       } catch (Exception $e) {
+       } catch (\Exception $e) {
            $this->_db->rollBack();
-           throw new RuntimeException("Row deletion failed " . $e->getMessage());
+           throw new \RuntimeException("Row deletion failed " . $e->getMessage());
        }
 
     }
@@ -652,7 +652,7 @@ class Soulex_Db_Table_Nestedset extends Zend_Db_Table
      * Find Right Key of Parent Node
      * 
      * @param int $id of parent node
-     * @return Zend_Db_Table_Row_Abstract
+     * @return \Zend\Db\Table\Row\Abstract
      */
     private function findParentRightKey($id)
     {
