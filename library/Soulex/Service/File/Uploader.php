@@ -6,6 +6,8 @@
  * @license   New BSD {@link http://www.opensource.org/licenses/bsd-license.php}
  * @version    $Id: $
  */
+namespace Soulex\Service\File;
+
 use Soulex\File\HttpUpload;
 
 /**
@@ -41,12 +43,12 @@ use Soulex\File\HttpUpload;
  *  ));
  *  $uploader->upload();
  *  $files = $uploader->getUploadedFiles();
- * 
+ *
  * ================================================================
  *
  * @author miholeus
  */
-class Soulex_Service_File_Uploader
+class Uploader
 {
     /**
      * Uploader object
@@ -78,6 +80,7 @@ class Soulex_Service_File_Uploader
      * @var array
      */
     protected $_errors;
+
     /**
      * Loads uploader object
      *
@@ -87,8 +90,8 @@ class Soulex_Service_File_Uploader
     public function __construct($fileName, $options = array())
     {
         $this->_uploader = new HttpUpload($fileName);
-        if(count($options) > 0) {
-            foreach($options as $propertyName => $propertyValue) {
+        if (count($options) > 0) {
+            foreach ($options as $propertyName => $propertyValue) {
                 $this->_uploader->$propertyName = $propertyValue;
             }
         }
@@ -97,16 +100,16 @@ class Soulex_Service_File_Uploader
     /**
      * Apply filter to uploaded files
      *
-     * @param string      $name    filter name
-     * @param string      $action  filter action
-     * @param string      $mask    mask of files to apply a filter
-     * @param arrat|array $options options of filter
+     * @param string $name filter name
+     * @param string $action filter action
+     * @param string $mask mask of files to apply a filter
+     * @param array $options options of filter
      */
     public function filter($name, $action, $mask = null, $options = array())
     {
         $this->_uploader->addFilter($name);
         $this->_uploader->applyFilter(array($name, $mask), $action, $options);
-        if(null === $this->_filters) {
+        if (null === $this->_filters) {
             $this->_filters = array();
         }
         $this->_filters[$name] = array(
@@ -115,6 +118,7 @@ class Soulex_Service_File_Uploader
             'options' => $options
         );
     }
+
     /**
      * Starts uploading process
      * It checks if any filters were applied to files, then
@@ -128,31 +132,32 @@ class Soulex_Service_File_Uploader
         try {
             $this->_uploader->doUpload();
 
-            if(null === $this->_uploadedFiles) {
+            if (null === $this->_uploadedFiles) {
                 $this->_uploadedFiles = array();
             }
 
-            if($this->_uploader->is_uploaded) {
-                if(is_array($this->_filters) && count($this->_filters) > 0) {
-                    foreach($this->_filters as $filterName => $filterValues) {
+            if ($this->_uploader->is_uploaded) {
+                if (is_array($this->_filters) && count($this->_filters) > 0) {
+                    foreach ($this->_filters as $filterName => $filterValues) {
                         $this->_uploadedFiles[] = $this->_uploader->filter($filterName)->get_processed_file();
                     }
                 } else {
                     $this->_uploadedFiles[] = $this->_uploader->uploaded_file_fullpath;
                 }
             } else {
-                throw new RuntimeException($this->_uploader->errorMsg);
+                throw new \RuntimeException($this->_uploader->errorMsg);
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             //$this->_uploader->is_uploaded
-            if( file_exists($this->_uploader->uploaded_file_fullpath)) {
+            if (file_exists($this->_uploader->uploaded_file_fullpath)) {
                 unlink($this->_uploader->uploaded_file_fullpath);
             }
-            throw new RuntimeException($e->getMessage());
+            throw new \RuntimeException($e->getMessage());
         }
 
         $this->setOriginalUploadedFiles($this->_uploader->uploaded_files);
     }
+
     /**
      * Return uploaded files
      *
