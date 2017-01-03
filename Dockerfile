@@ -25,7 +25,7 @@ RUN yes | pecl install apcu \
     && echo "apc.enable_cli=1" >> /usr/local/etc/php/conf.d/apcu.ini
 
 COPY support/php/fpm_www.conf /usr/local/etc/php-fpm.d/www.conf
-COPY . /srv/
+COPY . /app/
 
-WORKDIR /srv
+WORKDIR /app
 

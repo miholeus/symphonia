@@ -1,8 +1,19 @@
 version: "2"
 
 services:
+    web:
+        image: miholeus/nginx:latest
+        volumes:
+            - .:/app
+            - ./support/nginx/soulex.dev:/etc/nginx/conf.d/default.conf
+        ports:
+            - "8080:80"
+        links:
+            - php
     php:
         image: php70
         tty: true
         volumes:
-            - '.:/srv'
+            - ./:/app
+            - ./support/php/log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
+        working_dir: /app
