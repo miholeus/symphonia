@@ -10,7 +10,6 @@ Features:
 1. Build pages
 2. Custom nodes on pages
 3. Integrated menu
-4. Admin panel in Joomla style
 
 
 [![Build Status](https://travis-ci.org/miholeus/soulex.svg?branch=master)](https://travis-ci.org/miholeus/soulex)
@@ -26,16 +25,5 @@ Features:
   * Use GitHub: simply download the zip on the right of the readme
   * Use Git: `git clone git@github.com:miholeus/soulex.git`
 2. From a command line open in the folder, run `composer install`.
-3. Enter your database details into `application/configs/application.ini`.
-
-## Setting Up Caching
-
-- mkdir cache
-
-## Setting Up Logging
-
-- mkdir logs
-
-## Setting Up Themes
-
-CMS ships with 1 customized theme. You can set your own scheme in public/skins/frontend/skin.xml file.
+3. Enter your config into `app/config/parameters.yml`.
+4. Run migrations with `php app/console doctrine:migrations:migrate` command.
