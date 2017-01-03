@@ -11,9 +11,28 @@ services:
         links:
             - php
     php:
-        image: php70
+        image: miholeus/php70:latest
         tty: true
+        depends_on:
+            - database
+        environment:
+            - SYMFONY_ENV=prod
+            - SYMFONY__DATABASE__USER=${DB_USER}
+            - SYMFONY__DATABASE__NAME=${DB_NAME}
+            - SYMFONY__DATABASE__PASS=${DB_PASS}
+            - SYMFONY__APP__SECRET=${APP_SECRET}
         volumes:
             - ./:/app
             - ./support/php/log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
         working_dir: /app
+    database:
+        build: 'support/database'
+        volumes:
+            - mysql_db_data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+            MYSQL_DATABASE: ${DB_NAME}
+            MYSQL_USER: ${DB_USER}
+            MYSQL_PASSWORD: ${DB_PASS}
+volumes:
+    mysql_db_data:
