@@ -1,4 +1,5 @@
 FROM php:7.0-fpm
+MAINTAINER miholeus <public@miholeus.com>
 
 RUN apt-get update && \
     apt-get install -y libmcrypt-dev libpq-dev vim net-tools
