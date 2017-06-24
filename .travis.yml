@@ -17,3 +17,6 @@ script:
 
 after_success:
   - codecov
+
+notifications:
+    slack: mhlsoftware:fJKaZkBD8t9wcxQtLV2rGo8x
