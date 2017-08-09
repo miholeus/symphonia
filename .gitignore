@@ -16,3 +16,4 @@
 *.iml
 .idea
 /web/_data/
+/composer.phar

@@ -11,7 +11,7 @@ services:
         links:
             - php
     php:
-        image: miholeus/php70:latest
+        image: miholeus/php71:development
         tty: true
         depends_on:
             - database

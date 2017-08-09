@@ -1,7 +1,7 @@
-Soulex Project
+Symphonia Project
 ==============
 
-CMS system based on popular Framework. Symfony Framework 2.x used.
+CMS system based on popular Framework. Symfony Framework 3.x used.
 
 Current Progress: In development
 
@@ -19,11 +19,12 @@ Features:
 
 ## Installation
 
-[PHP](https://php.net) 5.3+ ,a database server, and [Composer](https://getcomposer.org) are required.
+[PHP](https://php.net) 7.1+ ,a database server, and [Composer](https://getcomposer.org) are required.
 
 1. There are 2 ways of grabbing the code:
   * Use GitHub: simply download the zip on the right of the readme
-  * Use Git: `git clone git@github.com:miholeus/soulex.git`
-2. From a command line open in the folder, run `composer install`.
-3. Enter your config into `app/config/parameters.yml`.
-4. Run migrations with `php app/console doctrine:migrations:migrate` command.
+  * Use Git: `git clone git@github.com:miholeus/symphonia.git`
+2. From a command line open in the folder, run `docker-compose up -d`.
+3. Go to container, run `composer install`.
+4. Enter your config into `app/config/parameters.yml`.
+5. Run migrations with `php app/console doctrine:migrations:migrate` command.
