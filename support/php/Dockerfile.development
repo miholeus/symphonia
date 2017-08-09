@@ -1,0 +1,3 @@
+FROM miholeus/php70:latest
+
+COPY support/php/php.development.ini      /usr/local/etc/php/php.ini

@@ -26,5 +26,17 @@ RUN yes | pecl install apcu \
     && echo "extension=apcu.so" > /usr/local/etc/php/conf.d/apcu.ini \
     && echo "apc.enable_cli=1" >> /usr/local/etc/php/conf.d/apcu.ini
 
-COPY support/php/fpm_www.conf /usr/local/etc/php-fpm.d/www.conf
-COPY support/php/php.ini      /usr/local/etc/php/php.ini
+# Install mongo
+RUN yes | pecl install mongodb \
+    && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongo.ini
+
+# Install igbinary support
+RUN yes | pecl install igbinary \
+    && echo "extension=igbinary.so" > /usr/local/etc/php/conf.d/igbinary.ini
+
+# Install redis
+RUN yes | pecl install redis \
+    && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
+
+COPY configs/fpm_www.conf /usr/local/etc/php-fpm.d/www.conf
+COPY configs/php.ini      /usr/local/etc/php/php.ini
