@@ -1,0 +1,65 @@
+Symphonia\CoreBundle\Entity\Page:
+    type: entity
+    table: pages
+    uniqueConstraints:
+        lft:
+            columns:
+                - lft
+                - rgt
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        uri:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        metaKeywords:
+            type: string
+            nullable: false
+            length: 5000
+            options:
+                fixed: false
+            column: meta_keywords
+        metaDescription:
+            type: string
+            nullable: false
+            length: 5000
+            options:
+                fixed: false
+            column: meta_description
+        published:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+        lft:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        rgt:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        level:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
+    lifecycleCallbacks: {  }

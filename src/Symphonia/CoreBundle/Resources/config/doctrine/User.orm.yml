@@ -1,0 +1,64 @@
+Symphonia\CoreBundle\Entity\User:
+    type: entity
+    table: users
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        username:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        password:
+            type: string
+            nullable: true
+            length: 32
+            options:
+                fixed: false
+        firstName:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+            column: first_name
+        lastName:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+            column: last_name
+        registerdate:
+            type: datetime
+            nullable: false
+            options:
+                default: '0000-00-00 00:00:00'
+            column: registerDate
+        lastvisitdate:
+            type: datetime
+            nullable: false
+            options:
+                default: '0000-00-00 00:00:00'
+            column: lastvisitDate
+        role:
+            type: string
+            nullable: true
+            length: 25
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

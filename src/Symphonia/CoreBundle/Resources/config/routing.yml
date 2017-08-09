@@ -1,0 +1,6 @@
+symphonia_core_homepage:
+    path:     /
+    defaults: { _controller: SymphoniaCoreBundle:Default:index }
+login:
+    path:     /login
+    defaults: { _controller: SymphoniaCoreBundle:Security:login }
