@@ -1,0 +1,3 @@
+FROM miholeus/php71:latest
+
+COPY configs/php.ini      /usr/local/etc/php/php.ini
