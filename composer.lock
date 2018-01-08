@@ -1235,7 +1235,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "KnpLabs",
+                    "name": "Knplabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -3072,12 +3072,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tetranz/select2entity-bundle.git",
-                "reference": "b69a8d95285a6abafe7f0849530db73e8e732957"
+                "reference": "e847b9edb48fefdf777d5dd68c7705de7d10a785"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tetranz/select2entity-bundle/zipball/b69a8d95285a6abafe7f0849530db73e8e732957",
-                "reference": "b69a8d95285a6abafe7f0849530db73e8e732957",
+                "url": "https://api.github.com/repos/tetranz/select2entity-bundle/zipball/e847b9edb48fefdf777d5dd68c7705de7d10a785",
+                "reference": "e847b9edb48fefdf777d5dd68c7705de7d10a785",
                 "shasum": ""
             },
             "require": {
@@ -3111,7 +3111,7 @@
                 "symfony",
                 "typeahead"
             ],
-            "time": "2017-04-22 01:16:03"
+            "time": "2017-12-29T00:03:03+00:00"
         },
         {
             "name": "twig/twig",
@@ -3395,7 +3395,7 @@
                 "Fixture",
                 "Persistence"
             ],
-            "time": "2017-08-04 10:05:31"
+            "time": "2016-06-01T10:17:07+00:00"
         },
         {
             "name": "mikey179/vfsStream",
@@ -3445,16 +3445,16 @@
         },
         {
             "name": "sensio/generator-bundle",
-            "version": "v3.1.6",
+            "version": "v3.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "128bc5dabc91ca40b7445f094968dd70ccd58305"
+                "reference": "28cbaa244bd0816fd8908b93f90380bcd7b67a65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/128bc5dabc91ca40b7445f094968dd70ccd58305",
-                "reference": "128bc5dabc91ca40b7445f094968dd70ccd58305",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/28cbaa244bd0816fd8908b93f90380bcd7b67a65",
+                "reference": "28cbaa244bd0816fd8908b93f90380bcd7b67a65",
                 "shasum": ""
             },
             "require": {
@@ -3495,7 +3495,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2017-07-18T07:57:44+00:00"
+            "time": "2017-12-07T15:36:41+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",
