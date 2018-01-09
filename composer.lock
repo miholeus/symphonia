@@ -1235,7 +1235,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "KnpLabs",
+                    "name": "Knplabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -2855,16 +2855,16 @@
         },
         {
             "name": "symfony/swiftmailer-bundle",
-            "version": "v2.6.3",
+            "version": "v2.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/swiftmailer-bundle.git",
-                "reference": "11555c338f3c367b0a1bd2f024a53aa813f4ce00"
+                "reference": "c4808f5169efc05567be983909d00f00521c53ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/11555c338f3c367b0a1bd2f024a53aa813f4ce00",
-                "reference": "11555c338f3c367b0a1bd2f024a53aa813f4ce00",
+                "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/c4808f5169efc05567be983909d00f00521c53ec",
+                "reference": "c4808f5169efc05567be983909d00f00521c53ec",
                 "shasum": ""
             },
             "require": {
@@ -2910,7 +2910,7 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "time": "2017-07-22T07:18:13+00:00"
+            "time": "2017-10-19T01:06:41+00:00"
         },
         {
             "name": "symfony/symfony",
@@ -3072,12 +3072,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tetranz/select2entity-bundle.git",
-                "reference": "b69a8d95285a6abafe7f0849530db73e8e732957"
+                "reference": "e847b9edb48fefdf777d5dd68c7705de7d10a785"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tetranz/select2entity-bundle/zipball/b69a8d95285a6abafe7f0849530db73e8e732957",
-                "reference": "b69a8d95285a6abafe7f0849530db73e8e732957",
+                "url": "https://api.github.com/repos/tetranz/select2entity-bundle/zipball/e847b9edb48fefdf777d5dd68c7705de7d10a785",
+                "reference": "e847b9edb48fefdf777d5dd68c7705de7d10a785",
                 "shasum": ""
             },
             "require": {
@@ -3111,7 +3111,7 @@
                 "symfony",
                 "typeahead"
             ],
-            "time": "2017-04-22 01:16:03"
+            "time": "2017-12-29T00:03:03+00:00"
         },
         {
             "name": "twig/twig",
@@ -3395,7 +3395,7 @@
                 "Fixture",
                 "Persistence"
             ],
-            "time": "2017-08-04 10:05:31"
+            "time": "2016-06-01T10:17:07+00:00"
         },
         {
             "name": "mikey179/vfsStream",
