@@ -1,9 +1,19 @@
-language: php
+---
 
-php:
-  - 7.1
+sudo: required
+env:
+  - >
+  SYMFONY_ENV=prod
+  SYMFONY__DATABASE__USER=symphonia
+  SYMFONY__DATABASE__NAME=symphonia
+  SYMFONY__DATABASE__PASS=1
+  SYMFONY__APP__SECRET=f5b84ae43ca331692f484aee037ae24042e5702c
+
+services:
+  - docker
 
 before_install:
+  - sudo apt-get update
   - sudo pip install codecov
 
 before_script:
