@@ -1,30 +1,34 @@
----
-
 sudo: required
-env:
-  - >
-  SYMFONY_ENV=prod
-  SYMFONY__DATABASE__USER=symphonia
-  SYMFONY__DATABASE__NAME=symphonia
-  SYMFONY__DATABASE__PASS=1
-  SYMFONY__APP__SECRET=f5b84ae43ca331692f484aee037ae24042e5702c
+
+language: php
+
+php:
+  - 7.1
 
 services:
   - docker
 
-before_install:
-  - sudo apt-get update
-  - sudo pip install codecov
+env:
+  - DB_USER=symphonia
+  - DB_NAME=symphonia
+  - DB_PASS=1
+  - APP_SECRET=f5b84ae43ca331692f484aee037ae24042e5702c
 
-before_script:
-  - composer install --dev
+before_install:
+#  - sudo apt-get update
+#  - sudo pip install codecov
+  - docker-compose up -d
+  - docker ps -a
+
+
+#before_script:
+#  - composer install --dev
 
 script:
-  - cd tests
   - phpunit --coverage-clover=coverage.xml
 
-after_success:
-  - codecov
+#after_success:
+#  - codecov
 
 notifications:
     slack: mhlsoftware:fJKaZkBD8t9wcxQtLV2rGo8x
