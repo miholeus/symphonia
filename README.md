@@ -12,10 +12,10 @@ Features:
 3. Integrated menu
 
 
-[![Build Status](https://travis-ci.org/miholeus/soulex.svg?branch=master)](https://travis-ci.org/miholeus/soulex)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/miholeus/soulex/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/miholeus/soulex/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/miholeus/soulex/badges/build.png?b=master)](https://scrutinizer-ci.com/g/miholeus/soulex/build-status/master)
-[![codecov.io](https://codecov.io/github/miholeus/soulex/coverage.svg?branch=master)](https://codecov.io/github/miholeus/soulex?branch=master)
+[![Build Status](https://travis-ci.org/miholeus/symphonia.svg?branch=master)](https://travis-ci.org/miholeus/symphonia)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/miholeus/symphonia/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/miholeus/symphonia/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/miholeus/symphonia/badges/build.png?b=master)](https://scrutinizer-ci.com/g/miholeus/symphonia/build-status/master)
+[![codecov.io](https://codecov.io/github/miholeus/symphonia/coverage.svg?branch=master)](https://codecov.io/github/miholeus/symphonia?branch=master)
 
 ## Installation
 
