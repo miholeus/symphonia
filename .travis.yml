@@ -1,10 +1,5 @@
 sudo: required
 
-language: php
-
-php:
-  - 7.1
-
 services:
   - docker
 
@@ -18,14 +13,14 @@ before_install:
 #  - sudo apt-get update
 #  - sudo pip install codecov
   - docker-compose up -d
-  - docker ps -a
+  - docker-compose ps
 
 
 #before_script:
 #  - composer install --dev
 
 script:
-  - phpunit --coverage-clover=coverage.xml
+  - docker-compose run --rm php bash -c "make test"
 
 #after_success:
 #  - codecov

@@ -20,7 +20,7 @@ class AppKernel extends Kernel
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Tetranz\Select2EntityBundle\TetranzSelect2EntityBundle(),
-            new Snc\RedisBundle\SncRedisBundle(),
+//            new Snc\RedisBundle\SncRedisBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
