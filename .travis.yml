@@ -1,13 +1,16 @@
 sudo: required
 
+language: php
+
 services:
   - docker
 
 env:
-  - DB_USER=symphonia
-  - DB_NAME=symphonia
-  - DB_PASS=1
-  - APP_SECRET=f5b84ae43ca331692f484aee037ae24042e5702c
+  global:
+    - DB_USER=symphonia
+    - DB_NAME=symphonia
+    - DB_PASS=1
+    - APP_SECRET=f5b84ae43ca331692f484aee037ae24042e5702c
 
 before_install:
 #  - sudo apt-get update
