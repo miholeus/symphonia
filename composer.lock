@@ -2269,29 +2269,29 @@
         },
         {
             "name": "snc/redis-bundle",
-            "version": "2.0.2",
+            "version": "2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/snc/SncRedisBundle.git",
-                "reference": "60b82fd31432c78d976470eae179211af7d17c60"
+                "reference": "73c87c435f87e08c2d564c3d9ad35f38cd8d3a0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/snc/SncRedisBundle/zipball/60b82fd31432c78d976470eae179211af7d17c60",
-                "reference": "60b82fd31432c78d976470eae179211af7d17c60",
+                "url": "https://api.github.com/repos/snc/SncRedisBundle/zipball/73c87c435f87e08c2d564c3d9ad35f38cd8d3a0e",
+                "reference": "73c87c435f87e08c2d564c3d9ad35f38cd8d3a0e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "symfony/framework-bundle": "^2.7 || ^3.0",
-                "symfony/yaml": "^2.7 || ^3.0"
+                "symfony/framework-bundle": "^2.7 || ^3.0 || ^4.0",
+                "symfony/yaml": "^2.7 || ^3.0 || ^4.0"
             },
             "require-dev": {
                 "doctrine/cache": "1.*",
-                "phpunit/phpunit": "4.8.*",
+                "phpunit/phpunit": "^4.8 || ^5.4",
                 "predis/predis": "^1.0",
-                "symfony/console": "^2.7 || ^3.0",
-                "symfony/phpunit-bridge": "^2.7 || ^3.0"
+                "symfony/console": "^2.7 || ^3.0 || ^4.0",
+                "symfony/phpunit-bridge": "^2.7 || ^3.0 || ^4.0"
             },
             "suggest": {
                 "monolog/monolog": "If you want to use the monolog redis handler.",
@@ -2330,7 +2330,7 @@
                 "redis",
                 "symfony"
             ],
-            "time": "2017-06-15T08:51:06+00:00"
+            "time": "2017-12-01T10:40:06+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
