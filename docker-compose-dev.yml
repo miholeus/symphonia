@@ -7,7 +7,7 @@ services:
             - .:/app:delegated
             - ./support/nginx/symphonia.dev:/etc/nginx/conf.d/default.conf
         ports:
-            - "80:80"
+            - "8080:80"
         links:
             - php
     php:
@@ -29,6 +29,8 @@ services:
         build: 'support/database'
         volumes:
             - mysql_db_data:/var/lib/mysql
+        ports:
+            - "3307:3306"
         environment:
             MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
             MYSQL_DATABASE: ${DB_NAME}
