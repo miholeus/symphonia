@@ -27,4 +27,5 @@ Features:
 2. From a command line open in the folder, run `docker-compose up -d`.
 3. Go to container, run `composer install`.
 4. Enter your config into `app/config/parameters.yml`.
-5. Run migrations with `php app/console doctrine:migrations:migrate` command.
+5. Create database schema `php app/console doctrine:schema:create`
+6. Run migrations with `php app/console doctrine:migrations:migrate` command.
