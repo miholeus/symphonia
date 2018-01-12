@@ -4,7 +4,7 @@ services:
     web:
         image: miholeus/nginx:latest
         volumes:
-            - .:/app
+            - .:/app:delegated
             - ./support/nginx/symphonia.dev:/etc/nginx/conf.d/default.conf
         ports:
             - "8080:80"
@@ -16,7 +16,7 @@ services:
         depends_on:
             - database
         environment:
-            - SYMFONY_ENV=prod
+            - SYMFONY_ENV=${ENV}
             - SYMFONY__DATABASE__USER=${DB_USER}
             - SYMFONY__DATABASE__NAME=${DB_NAME}
             - SYMFONY__DATABASE__PASS=${DB_PASS}
