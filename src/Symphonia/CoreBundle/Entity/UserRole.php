@@ -13,6 +13,10 @@ namespace Symphonia\CoreBundle\Entity;
  */
 class UserRole
 {
+    const ROLE_USER = 'USER';
+    const ROLE_ADMIN = 'ADMIN';
+    const ROLE_SUPER_ADMIN = 'SUPER_ADMIN';
+
     /**
      * @var integer
      */

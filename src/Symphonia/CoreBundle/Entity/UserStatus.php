@@ -13,6 +13,11 @@ namespace Symphonia\CoreBundle\Entity;
  */
 class UserStatus
 {
+    const STATUS_ACTIVE = 'active';
+    const STATUS_BLOCKED = 'blocked';
+    const STATUS_DELETED = 'deleted';
+    const STATUS_REGISTERED = 'registered';
+
     /**
      * @var integer
      */
