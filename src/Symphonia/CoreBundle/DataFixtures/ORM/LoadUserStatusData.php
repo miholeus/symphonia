@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Zenomania\CoreBundle\DataFixtures\ORM;
+namespace Symphonia\CoreBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
