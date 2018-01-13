@@ -1,4 +1,20 @@
+imports:
+   - { resource: "services/events.yml" }
+
 services:
-#    symphonia_core.example:
-#        class: Symphonia\CoreBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+    user.listener:
+        class: Symphonia\CoreBundle\Entity\Listener\UserListener
+        arguments: ['@service_container']
+        tags:
+            - { name: doctrine.orm.entity_listener }
+    core.doctrine.entity_listener_resolver:
+        class: Symphonia\CoreBundle\Doctrine\EntityListenerResolver
+        arguments: [ "@service_container" ]
+    core.user_aware_service:
+        class: Symphonia\CoreBundle\Service\UserAwareService
+        arguments: ['@doctrine.orm.entity_manager', '@security.token_storage', '@event.notification_manager']
+    user.service:
+        class:  Symphonia\CoreBundle\Service\User
+        parent: core.user_aware_service
+        calls:
+          - ['setPasswordEncoder', ['@security.password_encoder']]

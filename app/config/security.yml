@@ -4,19 +4,17 @@ security:
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory: ~
-        db_provider:
-            entity:
-                class: CoreBundle\Entity\User
-                property: login
+      in_memory:
+          memory: ~
+      db_provider:
+          entity:
+              class: Symphonia\CoreBundle\Entity\User
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
         main:
             anonymous: ~
             form_login:
@@ -27,7 +25,11 @@ security:
             logout:
                 path: /logout
                 target: /
-            provider: in_memory
+            provider: db_provider
+            remember_me:
+                secret:   '%secret%'
+                lifetime: 604800
+                remember_me_parameter: login[remember_me]
             # activate different ways to authenticate
 
             # http_basic: ~
@@ -37,7 +39,15 @@ security:
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, roles: ROLE_USER }
+        - { path: ^/recover, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_SUPER_ADMIN }
+    encoders:
+        Zenomania\CoreBundle\Entity\User:
+            algorithm: bcrypt
     role_hierarchy:
-        ROLE_AMDIN: ROLE_USER
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_API:         ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+    access_decision_manager:
+        strategy: affirmative

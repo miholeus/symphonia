@@ -2,10 +2,14 @@
 
 namespace Symphonia\CoreBundle\Entity;
 
+use Symphonia\CoreBundle\Service\Upload\IdentifiableInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * User
  */
-class User
+class User implements UserInterface, \Serializable, AdvancedUserInterface, IdentifiableInterface
 {
     /**
      * @var integer
@@ -127,7 +131,12 @@ class User
      */
     private $role;
 
-
+    /**
+     * User roles
+     *
+     * @var array
+     */
+    private $roles = [];
     /**
      * Get id
      *
@@ -138,6 +147,109 @@ class User
         return $this->id;
     }
 
+    public function getEntityIdentifier()
+    {
+        return $this->getId();
+    }
+
+    public function isAccountNonExpired()
+    {
+        return !$this->isDeleted;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return !$this->isBlocked;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
+    }
+
+    public function getEntityName()
+    {
+        return strtolower((new \ReflectionClass($this))->getShortName());
+    }
+
+    public function propertiesVisibleInChangeSet()
+    {
+
+    }
+
+    public function propertiesNotVisibleInChangeSet()
+    {
+        return [
+            'password'
+        ];
+    }
+
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->login,
+            $this->password,
+            $this->roles,
+            $this->isActive
+        ]);
+    }
+
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->login,
+            $this->password,
+            $this->roles,
+            $this->isActive
+            ) = unserialize($serialized);
+    }
+
+
+    public function getRoles()
+    {
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+    }
+
+    /**
+     * Add user role
+     *
+     * @param $role
+     */
+    public function addRole($role)
+    {
+        $this->roles[] = $role;
+    }
+
+    public function getUsername()
+    {
+        return $this->login;
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function __construct()
+    {
+        $this->createdOn = new \DateTime();
+        $this->updatedOn = new \DateTime();
+    }
     /**
      * Set firstname
      *
@@ -280,6 +392,16 @@ class User
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Get salt
+     *
+     * @return string
+     */
+    public function getSalt()
+    {
+        // no salt used
     }
 
     /**

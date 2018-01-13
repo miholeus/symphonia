@@ -1,0 +1,7 @@
+services:
+    event.event_dispatcher:
+        class: Symphonia\CoreBundle\Event\EventDispatcher
+        autowire: true
+    event.notification_manager:
+        class: Symphonia\CoreBundle\Event\NotificationManager
+        arguments: ['@event.event_dispatcher']
