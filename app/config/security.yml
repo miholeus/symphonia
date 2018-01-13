@@ -43,7 +43,7 @@ security:
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_SUPER_ADMIN }
     encoders:
-        Zenomania\CoreBundle\Entity\User:
+        Symphonia\CoreBundle\Entity\User:
             algorithm: bcrypt
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER

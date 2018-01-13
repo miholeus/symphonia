@@ -38,9 +38,9 @@ class LoadUserData extends AbstractFixture
         $user->setPhone('79999999999');
         $user->setRole($this->getReference('role-super_admin'));
         $user->setStatus($this->getReference('status-active'));
-//        $encoder = $this->container->get('security.password_encoder');
-//        $password = $encoder->encodePassword($user, 'demo');
-        $password = 'demo';
+        $encoder = $this->container->get('security.password_encoder');
+        $password = $encoder->encodePassword($user, 'demo');
+//        $password = 'demo';
 
         $user->setPassword($password);
         $user->setBirthDate(new \DateTime("now"));
@@ -70,9 +70,9 @@ class LoadUserData extends AbstractFixture
         $user->setRole($this->getReference('role-user'));
         $user->setStatus($this->getReference('status-active'));
 
-//        $encoder = $this->container->get('security.password_encoder');
-//        $password = $encoder->encodePassword($user, 'demo');
-        $password = 'demo';
+        $encoder = $this->container->get('security.password_encoder');
+        $password = $encoder->encodePassword($user, 'demo');
+//        $password = 'demo';
 
         $user->setPassword($password);
         $user->setBirthDate(new \DateTime("now"));
