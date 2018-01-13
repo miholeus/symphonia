@@ -1,0 +1,28 @@
+Symphonia\CoreBundle\Entity\UserStatus:
+    type: entity
+    table: user_status
+    indexes:
+        user_statuses_code__idx:
+            columns:
+                - code
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: 'название статуса'
+        code:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+    lifecycleCallbacks: {  }

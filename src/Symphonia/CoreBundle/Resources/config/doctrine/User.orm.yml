@@ -11,54 +11,134 @@ Symphonia\CoreBundle\Entity\User:
             generator:
                 strategy: IDENTITY
     fields:
-        username:
+        firstname:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: имя
+        lastname:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: фамилия
+        middlename:
             type: string
             nullable: true
-            length: 100
-            options:
-                fixed: false
+            length: 255
+            fixed: false
+            comment: отчество
+        login:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: логин
         email:
             type: string
-            nullable: false
-            length: 100
-            options:
-                fixed: false
+            nullable: true
+            length: 255
+            fixed: false
         password:
             type: string
+            nullable: false
+            length: 255
+            fixed: false
+        birthDate:
+            type: date
             nullable: true
-            length: 32
+            column: birth_date
+        avatar:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: фото
+        avatarSmall:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: avatar_small
+        phone:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: 'телефон'
+        lastLoginOn:
+            type: datetime
+            nullable: true
+            column: last_login_on
+        createdOn:
+            type: datetime
+            nullable: true
+            column: created_on
+        updatedOn:
+            type: datetime
+            nullable: true
+            column: updated_on
+        mailNotification:
+            type: boolean
+            nullable: true
+            column: mail_notification
+        mustChangePasswd:
+            type: boolean
+            nullable: true
+            column: must_change_passwd
+        passwdChangedOn:
+            type: datetime
+            nullable: true
+            column: passwd_changed_on
+        isActive:
+            type: boolean
+            nullable: true
+            column: is_active
+        isBlocked:
+            type: boolean
+            nullable: false
             options:
-                fixed: false
-        firstName:
+                default: false
+            column: is_blocked
+        isDeleted:
+            type: boolean
+            nullable: false
+            options:
+                default: false
+            column: is_deleted
+        verifyEmailUuid:
             type: string
             nullable: true
             length: 50
-            options:
-                fixed: false
-            column: first_name
-        lastName:
-            type: string
+            fixed: true
+            column: verify_email_uuid
+        isSuperuser:
+            type: boolean
             nullable: true
-            length: 50
-            options:
-                fixed: false
-            column: last_name
-        registerdate:
-            type: datetime
-            nullable: false
-            options:
-                default: '0000-00-00 00:00:00'
-            column: registerDate
-        lastvisitdate:
-            type: datetime
-            nullable: false
-            options:
-                default: '0000-00-00 00:00:00'
-            column: lastvisitDate
+            column: is_superuser
+    manyToOne:
+        status:
+            targetEntity: UserStatus
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                status_id:
+                    nullable: false
+                    referencedColumnName: id
+                    onDelete: RESTRICT
+            orphanRemoval: false
         role:
-            type: string
-            nullable: true
-            length: 25
-            options:
-                fixed: false
+            targetEntity: UserRole
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            fetch: EAGER
+            joinColumns:
+                role_id:
+                    nullable: false
+                    referencedColumnName: id
+                    onDelete: RESTRICT
+            orphanRemoval: false
     lifecycleCallbacks: {  }
