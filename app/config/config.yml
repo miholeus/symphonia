@@ -76,6 +76,6 @@ swiftmailer:
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"
-    namespace: Soulex\Migrations
+    namespace: Symphonia\Migrations
     table_name: migration_versions
-    name: Soulex Migrations
+    name: Symphonia Migrations
