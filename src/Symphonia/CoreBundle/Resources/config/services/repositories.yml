@@ -1,0 +1,6 @@
+services:
+    repository.user_repository:
+        class: Symphonia\CoreBundle\Repository\UserRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - Symphonia\CoreBundle\Entity\User

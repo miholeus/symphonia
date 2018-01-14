@@ -1,6 +1,7 @@
 Symphonia\CoreBundle\Entity\User:
     type: entity
     table: users
+    repositoryClass: Symphonia\CoreBundle\Repository\UserRepository
     id:
         id:
             type: integer

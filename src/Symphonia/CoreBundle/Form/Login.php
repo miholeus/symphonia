@@ -33,11 +33,11 @@ class Login extends AbstractType
                 ]
             ])
             ->add('remember_me', CheckboxType::class, [
-                'label' => 'Запомнить меня',
+                'label' => 'Remember me',
                 'required' => false
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Войти',
+                'label' => 'Submit',
                 'attr' => [
                     'class' => 'btn btn-primary btn-block btn-flat',
                 ]

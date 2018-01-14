@@ -1,5 +1,6 @@
 imports:
    - { resource: "services/events.yml" }
+   - { resource: "services/repositories.yml" }
 
 services:
     user.listener:
