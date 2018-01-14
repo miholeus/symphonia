@@ -34,7 +34,7 @@ class LoadUserData extends AbstractFixture
         $user->setFirstname('Alexander');
         $user->setLastname('Pierce');
         $user->setLogin('demo');
-        $user->setEmail('noreply@selloutsport.com');
+        $user->setEmail('noreply@example.com');
         $user->setPhone('79999999999');
         $user->setRole($this->getReference('role-super_admin'));
         $user->setStatus($this->getReference('status-active'));
@@ -65,7 +65,7 @@ class LoadUserData extends AbstractFixture
         $user->setFirstname('Rose');
         $user->setLastname('Johnson');
         $user->setLogin('rose');
-        $user->setEmail('rose@selloutsport.com');
+        $user->setEmail('rose@example.com');
         $user->setPhone('79999999998');
         $user->setRole($this->getReference('role-user'));
         $user->setStatus($this->getReference('status-active'));
