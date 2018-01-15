@@ -17,6 +17,7 @@ services:
             - database
         environment:
             - SYMFONY_ENV=${ENV}
+            - SYMFONY_DEBUG=1
             - SYMFONY__DATABASE__USER=${DB_USER}
             - SYMFONY__DATABASE__NAME=${DB_NAME}
             - SYMFONY__DATABASE__PASS=${DB_PASS}
