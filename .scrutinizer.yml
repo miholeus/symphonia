@@ -47,15 +47,14 @@ coding_style:
                 true_false_null: lower
 filter:
   paths: ["src/*"]
+  excluded_paths:
+      - application/*
+      - support/*
+      - tests/*
 
 build:
     environment:
-        php:
-            version: 7.1
+        docker: true
     tests:
         override:
-            -
-                command: 'vendor/bin/phpunit --coverage-clover=clover.xml'
-                coverage:
-                    file: 'clover.xml'
-                    format: 'clover'
+            - make test
