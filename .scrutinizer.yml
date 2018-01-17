@@ -55,7 +55,9 @@ filter:
 build:
     environment:
         docker: true
+    dependencies:
+        before:
+            - docker-compose up -d
     tests:
         override:
-            - docker-compose up -d
             - docker-compose run --rm php bash -c "make test"
