@@ -10,4 +10,9 @@ class DefaultController extends Controller
     {
         return $this->render('SymphoniaCoreBundle:default:index.html.twig');
     }
+
+    public function headerAction()
+    {
+        return $this->render('@SymphoniaCore/default/header.html.twig');
+    }
 }

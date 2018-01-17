@@ -1,0 +1,52 @@
+<div id="header-box">
+    <div id="module-status">
+        <span class="viewsite"><a href="/" target="_blank">View Site</a></span><span class="logout"><a href="{{ path('logout') }}">Log out</a></span><span class="loggedin-users">1 Logged-in backend</span>
+
+    </div>
+
+    <div id="module-menu">
+        <ul id="menu" >
+
+            <li class="node"><a class="" href="#">Site</a>
+                <ul>
+                    <li><a class="icon-16-cpanel" href="/admin">Control Panel</a></li>
+                    <li class="separator"><span></span></li>
+                    <li><a class="icon-16-config" href="/admin/config">Global Configuration</a></li>
+                    <li class="separator"><span></span></li>
+                    <li><a class="icon-16-info" href="/admin/sysinfo">System Information</a></li>
+                    <li class="separator"><span></span></li>
+                    <li><a class="icon-16-logout" href="{{ path('logout') }}">Logout</a></li>
+                </ul>
+            </li>
+
+            <li class="node"><a class="" href="#">Users</a>
+                <ul>
+                    <li><a class="icon-16-user" href="/admin/user/list">User Manager</a></li>
+                    <li class="separator"><span></span></li>
+                    <li><a class="icon-16-newuser" href="/admin/user/create">Add New User</a></li>
+                    <li><a class="icon-16-newgroup" href="/admin/usergroup/create">Add New Group</a></li>
+                    <li class="separator"><span></span></li>
+                </ul>
+            </li>
+
+            <li class="node"><a class="" href="#">Menus</a>
+                <ul>
+                    <li><a class="icon-16-menumgr" href="/admin/menu">Menu Manager</a></li>
+                    <li class="separator"><span></span></li>
+                </ul>
+            </li>
+
+            <li class="node"><a class="" href="#">Content</a>
+                <ul>
+                    <li><a class="icon-16-article" href="/admin/page">Page Manager</a></li>
+                    <li class="separator"><span></span></li>
+                    <li><a class="icon-16-news" href="/admin/news">News Manager</a></li>
+                    <li><a class="icon-16-news" href="/admin/events">Events Manager</a></li>
+                </ul>
+            </li>
+
+        </ul>
+
+    </div>
+    <div class="clr"></div>
+</div>
