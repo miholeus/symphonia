@@ -23,7 +23,7 @@ security:
                 username_parameter: login[username]
                 password_parameter: login[password]
             logout:
-                path: /logout
+                path: /admin/logout
                 target: /
             provider: db_provider
             remember_me:
