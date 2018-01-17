@@ -4,3 +4,5 @@ symphonia_core_homepage:
 login:
     path:     /login
     defaults: { _controller: SymphoniaCoreBundle:Security:login }
+logout:
+    path:     /logout
