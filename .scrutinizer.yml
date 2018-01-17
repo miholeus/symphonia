@@ -57,4 +57,5 @@ build:
         docker: true
     tests:
         override:
-            - make test
+            - docker-compose up -d
+            - docker-compose run --rm php bash -c "make test"
