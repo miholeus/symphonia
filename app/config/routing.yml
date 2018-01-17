@@ -1,4 +1,9 @@
 sf_core_routing:
     resource: "@SymphoniaCoreBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+sf_page_routig:
+    resource: "@SymphoniaPageBundle/Resources/config/routing.yml"
     prefix:   /
+
 

@@ -1,5 +1,6 @@
 imports:
     - { resource: "@SymphoniaCoreBundle/Resources/config/services.yml" }
+    - { resource: "@SymphoniaPageBundle/Resources/config/services.yml" }
 
 # Learn more about services, parameters and containers at
 # https://symfony.com/doc/current/service_container.html
