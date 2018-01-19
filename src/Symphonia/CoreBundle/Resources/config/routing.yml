@@ -4,5 +4,11 @@ symphonia_core_homepage:
 login:
     path:     /login
     defaults: { _controller: SymphoniaCoreBundle:Security:login }
+symphonia_recover:
+    path: /recover
+    defaults: {_controller: SymphoniaCoreBundle:Security:recoverySendMessage}
+symphonia_recover_code:
+    path: /recover/{code}
+    defaults: {_controller: SymphoniaCoreBundle:Security:recoveryChangePassword}
 logout:
     path:     /logout

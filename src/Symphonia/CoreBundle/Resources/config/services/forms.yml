@@ -1,0 +1,6 @@
+services:
+    form.user_by_email:
+        class: Symphonia\CoreBundle\Form\UserByEmailType
+        arguments: ['@user.service']
+        tags:
+            - { name: form.type }

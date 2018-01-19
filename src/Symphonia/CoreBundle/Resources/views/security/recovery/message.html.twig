@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#"><b>Symphonia</b></a>
+        </div>
+        <div class="login-box-body">
+            <h3 class="login-box-msg">{{ message.header }}</h3>
+            <p>{{ message.text }}</p>
+            {% if message.type == 'recover' %}
+                <a class="btn btn-primary btn-block btn-flat btn" href="{{ path('symphonia_recover') }}">Send new code</a>
+            {% elseif message.type == 'login' %}
+                <a class="btn btn-primary btn-block btn-flat btn" href="{{ path('login') }}">Enter</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
