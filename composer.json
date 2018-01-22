@@ -42,7 +42,7 @@
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0",
+        "symfony/phpunit-bridge": "^4.0",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "mikey179/vfsStream": "^1.6"
     },
