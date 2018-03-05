@@ -3072,18 +3072,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tetranz/select2entity-bundle.git",
-                "reference": "e847b9edb48fefdf777d5dd68c7705de7d10a785"
+                "reference": "e8236049744b2f03ee0095f3fe189878930c9e0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tetranz/select2entity-bundle/zipball/e847b9edb48fefdf777d5dd68c7705de7d10a785",
-                "reference": "e847b9edb48fefdf777d5dd68c7705de7d10a785",
+                "url": "https://api.github.com/repos/tetranz/select2entity-bundle/zipball/e8236049744b2f03ee0095f3fe189878930c9e0b",
+                "reference": "e8236049744b2f03ee0095f3fe189878930c9e0b",
                 "shasum": ""
             },
             "require": {
                 "doctrine/orm": ">=2.4",
-                "php": ">=5.4.0",
-                "symfony/symfony": ">=2.2"
+                "php": ">=5.4.0"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -3111,20 +3110,20 @@
                 "symfony",
                 "typeahead"
             ],
-            "time": "2017-12-29T00:03:03+00:00"
+            "time": "2018-03-05T03:12:09+00:00"
         },
         {
             "name": "twig/twig",
-            "version": "v2.4.4",
+            "version": "v2.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "eddb97148ad779f27e670e1e3f19fb323aedafeb"
+                "reference": "d2117ec118c1ff3d28ccddca8212d82787a4809f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/eddb97148ad779f27e670e1e3f19fb323aedafeb",
-                "reference": "eddb97148ad779f27e670e1e3f19fb323aedafeb",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d2117ec118c1ff3d28ccddca8212d82787a4809f",
+                "reference": "d2117ec118c1ff3d28ccddca8212d82787a4809f",
                 "shasum": ""
             },
             "require": {
@@ -3177,7 +3176,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-09-27T18:10:31+00:00"
+            "time": "2018-03-03T16:23:01+00:00"
         },
         {
             "name": "zendframework/zend-code",
