@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b4457a6c284feade91b71c897141ef1",
+    "content-hash": "42f4e2a26f80d8b8c6d8faf94129cee9",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -3357,6 +3357,12 @@
                 "url": "https://github.com/miholeus/DoctrineFixturesBundle.git",
                 "reference": "71c6c720639c24f49b65537f036e06ec3f9aaa7d"
             },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/miholeus/DoctrineFixturesBundle/zipball/71c6c720639c24f49b65537f036e06ec3f9aaa7d",
+                "reference": "71c6c720639c24f49b65537f036e06ec3f9aaa7d",
+                "shasum": ""
+            },
             "require": {
                 "doctrine/data-fixtures": "~1.0",
                 "doctrine/doctrine-bundle": "~1.0",
@@ -3397,7 +3403,10 @@
                 "Fixture",
                 "Persistence"
             ],
-            "time": "2016-06-01T10:17:07+00:00"
+            "support": {
+                "source": "https://github.com/miholeus/DoctrineFixturesBundle/tree/master"
+            },
+            "time": "2017-08-04T10:05:31+00:00"
         },
         {
             "name": "mikey179/vfsStream",
@@ -3501,16 +3510,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v4.0.6",
+            "version": "v4.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "14ffbbe2a72d0f6339b24eb830dd38cf63ba6630"
+                "reference": "e82f3f46384482f2a7dab5f00c58a36b9726bde9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/14ffbbe2a72d0f6339b24eb830dd38cf63ba6630",
-                "reference": "14ffbbe2a72d0f6339b24eb830dd38cf63ba6630",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/e82f3f46384482f2a7dab5f00c58a36b9726bde9",
+                "reference": "e82f3f46384482f2a7dab5f00c58a36b9726bde9",
                 "shasum": ""
             },
             "require": {
@@ -3563,7 +3572,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2018-02-19T16:50:22+00:00"
+            "time": "2018-04-04T18:24:59+00:00"
         }
     ],
     "aliases": [],
